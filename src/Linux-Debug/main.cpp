@@ -40,19 +40,20 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 
 	//default settings in NSB.h
 	double base_tor = 0.00226259342068;
-	double base_pers = 0.00107403350299;
 	double base_diam = 0.1;
+	int base_num_mon=1100;
 	if (auto p = props.child("link-diameter")){//base diameter 0.1 microns
 		builder->defaultLinkDiameter = (p.text().as_double());
 		double r_ratio_square= pow(((p.text().as_double())/base_diam),2);
 		builder->defaultTorsionSpringStiffness = r_ratio_square*base_tor;
-		builder->defaultPersistanceLength = base_pers/r_ratio_square;
+		builder->defaultNumMonFiberArea = base_num_mon*r_ratio_square;
 	}
 	else{
 		builder->defaultLinkDiameter = base_diam;
 		builder->defaultTorsionSpringStiffness = base_tor;
-		builder->defaultPersistanceLength = base_pers;
+		builder->defaultNumMonFiberArea = base_num_mon;
 	}
+	
 	if (auto p = props.child("resistance_fibrin"))
 		builder->viscousDamp_Fibrin = (p.text().as_double());
 
@@ -63,10 +64,10 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->defaultSpringStiffness = (p.text().as_double());
 
 	/* if (auto p = props.child("torsion-stiffness"))
-		builder->defaultTorsionSpringStiffness = (p.text().as_double());
+		builder->defaultTorsionSpringStiffness = (p.text().as_double());*/
 
 	if (auto p = props.child("persistance-length"))
-		builder->defaultPersistanceLength = (p.text().as_double()); */
+		builder->defaultPersistanceLength = (p.text().as_double()); 
 
 	if (auto p = props.child("absolute-temperature"))
 		builder->defaultTemperature = (p.text().as_double());
