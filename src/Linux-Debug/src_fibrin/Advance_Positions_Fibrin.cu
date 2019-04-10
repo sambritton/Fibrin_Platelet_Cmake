@@ -59,6 +59,6 @@ void Advance_Positions_Fibrin(
 
 		//finally, clear the random data.
         gaussianData.clear();
-        gaussianData.shrink_to_fit();
+        gaussianData.shrink_to_fit(); 
 
 }
