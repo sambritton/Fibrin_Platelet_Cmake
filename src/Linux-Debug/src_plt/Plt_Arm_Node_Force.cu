@@ -60,7 +60,7 @@ void Plt_Arm_Node_Force(
 				 //DOES NOT RESET FORCES
         		 pltInfoVecs.pltForceX.begin(),
         		 pltInfoVecs.pltForceY.begin(),
-        		 pltInfoVecs.pltForceZ.begin())),
+        		 pltInfoVecs.pltForceZ.begin())), 
              functor_plt_arm_node(
                 generalParams.plt_tndrl_intrct,
                 generalParams.pltRForce,

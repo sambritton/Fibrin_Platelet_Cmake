@@ -15,6 +15,7 @@
 
 #include "Bucket_Net.h"
 #include "Bucket_Plt.h"
+#include "functor_misc.h"
 #include "System.h"
 
 
@@ -73,15 +74,42 @@ void System::setBucketScheme() {
 };
 
 void System::solveForces() {
-
+ 
 	//RESET FORCE TO ZERO AT BEGINNING/////////////////////////////////////////////////
 	thrust::fill(nodeInfoVecs.nodeForceX.begin(),nodeInfoVecs.nodeForceX.end(),0);
-	thrust::fill(nodeInfoVecs.nodeForceY.begin(),nodeInfoVecs.nodeForceY.end(),0);
+	thrust::fill(nodeInfoVecs.nodeForceY.begin(),nodeInfoVecs.nodeForceY.end(),0); 
 	thrust::fill(nodeInfoVecs.nodeForceZ.begin(),nodeInfoVecs.nodeForceZ.end(),0);
 	
 	thrust::fill(pltInfoVecs.pltForceX.begin(),pltInfoVecs.pltForceX.end(),0);
 	thrust::fill(pltInfoVecs.pltForceY.begin(),pltInfoVecs.pltForceY.end(),0);
 	thrust::fill(pltInfoVecs.pltForceZ.begin(),pltInfoVecs.pltForceZ.end(),0);
+
+	unsigned _seed = rand();
+    thrust::device_vector<double> temp_unif_rand;
+unsigned size = pltInfoVecs.tndrlNodeId.size();
+    temp_unif_rand.resize(size); //
+	thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
+
+    thrust::transform(thrust::device, temp_unif_rand.begin(), temp_unif_rand.begin() + size,
+        temp_unif_rand.begin(), psrunifgen(0, 1.0));
+	//reset attachment due to prob
+	double P = 0.05;
+	thrust::transform(
+        thrust::make_zip_iterator(
+        	thrust::make_tuple(
+				pltInfoVecs.tndrlNodeId.begin(),
+				temp_unif_rand.begin())),
+
+        thrust::make_zip_iterator(
+        	thrust::make_tuple(
+				pltInfoVecs.tndrlNodeId.end(),
+				temp_unif_rand.end())),
+
+		pltInfoVecs.tndrlNodeId.begin(),
+	functor_prob_detach(generalParams.dtTemp, P, generalParams.maxIdCountFlag));
+
+        temp_unif_rand.clear();
+        temp_unif_rand.shrink_to_fit();
 
 	
 	if (generalParams.linking == true) {
