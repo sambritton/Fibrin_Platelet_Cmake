@@ -77,7 +77,7 @@ struct functor_add_UCVec3_CVec3_pltVol {
 
 				forceXAddr[idToAssign] += thrust::get<1>(u1d3);
 				forceYAddr[idToAssign] += thrust::get<2>(u1d3);
-				forceZAddr[idToAssign] += thrust::get<3>(u1d3);
+				forceZAddr[idToAssign] += thrust::get<3>(u1d3); 
 				isNodeInPltVolAddr[idToAssign] = true;
 			}
 			if( (f1 == 0.0) && (f2 == 0.0) && (f3 == 0.0) ){

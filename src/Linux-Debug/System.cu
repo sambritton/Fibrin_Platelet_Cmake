@@ -74,10 +74,10 @@ void System::setBucketScheme() {
 };
 
 void System::solveForces() {
-
+ 
 	//RESET FORCE TO ZERO AT BEGINNING/////////////////////////////////////////////////
 	thrust::fill(nodeInfoVecs.nodeForceX.begin(),nodeInfoVecs.nodeForceX.end(),0);
-	thrust::fill(nodeInfoVecs.nodeForceY.begin(),nodeInfoVecs.nodeForceY.end(),0);
+	thrust::fill(nodeInfoVecs.nodeForceY.begin(),nodeInfoVecs.nodeForceY.end(),0); 
 	thrust::fill(nodeInfoVecs.nodeForceZ.begin(),nodeInfoVecs.nodeForceZ.end(),0);
 	
 	thrust::fill(pltInfoVecs.pltForceX.begin(),pltInfoVecs.pltForceX.end(),0);
