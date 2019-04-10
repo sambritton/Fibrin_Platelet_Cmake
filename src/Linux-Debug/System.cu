@@ -188,7 +188,7 @@ void System::solveSystem() {
 
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
-		std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
+		//std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
 
 		Advance_Positions_Fibrin(
 			nodeInfoVecs,
