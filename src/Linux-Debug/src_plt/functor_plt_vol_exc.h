@@ -158,6 +158,7 @@ struct functor_plt_vol_exc : public thrust::unary_function< U2CVec6, CVec3 >  {
 
                 //check pushcounter
                 //repulsion if fiber and platelet overlap more than adhesion fractional radius
+				//dist < (0.9 * 1.0 + 0.05) -> push
                 if (dist < (pltRAdhesion*pltR + fiberDiameter / 2.0) )  {
                     //node only affects plt position if it is pulled.
                     //Determine direction of force based on positions and multiply magnitude force
@@ -176,6 +177,7 @@ struct functor_plt_vol_exc : public thrust::unary_function< U2CVec6, CVec3 >  {
                     pushCounter++;
                 }
 				//adhesion if between fractional adhesion radius and radius
+				//pull if in anulus
 				else if ((dist > (pltRAdhesion*pltR + fiberDiameter / 2.0)) && (dist < (pltR + fiberDiameter / 2.0)) )  {
                     //node only affects plt position if it is pulled.
                     //Determine direction of force based on positions and multiply magnitude force

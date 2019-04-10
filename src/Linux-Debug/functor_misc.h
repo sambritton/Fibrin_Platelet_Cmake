@@ -73,16 +73,14 @@ struct functor_add_UCVec3_CVec3_pltVol {
 			double f2 = thrust::get<2>(u1d3); 
 			double f3 = thrust::get<3>(u1d3); 
 
-			if (!isnan(f1) && !isnan(f2) && !isnan(f3)) {
+			if ((f1 != 0.0) || (f2 != 0.0) || (f3 !=0.0)) {
 
 				forceXAddr[idToAssign] += thrust::get<1>(u1d3);
 				forceYAddr[idToAssign] += thrust::get<2>(u1d3);
 				forceZAddr[idToAssign] += thrust::get<3>(u1d3);
-			}
-			if( (f1 != 0.0) || (f2 != 0.0) || (f3 != 0.0) ){
 				isNodeInPltVolAddr[idToAssign] = true;
 			}
-			else{
+			if( (f1 == 0.0) && (f2 == 0.0) && (f3 == 0.0) ){
 				isNodeInPltVolAddr[idToAssign] = false;
 			}
 
@@ -104,6 +102,38 @@ struct functor_norm {
 
 
 	}
+};
+
+
+struct functor_prob_detach {//same as torsion
+	double dt;
+	double P;
+	unsigned maxIdCountFlag;
+
+	__host__ __device__
+		//
+		functor_prob_detach(
+			double& _dt,
+			double& _P,
+			unsigned& _maxIdCountFlag):
+		dt(_dt),
+		P(_P),
+		maxIdCountFlag(_maxIdCountFlag) {}
+
+	__device__
+		unsigned operator() (const Tud& u1d1) {
+		unsigned current_node_plt_attached = thrust::get<0>(u1d1);
+		double prob = thrust::get<1>(u1d1);
+
+		if (prob < dt * P) {
+			return maxIdCountFlag;
+		}
+		else {
+			return current_node_plt_attached;
+		}
+
+	}
+
 };
 
 #endif
