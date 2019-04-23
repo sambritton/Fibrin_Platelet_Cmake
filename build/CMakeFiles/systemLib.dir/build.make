@@ -60,7 +60,7 @@ include CMakeFiles/systemLib.dir/flags.make
 CMakeFiles/systemLib.dir/System.cu.o: CMakeFiles/systemLib.dir/flags.make
 CMakeFiles/systemLib.dir/System.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object CMakeFiles/systemLib.dir/System.cu.o"
-	/opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System.cu -o CMakeFiles/systemLib.dir/System.cu.o
+	/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System.cu -o CMakeFiles/systemLib.dir/System.cu.o
 
 CMakeFiles/systemLib.dir/System.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/systemLib.dir/System.cu.i"
@@ -73,15 +73,15 @@ CMakeFiles/systemLib.dir/System.cu.s: cmake_force
 CMakeFiles/systemLib.dir/System_Builder.cpp.o: CMakeFiles/systemLib.dir/flags.make
 CMakeFiles/systemLib.dir/System_Builder.cpp.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/systemLib.dir/System_Builder.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/systemLib.dir/System_Builder.cpp.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp
+	/opt/crc/g/gcc/7.1.0/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/systemLib.dir/System_Builder.cpp.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp
 
 CMakeFiles/systemLib.dir/System_Builder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/systemLib.dir/System_Builder.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp > CMakeFiles/systemLib.dir/System_Builder.cpp.i
+	/opt/crc/g/gcc/7.1.0/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp > CMakeFiles/systemLib.dir/System_Builder.cpp.i
 
 CMakeFiles/systemLib.dir/System_Builder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/systemLib.dir/System_Builder.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp -o CMakeFiles/systemLib.dir/System_Builder.cpp.s
+	/opt/crc/g/gcc/7.1.0/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/System_Builder.cpp -o CMakeFiles/systemLib.dir/System_Builder.cpp.s
 
 # Object files for target systemLib
 systemLib_OBJECTS = \

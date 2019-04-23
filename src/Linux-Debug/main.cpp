@@ -146,10 +146,19 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->plthandhand = (p.text().as_bool());	
 		std::cout<<"plthandhand: "<< builder->plthandhand<<std::endl;
 	}
-	
-	if (auto p = props.child("use-pltonplt")){
+
+	if (auto p = props.child("use-pltonplt")) {
 		builder->pltonplt = (p.text().as_bool());
-		std::cout<<"plt_interact: "<< builder->pltonplt<<std::endl;
+		std::cout << "plt_interact: " << builder->pltonplt << std::endl;
+	}
+
+	if (auto p = props.child("dynamic-plt")) {
+		builder->use_dynamic_plt_force = (p.text().as_bool());
+		std::cout << "dynamic_plt: " << builder->use_dynamic_plt_force << std::endl;
+	}
+	if (auto p = props.child("dynamic-plt-max-force")) {
+		builder->max_dynamic_plt_force = (p.text().as_double());
+		std::cout << "dynamic_plt_max_force: " << builder->max_dynamic_plt_force << std::endl;
 	}
 
 	std::cout << "builder ptr address: " << builder << std::endl;

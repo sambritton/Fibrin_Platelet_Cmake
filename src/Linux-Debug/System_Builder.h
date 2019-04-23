@@ -83,6 +83,8 @@ public:
 	bool pltrelease = true;
 	bool plthandhand = true;
 	bool pltonplt = false;
+	bool use_dynamic_plt_force = true;
+	double max_dynamic_plt_force = 29;
 
 	//std::shared_ptr<NodeSystemDevice> host_ptr_devNodeSystem;
 	std::vector<std::shared_ptr<BuildNode>> buildNodes;

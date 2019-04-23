@@ -252,7 +252,7 @@ struct GeneralParams{
 	double nodeMass = 1;
 	double persistenceLengthMon;
 
-	double fiberDiameter = 0.1;
+	double fiberDiameter;
 
   //platelet parameters
   //look in builder for default parameter settings.
@@ -264,12 +264,15 @@ struct GeneralParams{
 	double pltRAdhesion;
 	double pltMass;
 	double pltDensity;
-	bool pltfrcfld = false;
-	bool plttndrl = true; 
-	bool pltrelease = true;
-	bool plthandhand = true;
-	bool pltonplt = true;
-	bool agg_release = true;
+	bool pltfrcfld;
+	bool plttndrl; 
+	bool pltrelease;
+	bool plthandhand;
+	bool pltonplt;
+	bool agg_release;
+
+	bool use_dynamic_plt_force;
+	double max_dynamic_plt_force;
 	unsigned maxIdCountFlag;//flag variable
 
 	//parameters for advancing timestep and determining equilibrium

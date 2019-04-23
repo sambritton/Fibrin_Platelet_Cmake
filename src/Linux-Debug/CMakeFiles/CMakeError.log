@@ -1,0 +1,51 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_538fd/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_538fd.dir/build.make CMakeFiles/cmTC_538fd.dir/build
+gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_538fd.dir/CheckSymbolExists.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_538fd.dir/CheckSymbolExists.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Linking CXX executable cmTC_538fd
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_538fd.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_538fd.dir/CheckSymbolExists.cxx.o  -o cmTC_538fd 
+CMakeFiles/cmTC_538fd.dir/CheckSymbolExists.cxx.o: In function `main':
+CheckSymbolExists.cxx:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTC_538fd] Error 1
+gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_538fd/fast] Error 2
+
+File /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_242f3/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_242f3.dir/build.make CMakeFiles/cmTC_242f3.dir/build
+gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_242f3.dir/CheckFunctionExists.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_242f3.dir/CheckFunctionExists.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_242f3
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_242f3.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_242f3.dir/CheckFunctionExists.cxx.o  -o cmTC_242f3 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTC_242f3] Error 1
+gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_242f3/fast] Error 2
+
+

@@ -1,2 +1,2 @@
-/usr/bin/ar qc libfibrinLib.a  CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o CMakeFiles/fibrinLib.dir/WLC_Force.cu.o CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o CMakeFiles/fibrinLib.dir/Params_Calc.cu.o
-/usr/bin/ranlib libfibrinLib.a
+/bin/ar qc libfibrinLib.a  CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o CMakeFiles/fibrinLib.dir/WLC_Force.cu.o CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o CMakeFiles/fibrinLib.dir/Params_Calc.cu.o
+/bin/ranlib libfibrinLib.a

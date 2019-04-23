@@ -13,7 +13,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme"
   "/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin"
   "/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt"
-  "/opt/crc/c/cuda/10.0/include"
+  "/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/include"
   "/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_ext_lib/pugixml/src"
   "/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_ext_lib/pugixml/include"
   )

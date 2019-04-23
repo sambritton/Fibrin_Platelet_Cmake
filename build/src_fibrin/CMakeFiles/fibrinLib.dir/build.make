@@ -60,7 +60,7 @@ include src_fibrin/CMakeFiles/fibrinLib.dir/flags.make
 src_fibrin/CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o: src_fibrin/CMakeFiles/fibrinLib.dir/flags.make
 src_fibrin/CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Advance_Positions_Fibrin.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object src_fibrin/CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Advance_Positions_Fibrin.cu -o CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Advance_Positions_Fibrin.cu -o CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.o
 
 src_fibrin/CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.i"
@@ -73,7 +73,7 @@ src_fibrin/CMakeFiles/fibrinLib.dir/Advance_Positions_Fibrin.cu.s: cmake_force
 src_fibrin/CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o: src_fibrin/CMakeFiles/fibrinLib.dir/flags.make
 src_fibrin/CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Link_Nodes.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object src_fibrin/CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Link_Nodes.cu -o CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Link_Nodes.cu -o CMakeFiles/fibrinLib.dir/Link_Nodes.cu.o
 
 src_fibrin/CMakeFiles/fibrinLib.dir/Link_Nodes.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/fibrinLib.dir/Link_Nodes.cu.i"
@@ -86,7 +86,7 @@ src_fibrin/CMakeFiles/fibrinLib.dir/Link_Nodes.cu.s: cmake_force
 src_fibrin/CMakeFiles/fibrinLib.dir/WLC_Force.cu.o: src_fibrin/CMakeFiles/fibrinLib.dir/flags.make
 src_fibrin/CMakeFiles/fibrinLib.dir/WLC_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/WLC_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CUDA object src_fibrin/CMakeFiles/fibrinLib.dir/WLC_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/WLC_Force.cu -o CMakeFiles/fibrinLib.dir/WLC_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/WLC_Force.cu -o CMakeFiles/fibrinLib.dir/WLC_Force.cu.o
 
 src_fibrin/CMakeFiles/fibrinLib.dir/WLC_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/fibrinLib.dir/WLC_Force.cu.i"
@@ -99,7 +99,7 @@ src_fibrin/CMakeFiles/fibrinLib.dir/WLC_Force.cu.s: cmake_force
 src_fibrin/CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o: src_fibrin/CMakeFiles/fibrinLib.dir/flags.make
 src_fibrin/CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Torsion_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CUDA object src_fibrin/CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Torsion_Force.cu -o CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Torsion_Force.cu -o CMakeFiles/fibrinLib.dir/Torsion_Force.cu.o
 
 src_fibrin/CMakeFiles/fibrinLib.dir/Torsion_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/fibrinLib.dir/Torsion_Force.cu.i"
@@ -112,7 +112,7 @@ src_fibrin/CMakeFiles/fibrinLib.dir/Torsion_Force.cu.s: cmake_force
 src_fibrin/CMakeFiles/fibrinLib.dir/Params_Calc.cu.o: src_fibrin/CMakeFiles/fibrinLib.dir/flags.make
 src_fibrin/CMakeFiles/fibrinLib.dir/Params_Calc.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Params_Calc.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CUDA object src_fibrin/CMakeFiles/fibrinLib.dir/Params_Calc.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Params_Calc.cu -o CMakeFiles/fibrinLib.dir/Params_Calc.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_fibrin && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_fibrin/Params_Calc.cu -o CMakeFiles/fibrinLib.dir/Params_Calc.cu.o
 
 src_fibrin/CMakeFiles/fibrinLib.dir/Params_Calc.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/fibrinLib.dir/Params_Calc.cu.i"

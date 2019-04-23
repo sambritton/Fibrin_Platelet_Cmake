@@ -62,6 +62,10 @@ void Plt_Arm_Node_Force(
         		 pltInfoVecs.pltForceY.begin(),
         		 pltInfoVecs.pltForceZ.begin())), 
              functor_plt_arm_node(
+				generalParams.use_dynamic_plt_force,
+				generalParams.CLM,
+				generalParams.max_dynamic_plt_force,
+
                 generalParams.plt_tndrl_intrct,
                 generalParams.pltRForce,
                 generalParams.pltForce,
@@ -94,10 +98,12 @@ void Plt_Arm_Node_Force(
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeType.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.isNodeInPltVol.data()),
                 thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
+                thrust::raw_pointer_cast(wlcInfoVecs.lengthZero.data()),
+                thrust::raw_pointer_cast(wlcInfoVecs.numOriginalNeighborsNodeVector.data()),
 
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocX.data()),
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocY.data()),
-                thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) );
+                thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) ); 
 
 		
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.
