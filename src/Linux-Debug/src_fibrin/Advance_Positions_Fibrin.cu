@@ -7,18 +7,17 @@
 
 void Advance_Positions_Fibrin(
 	NodeInfoVecs& nodeInfoVecs,
-	GeneralParams& generalParams) {
+	GeneralParams& generalParams,
+	RandVecs& randVecs) {
 
 
 		//At this point, the previous node location is the same as the current node,
 		//we can therefore use previous node locations to update nodeLoc.
-		 unsigned _seed = rand();
-    	thrust::device_vector<double> gaussianData;
-    	gaussianData.resize(generalParams.maxNodeCount); //
-		thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
+		unsigned _seed = rand();
+    	thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
 
     	thrust::transform(thrust::device, index_sequence_begin, index_sequence_begin + (generalParams.maxNodeCount),
-        gaussianData.begin(), psrunifgen(-1.0, 1.0));
+        	randVecs.gaussianData.begin(), psrunifgen(-1.0, 1.0));
 
 		thrust::counting_iterator<unsigned> nodeIndexBegin(0);
 
@@ -38,7 +37,7 @@ void Advance_Positions_Fibrin(
 			//second vector begin
 			thrust::make_zip_iterator(
 				thrust::make_tuple(
-					gaussianData.begin(),
+					randVecs.gaussianData.begin(),
 					nodeInfoVecs.nodeForceX.begin(),
 					nodeInfoVecs.nodeForceY.begin(),
 					nodeInfoVecs.nodeForceZ.begin())),
@@ -56,9 +55,5 @@ void Advance_Positions_Fibrin(
 				generalParams.nodeMass,
 				generalParams.maxNodeCount,
 				thrust::raw_pointer_cast(nodeInfoVecs.isNodeFixed.data())));
-
-		//finally, clear the random data.
-        gaussianData.clear();
-        gaussianData.shrink_to_fit(); 
 
 }

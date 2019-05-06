@@ -8,13 +8,14 @@ struct WLCInfoVecs;
 struct GeneralParams;
 struct PltInfoVecs;
 struct AuxVecs;
-
-    //Tndrl-like force
+struct RandVecs;
+    //filopodia-like force
 void Plt_Arm_Node_Force(
   	NodeInfoVecs& nodeInfoVecs,
 	WLCInfoVecs& wlcInfoVecs,
 	GeneralParams& generalParams,
   	PltInfoVecs& pltInfoVecs,
-  	AuxVecs& auxVecs);
+  	AuxVecs& auxVecs,
+	RandVecs& randVecs);
 
 #endif

@@ -45,10 +45,6 @@ thrust/pair.h
 -
 thrust/unique.h
 -
-thrust/device_vector.h
--
-thrust/device_ptr.h
--
 thrust/remove.h
 -
 thrust/binary_search.h

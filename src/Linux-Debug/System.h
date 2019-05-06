@@ -3,6 +3,15 @@
 
 #include "SystemStructures.h"
 
+struct RandVecs {
+	
+  thrust::device_vector<double> gaussianData;
+  thrust::device_vector<double> filopodia_detach; //size tndrlNodeId
+	
+  thrust::device_vector<double> gaussianPltData;
+  thrust::device_vector<double> bucketPltStart;
+
+};
 
 //Data Structure for node location. velocity and force
 struct NodeInfoVecs {
@@ -294,11 +303,13 @@ class System {
 public:
 	DomainParams domainParams;
 	NodeInfoVecs nodeInfoVecs;
-  	PltInfoVecs pltInfoVecs;
+  PltInfoVecs pltInfoVecs;
 	AuxVecs auxVecs;
 	WLCInfoVecs wlcInfoVecs;
 	TorsionInfoVecs torsionInfoVecs;
 	GeneralParams generalParams;
+
+	RandVecs randVecs;
 
 	std::shared_ptr<Storage> storage;
 
@@ -361,7 +372,8 @@ public:
 		thrust::host_vector<unsigned>& hostWLCSubEdgeLeft,
 		thrust::host_vector<unsigned>& hostWLCSubEdgeRight,
 		thrust::host_vector<double>& hostWLCSubLenZero );
-
+	
+	void setRandVecs();
 };
 
 

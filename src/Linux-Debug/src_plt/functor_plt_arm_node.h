@@ -3,7 +3,10 @@
 
 #include "SystemStructures.h"
 
-struct functor_plt_arm_node : public thrust::unary_function< U2CVec6, CVec3>  {
+#include <curand.h>
+#include <curand_kernel.h>
+
+struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	bool use_dynamic_plt_force;
 	double contour_length_mult;
 	double max_dynamic_force;
@@ -140,38 +143,42 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec6, CVec3>  {
 
 
    __device__
- 		CVec3 operator()(const U2CVec6 &u2d6) {
+ 		CVec3 operator()(const U2CVec7 &u3d6) {
 
-        unsigned pltId = thrust::get<0>(u2d6);
-        unsigned bucketId = thrust::get<1>(u2d6);
-
-        //beginning and end of attempted interaction network nodes.
-		unsigned beginIndex = keyBegin[bucketId];
-		unsigned endIndex = keyEnd[bucketId];
-
+        unsigned pltId = thrust::get<0>(u3d6);
+        unsigned bucketId = thrust::get<1>(u3d6);
+		
+		double unif_rand = thrust::get<2>(u3d6);//used for generator unif
 
         unsigned storageLocation = pltId * plt_tndrl_intrct;
 
-        double pltLocX = thrust::get<2>(u2d6);
-        double pltLocY = thrust::get<3>(u2d6);
-        double pltLocZ = thrust::get<4>(u2d6);
+        double pltLocX = thrust::get<3>(u3d6);
+        double pltLocY = thrust::get<4>(u3d6);
+        double pltLocZ = thrust::get<5>(u3d6);
 
         //use for return.
-        double pltCurrentForceX = thrust::get<5>(u2d6);
-        double pltCurrentForceY = thrust::get<6>(u2d6);
-        double pltCurrentForceZ = thrust::get<7>(u2d6);
+        double pltCurrentForceX = thrust::get<6>(u3d6);
+        double pltCurrentForceY = thrust::get<7>(u3d6);
+        double pltCurrentForceZ = thrust::get<8>(u3d6);
 
         double sumPltForceX = pltCurrentForceX;
         double sumPltForceY = pltCurrentForceY;
         double sumPltForceZ = pltCurrentForceZ;
 
-    	//double vecN_PX = 0.0;
-    	//double vecN_PY = 0.0;
-    	//double vecN_PZ = 0.0;
-    	//double dist = 0.0;
+		//set random generator
 
-        //Loop through the number of available tendrils
-		unsigned final_interaction_count=0;
+        //beginning and end of attempted interaction network nodes.
+		unsigned beginIndex = keyBegin[bucketId];
+		unsigned endIndex = keyEnd[bucketId];
+		double len = static_cast<double>(endIndex-beginIndex);
+		
+		double seed_d = round(len*unif_rand);
+		unsigned seed = static_cast<unsigned>(seed_d);
+		curandState state;
+		curand_init ( seed, pltId, 0, &state);
+
+        //Loop through the number of available filopodia
+		unsigned final_interaction_count = 0;
         for(unsigned interactionCounter = 0; interactionCounter < plt_tndrl_intrct; interactionCounter++) {
 
             unsigned pullNode_id = tndrlNodeId[storageLocation + interactionCounter];
@@ -295,8 +302,13 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec6, CVec3>  {
         	    //try to find a node to pull by searching.
 
 				//ISSUE HERE: we need a random permutation of nodes.
+				//
+				double bucket_len = static_cast<double>(endIndex-beginIndex);
         	    for (unsigned newpull_index = beginIndex; newpull_index < endIndex; newpull_index++){
-        	        unsigned newPullNode_id = id_value_expanded[ newpull_index ];
+
+					float randomf = curand_uniform( &state );//uniform set above.
+					unsigned rand_choice = static_cast<unsigned>(floor(randomf * bucket_len)) + beginIndex;
+        	        unsigned newPullNode_id = id_value_expanded[ rand_choice];//could be newpull_index
 
 					bool isNodeInPltVol = false;
 					if (agg_release) {

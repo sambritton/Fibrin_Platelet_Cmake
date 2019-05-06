@@ -14,7 +14,8 @@ void Plt_Arm_Node_Force(
 	WLCInfoVecs& wlcInfoVecs,
 	GeneralParams& generalParams,
 	PltInfoVecs& pltInfoVecs,
-	AuxVecs& auxVecs) {
+	AuxVecs& auxVecs,
+	RandVecs& randVecs) {
 
 
 		thrust::fill(pltInfoVecs.nodeUnreducedForceX.begin(), pltInfoVecs.nodeUnreducedForceX.end(), 0.0);
@@ -31,6 +32,12 @@ void Plt_Arm_Node_Force(
 		thrust::counting_iterator<unsigned> counter(0);
 
 
+
+		unsigned _seedplt = rand();
+
+		thrust::counting_iterator<unsigned> index_sequence_plt_begin(_seedplt);
+		thrust::transform(thrust::device, index_sequence_plt_begin, index_sequence_plt_begin + (generalParams.maxPltCount),
+		randVecs.bucketPltStart.begin(), psrunifgen(0.0, 1.0));
         //Call the plt force on nodes functor
 		//WARNING:
 		//writes to unreduced vector entries from 0 to maxPltCount*plt_tndrl_intrct
@@ -38,7 +45,8 @@ void Plt_Arm_Node_Force(
         	thrust::make_zip_iterator(
         		thrust::make_tuple(
 					counter,
-   					auxVecs.idPlt_bucket.begin(),
+					auxVecs.idPlt_bucket.begin(),
+					randVecs.bucketPltStart.begin(),
         			pltInfoVecs.pltLocX.begin(),
         			pltInfoVecs.pltLocY.begin(),
         			pltInfoVecs.pltLocZ.begin(),
@@ -48,7 +56,8 @@ void Plt_Arm_Node_Force(
         	thrust::make_zip_iterator(
         		thrust::make_tuple(
 					counter,
-        			auxVecs.idPlt_bucket.begin(),
+					auxVecs.idPlt_bucket.begin(),
+					randVecs.bucketPltStart.begin(),
         		 	pltInfoVecs.pltLocX.begin(),
         		 	pltInfoVecs.pltLocY.begin(),
         		 	pltInfoVecs.pltLocZ.begin(),
