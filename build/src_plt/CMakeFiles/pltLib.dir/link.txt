@@ -1,2 +1,2 @@
-/bin/ar qc libpltLib.a  CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o
-/bin/ranlib libpltLib.a
+/usr/bin/ar qc libpltLib.a  CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o
+/usr/bin/ranlib libpltLib.a

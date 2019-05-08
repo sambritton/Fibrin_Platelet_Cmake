@@ -1,2 +1,2 @@
-/bin/ar qc libbucket_schemeLib.a  CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o
-/bin/ranlib libbucket_schemeLib.a
+/usr/bin/ar qc libbucket_schemeLib.a  CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o
+/usr/bin/ranlib libbucket_schemeLib.a

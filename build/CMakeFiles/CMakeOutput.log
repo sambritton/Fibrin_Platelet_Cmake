@@ -1,4 +1,4 @@
-The system is: Linux - 3.10.0-957.el7.x86_64 - x86_64
+The system is: Linux - 3.10.0-957.12.1.el7.x86_64 - x86_64
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /opt/crc/g/gcc/7.1.0/bin/g++ 
 Build flags: 
@@ -29,7 +29,7 @@ The output was:
 #$ TOP=/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..
 #$ NVVMIR_LIBRARY_DIR=/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/libdevice
 #$ LD_LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../lib:/opt/crc/i/isl/0.16.1/gcc/4.8.5/lib:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/lib:/opt/crc/g/gcc/7.1.0/lib64:/opt/crc/g/gcc/7.1.0/lib:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64
-#$ PATH=/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/bin:/opt/crc/g/gcc/7.1.0/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/c/cmake/3.13.2/bin:/afs/crc.nd.edu/x86_64_linux/Modules/4.2.1/bin:/opt/sge/bin/lx-amd64:/usr/kerberos/sbin:/usr/kerberos/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/afs/crc.nd.edu/user/c/condor/software/bin:/afs/crc.nd.edu/user/c/condor/software/sbin
+#$ PATH=/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/bin:/opt/crc/g/gcc/7.1.0/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/c/cmake/3.13.2/bin:/afs/crc.nd.edu/x86_64_linux/Modules/4.2.1/bin:/opt/sge/bin/lx-amd64:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/afs/crc.nd.edu/user/c/condor/software/bin:/afs/crc.nd.edu/user/c/condor/software/sbin
 #$ INCLUDES="-I/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//include"  
 #$ LIBRARIES=  "-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//lib64/stubs" "-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//lib64"
 #$ CUDAFE_FLAGS=
@@ -53,7 +53,7 @@ Compilation of the CUDA compiler identification source "CMakeCUDACompilerId.cu" 
 The CUDA compiler identification is NVIDIA, found in "/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/3.13.2/CompilerIdCUDA/a.out"
 
 Parsed CUDA nvcc implicit link information from above output:
-  found 'PATH=' string: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/bin:/opt/crc/g/gcc/7.1.0/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/c/cmake/3.13.2/bin:/afs/crc.nd.edu/x86_64_linux/Modules/4.2.1/bin:/opt/sge/bin/lx-amd64:/usr/kerberos/sbin:/usr/kerberos/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/afs/crc.nd.edu/user/c/condor/software/bin:/afs/crc.nd.edu/user/c/condor/software/sbin]
+  found 'PATH=' string: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/bin:/opt/crc/g/gcc/7.1.0/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/c/cmake/3.13.2/bin:/afs/crc.nd.edu/x86_64_linux/Modules/4.2.1/bin:/opt/sge/bin/lx-amd64:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/afs/crc.nd.edu/user/c/condor/software/bin:/afs/crc.nd.edu/user/c/condor/software/sbin]
   found 'LIBRARIES=' string: ["-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//lib64/stubs" "-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//lib64"]
   considering line: [#$ rm tmp/a_dlink.reg.c]
   considering line: [gcc -std=c++14 -D__CUDA_ARCH__=300 -E -x c++  -DCUDA_DOUBLE_MATH_FUNCTIONS -D__CUDACC__ -D__NVCC__  "-I/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//include"    -D__CUDACC_VER_MAJOR__=10 -D__CUDACC_VER_MINOR__=0 -D__CUDACC_VER_BUILD__=130 -include "cuda_runtime.h" -m64 "CMakeCUDACompilerId.cu" > "tmp/CMakeCUDACompilerId.cpp1.ii" ]
@@ -100,7 +100,7 @@ Parsed CUDA nvcc implicit link information from above output:
 
 
 Parsed CUDA nvcc include information from above output:
-  found 'PATH=' string: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/bin:/opt/crc/g/gcc/7.1.0/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/c/cmake/3.13.2/bin:/afs/crc.nd.edu/x86_64_linux/Modules/4.2.1/bin:/opt/sge/bin/lx-amd64:/usr/kerberos/sbin:/usr/kerberos/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/afs/crc.nd.edu/user/c/condor/software/bin:/afs/crc.nd.edu/user/c/condor/software/sbin]
+  found 'PATH=' string: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/../nvvm/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/g/gdb/7.12.1/gcc/7.1.0/bin:/opt/crc/g/gcc/7.1.0/bin:/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin:/opt/crc/c/cmake/3.13.2/bin:/afs/crc.nd.edu/x86_64_linux/Modules/4.2.1/bin:/opt/sge/bin/lx-amd64:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/afs/crc.nd.edu/user/c/condor/software/bin:/afs/crc.nd.edu/user/c/condor/software/sbin]
   found 'LIBRARIES=' string: ["-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//lib64/stubs" "-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//lib64"]
   considering line: [#$ rm tmp/a_dlink.reg.c]
   considering line: [gcc -std=c++14 -D__CUDA_ARCH__=300 -E -x c++  -DCUDA_DOUBLE_MATH_FUNCTIONS -D__CUDACC__ -D__NVCC__  "-I/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/..//include"    -D__CUDACC_VER_MAJOR__=10 -D__CUDACC_VER_MINOR__=0 -D__CUDACC_VER_BUILD__=130 -include "cuda_runtime.h" -m64 "CMakeCUDACompilerId.cu" > "tmp/CMakeCUDACompilerId.cpp1.ii" ]
@@ -150,28 +150,28 @@ Parsed CUDA nvcc include information from above output:
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_a8c69/fast"
-/bin/gmake -f CMakeFiles/cmTC_a8c69.dir/build.make CMakeFiles/cmTC_a8c69.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_22f08/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_22f08.dir/build.make CMakeFiles/cmTC_22f08.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a8c69.dir/testCXXCompiler.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_a8c69.dir/testCXXCompiler.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_a8c69
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8c69.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_a8c69.dir/testCXXCompiler.cxx.o  -o cmTC_a8c69 
+Building CXX object CMakeFiles/cmTC_22f08.dir/testCXXCompiler.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_22f08.dir/testCXXCompiler.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_22f08
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22f08.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_22f08.dir/testCXXCompiler.cxx.o  -o cmTC_22f08 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_8f268/fast"
-/bin/gmake -f CMakeFiles/cmTC_8f268.dir/build.make CMakeFiles/cmTC_8f268.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_c0132/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_c0132.dir/build.make CMakeFiles/cmTC_c0132.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o
-/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_8f268
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f268.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++      -v CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8f268 
+Building CXX object CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o
+/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_c0132
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0132.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++      -v CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_c0132 
 Using built-in specs.
 COLLECT_GCC=/opt/crc/g/gcc/7.1.0/bin/g++
 COLLECT_LTO_WRAPPER=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper
@@ -181,9 +181,9 @@ Thread model: posix
 gcc version 7.1.0 (GCC) 
 COMPILER_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/
 LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8f268' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/232927.1.gpu/ccCQGSnb.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_8f268 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8f268' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c0132' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaE7TOW.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c0132 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c0132' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -191,14 +191,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/bin/gmake" "cmTC_8f268/fast"]
-  ignore line: [/bin/gmake -f CMakeFiles/cmTC_8f268.dir/build.make CMakeFiles/cmTC_8f268.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_c0132/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_c0132.dir/build.make CMakeFiles/cmTC_c0132.dir/build]
   ignore line: [gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_8f268]
-  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f268.dir/link.txt --verbose=1]
-  ignore line: [/opt/crc/g/gcc/7.1.0/bin/g++      -v CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8f268 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_c0132]
+  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0132.dir/link.txt --verbose=1]
+  ignore line: [/opt/crc/g/gcc/7.1.0/bin/g++      -v CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_c0132 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/opt/crc/g/gcc/7.1.0/bin/g++]
   ignore line: [COLLECT_LTO_WRAPPER=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper]
@@ -208,13 +208,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.1.0 (GCC) ]
   ignore line: [COMPILER_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/]
   ignore line: [LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8f268' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/232927.1.gpu/ccCQGSnb.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_8f268 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c0132' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaE7TOW.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c0132 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o]
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/232927.1.gpu/ccCQGSnb.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccaE7TOW.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -226,7 +226,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_8f268] ==> ignore
+    arg [cmTC_c0132] ==> ignore
     arg [/lib/../lib64/crt1.o] ==> ignore
     arg [/lib/../lib64/crti.o] ==> ignore
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o] ==> ignore
@@ -236,7 +236,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../..] ==> dir [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../..]
-    arg [CMakeFiles/cmTC_8f268.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_c0132.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -262,14 +262,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_2956f/fast"
-/bin/gmake -f CMakeFiles/cmTC_2956f.dir/build.make CMakeFiles/cmTC_2956f.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_33339/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_33339.dir/build.make CMakeFiles/cmTC_33339.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_2956f.dir/feature_tests.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++1z -o CMakeFiles/cmTC_2956f.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_2956f
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2956f.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_2956f.dir/feature_tests.cxx.o  -o cmTC_2956f 
+Building CXX object CMakeFiles/cmTC_33339.dir/feature_tests.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++1z -o CMakeFiles/cmTC_33339.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_33339
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33339.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_33339.dir/feature_tests.cxx.o  -o cmTC_33339 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -335,14 +335,14 @@ gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_9d997/fast"
-/bin/gmake -f CMakeFiles/cmTC_9d997.dir/build.make CMakeFiles/cmTC_9d997.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_10eb5/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_10eb5.dir/build.make CMakeFiles/cmTC_10eb5.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_9d997.dir/feature_tests.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++14 -o CMakeFiles/cmTC_9d997.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_9d997
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d997.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_9d997.dir/feature_tests.cxx.o  -o cmTC_9d997 
+Building CXX object CMakeFiles/cmTC_10eb5.dir/feature_tests.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++14 -o CMakeFiles/cmTC_10eb5.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_10eb5
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_10eb5.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_10eb5.dir/feature_tests.cxx.o  -o cmTC_10eb5 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -408,14 +408,14 @@ gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_62939/fast"
-/bin/gmake -f CMakeFiles/cmTC_62939.dir/build.make CMakeFiles/cmTC_62939.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_574a3/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_574a3.dir/build.make CMakeFiles/cmTC_574a3.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_62939.dir/feature_tests.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++11 -o CMakeFiles/cmTC_62939.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_62939
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_62939.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_62939.dir/feature_tests.cxx.o  -o cmTC_62939 
+Building CXX object CMakeFiles/cmTC_574a3.dir/feature_tests.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++11 -o CMakeFiles/cmTC_574a3.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_574a3
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_574a3.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_574a3.dir/feature_tests.cxx.o  -o cmTC_574a3 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -481,14 +481,14 @@ gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_5b4e7/fast"
-/bin/gmake -f CMakeFiles/cmTC_5b4e7.dir/build.make CMakeFiles/cmTC_5b4e7.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_f939a/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_f939a.dir/build.make CMakeFiles/cmTC_f939a.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5b4e7.dir/feature_tests.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++98 -o CMakeFiles/cmTC_5b4e7.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_5b4e7
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b4e7.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_5b4e7.dir/feature_tests.cxx.o  -o cmTC_5b4e7 
+Building CXX object CMakeFiles/cmTC_f939a.dir/feature_tests.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++    -std=c++98 -o CMakeFiles/cmTC_f939a.dir/feature_tests.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_f939a
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f939a.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_f939a.dir/feature_tests.cxx.o  -o cmTC_f939a 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -552,34 +552,34 @@ gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet
 Determining if the CUDA compiler works passed with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_0f3eb/fast"
-/bin/gmake -f CMakeFiles/cmTC_0f3eb.dir/build.make CMakeFiles/cmTC_0f3eb.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_673a4/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_673a4.dir/build.make CMakeFiles/cmTC_673a4.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CUDA object CMakeFiles/cmTC_0f3eb.dir/main.cu.o
-/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc     -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/main.cu -o CMakeFiles/cmTC_0f3eb.dir/main.cu.o
-Linking CUDA device code CMakeFiles/cmTC_0f3eb.dir/cmake_device_link.o
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f3eb.dir/dlink.txt --verbose=1
-/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc    -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/cmTC_0f3eb.dir/main.cu.o -o CMakeFiles/cmTC_0f3eb.dir/cmake_device_link.o 
-Linking CUDA executable cmTC_0f3eb
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f3eb.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++   CMakeFiles/cmTC_0f3eb.dir/main.cu.o CMakeFiles/cmTC_0f3eb.dir/cmake_device_link.o -o cmTC_0f3eb  -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs" -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64" -lcudadevrt -lcudart_static -lrt -lpthread -ldl
+Building CUDA object CMakeFiles/cmTC_673a4.dir/main.cu.o
+/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc     -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/main.cu -o CMakeFiles/cmTC_673a4.dir/main.cu.o
+Linking CUDA device code CMakeFiles/cmTC_673a4.dir/cmake_device_link.o
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_673a4.dir/dlink.txt --verbose=1
+/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc    -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/cmTC_673a4.dir/main.cu.o -o CMakeFiles/cmTC_673a4.dir/cmake_device_link.o 
+Linking CUDA executable cmTC_673a4
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_673a4.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++   CMakeFiles/cmTC_673a4.dir/main.cu.o CMakeFiles/cmTC_673a4.dir/cmake_device_link.o -o cmTC_673a4  -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs" -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64" -lcudadevrt -lcudart_static -lrt -lpthread -ldl
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CUDA compiler ABI info compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_986b8/fast"
-/bin/gmake -f CMakeFiles/cmTC_986b8.dir/build.make CMakeFiles/cmTC_986b8.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_331b2/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_331b2.dir/build.make CMakeFiles/cmTC_331b2.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CUDA object CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o
-/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc     -x cu -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCUDACompilerABI.cu -o CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o
-Linking CUDA device code CMakeFiles/cmTC_986b8.dir/cmake_device_link.o
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_986b8.dir/dlink.txt --verbose=1
-/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc    -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o -o CMakeFiles/cmTC_986b8.dir/cmake_device_link.o 
-Linking CUDA executable cmTC_986b8
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_986b8.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++  -v CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_986b8.dir/cmake_device_link.o -o cmTC_986b8  -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs" -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64" -lcudadevrt -lcudart_static -lrt -lpthread -ldl
+Building CUDA object CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o
+/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc     -x cu -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCUDACompilerABI.cu -o CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o
+Linking CUDA device code CMakeFiles/cmTC_331b2.dir/cmake_device_link.o
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_331b2.dir/dlink.txt --verbose=1
+/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc    -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o -o CMakeFiles/cmTC_331b2.dir/cmake_device_link.o 
+Linking CUDA executable cmTC_331b2
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_331b2.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++  -v CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_331b2.dir/cmake_device_link.o -o cmTC_331b2  -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs" -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64" -lcudadevrt -lcudart_static -lrt -lpthread -ldl
 Using built-in specs.
 COLLECT_GCC=/opt/crc/g/gcc/7.1.0/bin/g++
 COLLECT_LTO_WRAPPER=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper
@@ -589,9 +589,9 @@ Thread model: posix
 gcc version 7.1.0 (GCC) 
 COMPILER_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/
 LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_986b8' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/232927.1.gpu/ccswyrBY.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_986b8 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_986b8.dir/cmake_device_link.o -lcudadevrt -lcudart_static -lrt -lpthread -ldl -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_986b8' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_331b2' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLBwJf5.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_331b2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_331b2.dir/cmake_device_link.o -lcudadevrt -lcudart_static -lrt -lpthread -ldl -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_331b2' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -599,17 +599,17 @@ Parsed CUDA implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/bin/gmake" "cmTC_986b8/fast"]
-  ignore line: [/bin/gmake -f CMakeFiles/cmTC_986b8.dir/build.make CMakeFiles/cmTC_986b8.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_331b2/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_331b2.dir/build.make CMakeFiles/cmTC_331b2.dir/build]
   ignore line: [gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CUDA object CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o]
-  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc     -x cu -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCUDACompilerABI.cu -o CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o]
-  ignore line: [Linking CUDA device code CMakeFiles/cmTC_986b8.dir/cmake_device_link.o]
-  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_986b8.dir/dlink.txt --verbose=1]
-  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc    -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o -o CMakeFiles/cmTC_986b8.dir/cmake_device_link.o ]
-  ignore line: [Linking CUDA executable cmTC_986b8]
-  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_986b8.dir/link.txt --verbose=1]
-  ignore line: [/opt/crc/g/gcc/7.1.0/bin/g++  -v CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_986b8.dir/cmake_device_link.o -o cmTC_986b8  -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs" -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64" -lcudadevrt -lcudart_static -lrt -lpthread -ldl]
+  ignore line: [Building CUDA object CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o]
+  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc     -x cu -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCUDACompilerABI.cu -o CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o]
+  ignore line: [Linking CUDA device code CMakeFiles/cmTC_331b2.dir/cmake_device_link.o]
+  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_331b2.dir/dlink.txt --verbose=1]
+  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc    -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o -o CMakeFiles/cmTC_331b2.dir/cmake_device_link.o ]
+  ignore line: [Linking CUDA executable cmTC_331b2]
+  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_331b2.dir/link.txt --verbose=1]
+  ignore line: [/opt/crc/g/gcc/7.1.0/bin/g++  -v CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_331b2.dir/cmake_device_link.o -o cmTC_331b2  -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs" -L"/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64" -lcudadevrt -lcudart_static -lrt -lpthread -ldl]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/opt/crc/g/gcc/7.1.0/bin/g++]
   ignore line: [COLLECT_LTO_WRAPPER=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper]
@@ -619,13 +619,13 @@ Parsed CUDA implicit link information from above output:
   ignore line: [gcc version 7.1.0 (GCC) ]
   ignore line: [COMPILER_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/]
   ignore line: [LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_986b8' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/232927.1.gpu/ccswyrBY.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_986b8 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_986b8.dir/cmake_device_link.o -lcudadevrt -lcudart_static -lrt -lpthread -ldl -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_331b2' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs' '-L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLBwJf5.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_331b2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64/stubs -L/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o CMakeFiles/cmTC_331b2.dir/cmake_device_link.o -lcudadevrt -lcudart_static -lrt -lpthread -ldl -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o]
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/232927.1.gpu/ccswyrBY.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccLBwJf5.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -637,7 +637,7 @@ Parsed CUDA implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_986b8] ==> ignore
+    arg [cmTC_331b2] ==> ignore
     arg [/lib/../lib64/crt1.o] ==> ignore
     arg [/lib/../lib64/crti.o] ==> ignore
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o] ==> ignore
@@ -649,8 +649,8 @@ Parsed CUDA implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../..] ==> dir [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../..]
-    arg [CMakeFiles/cmTC_986b8.dir/CMakeCUDACompilerABI.cu.o] ==> ignore
-    arg [CMakeFiles/cmTC_986b8.dir/cmake_device_link.o] ==> ignore
+    arg [CMakeFiles/cmTC_331b2.dir/CMakeCUDACompilerABI.cu.o] ==> ignore
+    arg [CMakeFiles/cmTC_331b2.dir/cmake_device_link.o] ==> ignore
     arg [-lcudadevrt] ==> lib [cudadevrt]
     arg [-lcudart_static] ==> lib [cudart_static]
     arg [-lrt] ==> lib [rt]
@@ -681,28 +681,28 @@ Parsed CUDA implicit link information from above output:
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_ee033/fast"
-/bin/gmake -f CMakeFiles/cmTC_ee033.dir/build.make CMakeFiles/cmTC_ee033.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_ef2af/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_ef2af.dir/build.make CMakeFiles/cmTC_ef2af.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_ee033.dir/CheckIncludeFile.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_ee033.dir/CheckIncludeFile.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
-Linking CXX executable cmTC_ee033
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ee033.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_ee033.dir/CheckIncludeFile.cxx.o  -o cmTC_ee033 
+Building CXX object CMakeFiles/cmTC_ef2af.dir/CheckIncludeFile.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++     -o CMakeFiles/cmTC_ef2af.dir/CheckIncludeFile.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_ef2af
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef2af.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++       CMakeFiles/cmTC_ef2af.dir/CheckIncludeFile.cxx.o  -o cmTC_ef2af 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_7eeee/fast"
-/bin/gmake -f CMakeFiles/cmTC_7eeee.dir/build.make CMakeFiles/cmTC_7eeee.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_41e34/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_41e34.dir/build.make CMakeFiles/cmTC_41e34.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_7eeee.dir/CheckFunctionExists.cxx.o
-/opt/crc/g/gcc/7.1.0/bin/g++    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7eeee.dir/CheckFunctionExists.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
-Linking CXX executable cmTC_7eeee
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7eeee.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/g++   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_7eeee.dir/CheckFunctionExists.cxx.o  -o cmTC_7eeee -lpthread 
+Building CXX object CMakeFiles/cmTC_41e34.dir/CheckFunctionExists.cxx.o
+/opt/crc/g/gcc/7.1.0/bin/g++    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_41e34.dir/CheckFunctionExists.cxx.o -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_41e34
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_41e34.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/g++   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_41e34.dir/CheckFunctionExists.cxx.o  -o cmTC_41e34 -lpthread 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -722,28 +722,28 @@ The C compiler identification is GNU, found in "/afs/crc.nd.edu/user/s/sbritto2/
 Determining if the C compiler works passed with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_0d18b/fast"
-/bin/gmake -f CMakeFiles/cmTC_0d18b.dir/build.make CMakeFiles/cmTC_0d18b.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_a8f62/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_a8f62.dir/build.make CMakeFiles/cmTC_a8f62.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_0d18b.dir/testCCompiler.c.o
-/opt/crc/g/gcc/7.1.0/bin/gcc    -o CMakeFiles/cmTC_0d18b.dir/testCCompiler.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_0d18b
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0d18b.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_0d18b.dir/testCCompiler.c.o  -o cmTC_0d18b 
+Building C object CMakeFiles/cmTC_a8f62.dir/testCCompiler.c.o
+/opt/crc/g/gcc/7.1.0/bin/gcc    -o CMakeFiles/cmTC_a8f62.dir/testCCompiler.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_a8f62
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8f62.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_a8f62.dir/testCCompiler.c.o  -o cmTC_a8f62 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_ad8fc/fast"
-/bin/gmake -f CMakeFiles/cmTC_ad8fc.dir/build.make CMakeFiles/cmTC_ad8fc.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_592a2/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_592a2.dir/build.make CMakeFiles/cmTC_592a2.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o
-/opt/crc/g/gcc/7.1.0/bin/gcc    -o CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o   -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_ad8fc
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad8fc.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/gcc     -v -rdynamic CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o  -o cmTC_ad8fc 
+Building C object CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o
+/opt/crc/g/gcc/7.1.0/bin/gcc    -o CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o   -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_592a2
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_592a2.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/gcc     -v -rdynamic CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o  -o cmTC_592a2 
 Using built-in specs.
 COLLECT_GCC=/opt/crc/g/gcc/7.1.0/bin/gcc
 COLLECT_LTO_WRAPPER=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper
@@ -753,9 +753,9 @@ Thread model: posix
 gcc version 7.1.0 (GCC) 
 COMPILER_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/
 LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ad8fc' '-mtune=generic' '-march=x86-64'
- /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/232927.1.gpu/ccxuV9ty.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_ad8fc /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ad8fc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_592a2' '-mtune=generic' '-march=x86-64'
+ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccslvf4w.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_592a2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_592a2' '-mtune=generic' '-march=x86-64'
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -763,14 +763,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/bin/gmake" "cmTC_ad8fc/fast"]
-  ignore line: [/bin/gmake -f CMakeFiles/cmTC_ad8fc.dir/build.make CMakeFiles/cmTC_ad8fc.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_592a2/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_592a2.dir/build.make CMakeFiles/cmTC_592a2.dir/build]
   ignore line: [gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/opt/crc/g/gcc/7.1.0/bin/gcc    -o CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o   -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_ad8fc]
-  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad8fc.dir/link.txt --verbose=1]
-  ignore line: [/opt/crc/g/gcc/7.1.0/bin/gcc     -v -rdynamic CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o  -o cmTC_ad8fc ]
+  ignore line: [Building C object CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/opt/crc/g/gcc/7.1.0/bin/gcc    -o CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o   -c /afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_592a2]
+  ignore line: [/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_592a2.dir/link.txt --verbose=1]
+  ignore line: [/opt/crc/g/gcc/7.1.0/bin/gcc     -v -rdynamic CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o  -o cmTC_592a2 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/opt/crc/g/gcc/7.1.0/bin/gcc]
   ignore line: [COLLECT_LTO_WRAPPER=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper]
@@ -780,13 +780,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.1.0 (GCC) ]
   ignore line: [COMPILER_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/]
   ignore line: [LIBRARY_PATH=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ad8fc' '-mtune=generic' '-march=x86-64']
-  link line: [ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/232927.1.gpu/ccxuV9ty.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_ad8fc /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_592a2' '-mtune=generic' '-march=x86-64']
+  link line: [ /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2 -plugin /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so -plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccslvf4w.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_592a2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.. CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtend.o /lib/../lib64/crtn.o]
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/7.1.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/232927.1.gpu/ccxuV9ty.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccslvf4w.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -799,7 +799,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_ad8fc] ==> ignore
+    arg [cmTC_592a2] ==> ignore
     arg [/lib/../lib64/crt1.o] ==> ignore
     arg [/lib/../lib64/crti.o] ==> ignore
     arg [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbegin.o] ==> ignore
@@ -809,7 +809,7 @@ Parsed C implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../..] ==> dir [/afs/crc.nd.edu/x86_64_linux/g/gcc/7.1.0/bin/../lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../..]
-    arg [CMakeFiles/cmTC_ad8fc.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_592a2.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -837,14 +837,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_dda95/fast"
-/bin/gmake -f CMakeFiles/cmTC_dda95.dir/build.make CMakeFiles/cmTC_dda95.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_12aa9/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_12aa9.dir/build.make CMakeFiles/cmTC_12aa9.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_dda95.dir/feature_tests.c.o
-/opt/crc/g/gcc/7.1.0/bin/gcc   -std=c11 -o CMakeFiles/cmTC_dda95.dir/feature_tests.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_dda95
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dda95.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_dda95.dir/feature_tests.c.o  -o cmTC_dda95 
+Building C object CMakeFiles/cmTC_12aa9.dir/feature_tests.c.o
+/opt/crc/g/gcc/7.1.0/bin/gcc   -std=c11 -o CMakeFiles/cmTC_12aa9.dir/feature_tests.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_12aa9
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_12aa9.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_12aa9.dir/feature_tests.c.o  -o cmTC_12aa9 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -857,14 +857,14 @@ gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_e9e67/fast"
-/bin/gmake -f CMakeFiles/cmTC_e9e67.dir/build.make CMakeFiles/cmTC_e9e67.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_b162e/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_b162e.dir/build.make CMakeFiles/cmTC_b162e.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e9e67.dir/feature_tests.c.o
-/opt/crc/g/gcc/7.1.0/bin/gcc   -std=c99 -o CMakeFiles/cmTC_e9e67.dir/feature_tests.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_e9e67
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9e67.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_e9e67.dir/feature_tests.c.o  -o cmTC_e9e67 
+Building C object CMakeFiles/cmTC_b162e.dir/feature_tests.c.o
+/opt/crc/g/gcc/7.1.0/bin/gcc   -std=c99 -o CMakeFiles/cmTC_b162e.dir/feature_tests.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_b162e
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b162e.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_b162e.dir/feature_tests.c.o  -o cmTC_b162e 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 
@@ -877,14 +877,14 @@ gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/bin/gmake" "cmTC_c0260/fast"
-/bin/gmake -f CMakeFiles/cmTC_c0260.dir/build.make CMakeFiles/cmTC_c0260.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_4b127/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_4b127.dir/build.make CMakeFiles/cmTC_4b127.dir/build
 gmake[1]: Entering directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c0260.dir/feature_tests.c.o
-/opt/crc/g/gcc/7.1.0/bin/gcc   -std=c90 -o CMakeFiles/cmTC_c0260.dir/feature_tests.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_c0260
-/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0260.dir/link.txt --verbose=1
-/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_c0260.dir/feature_tests.c.o  -o cmTC_c0260 
+Building C object CMakeFiles/cmTC_4b127.dir/feature_tests.c.o
+/opt/crc/g/gcc/7.1.0/bin/gcc   -std=c90 -o CMakeFiles/cmTC_4b127.dir/feature_tests.c.o   -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_4b127
+/afs/crc.nd.edu/x86_64_linux/c/cmake/3.13.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b127.dir/link.txt --verbose=1
+/opt/crc/g/gcc/7.1.0/bin/gcc      -rdynamic CMakeFiles/cmTC_4b127.dir/feature_tests.c.o  -o cmTC_4b127 
 gmake[1]: Leaving directory `/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles/CMakeTmp'
 
 

@@ -178,6 +178,20 @@ void System::solveSystem() {
 	//set initial bucket scheme
 	setBucketScheme();
 
+	//save initial files
+	storage->print_VTK_File();
+	//store sum of all forces on each node. Used in stress calculations
+	//store before upadting storage class.
+
+	//WARNING BEFORE CALLING SAVE_PARAMS CALCULATE THEM FIRST
+	Params_Calc(
+			wlcInfoVecs,
+			nodeInfoVecs,
+			generalParams,
+			pltInfoVecs);
+
+	storage->save_params();
+
 	//set initial epsilon
 	generalParams.epsilon = (1.0) *
 		sqrt(6.0*generalParams.kB * generalParams.temperature * generalParams.dtTemp / generalParams.viscousDamp_Fibrin);
