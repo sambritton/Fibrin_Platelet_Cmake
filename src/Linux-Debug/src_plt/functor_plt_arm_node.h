@@ -141,7 +141,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	pltLocYAddr(_pltLocYAddr),
 	pltLocZAddr(_pltLocZAddr){}
 
-
    __device__
  		CVec3 operator()(const U2CVec7 &u3d6) {
 
@@ -227,7 +226,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 									if (newPullNode_id != tndrlNodeId[storageLocation + checkId]) {
 										
 										bool isNodeInPltVol = false;
-										if (agg_release) {
+										if (pltrelease) {//was agg_release
 											isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
 										}
 										//then newPullNode_id isn't yet pulled.
@@ -311,7 +310,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         	        unsigned newPullNode_id = id_value_expanded[ rand_choice];//could be newpull_index
 
 					bool isNodeInPltVol = false;
-					if (agg_release) {
+					if (pltrelease) {//was agg-realease
 						isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
 					}
 

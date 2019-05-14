@@ -70,7 +70,7 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 
 
    __device__
-		CVec3 operator()(const U2CVec6 &u2d6) {
+	CVec3 operator()(const U2CVec6 &u2d6) {
 
 		unsigned pltId = thrust::get<0>(u2d6);
 		unsigned bucketId = thrust::get<1>(u2d6);
@@ -78,21 +78,20 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 		//beginning and end of attempted interaction network nodes.
 		unsigned beginIndex = keyPltBegin[bucketId];
 		unsigned endIndex = keyPltEnd[bucketId];
-			
+				
 		unsigned storageLocation = pltId * plt_tndrl_intrct;
-
 		double pltLocX = thrust::get<2>(u2d6);
 		double pltLocY = thrust::get<3>(u2d6);
 		double pltLocZ = thrust::get<4>(u2d6);
 
-        //use for return. 
-        double pltCurrentForceX = thrust::get<5>(u2d6);
-        double pltCurrentForceY = thrust::get<6>(u2d6);
-        double pltCurrentForceZ = thrust::get<7>(u2d6);
+		//use for return. 
+		double pltCurrentForceX = thrust::get<5>(u2d6);
+		double pltCurrentForceY = thrust::get<6>(u2d6);
+		double pltCurrentForceZ = thrust::get<7>(u2d6);
 
-        double sumPltForceX = pltCurrentForceX;
-        double sumPltForceY = pltCurrentForceY;
-        double sumPltForceZ = pltCurrentForceZ;
+		double sumPltForceX = pltCurrentForceX;
+		double sumPltForceY = pltCurrentForceY;
+		double sumPltForceZ = pltCurrentForceZ;
 
 		double vecN_PX = 0.0;
 		double vecN_PY = 0.0;
@@ -120,26 +119,26 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 					(vecN_PZ) * (vecN_PZ));	
 				//check if the plt is not pulled  anymore and pltrelease is true
 				if ( ((dist >= 2.0 * pltRForce) || (dist <= 2.0 * pltR)) && pltrelease==true ){
-				  	//empty tendril
-				  	tndrlNodeId[storageLocation + interactionCounter] = maxIdCountFlag;
+					//empty tendril
+					tndrlNodeId[storageLocation + interactionCounter] = maxIdCountFlag;
 				}
 			}
 
-			  // check if tendril still has no node or platelet to pull
+			// check if tendril still has no node or platelet to pull
 			if (tndrlNodeId[storageLocation + interactionCounter] == maxIdCountFlag){
-			  	//then there was nothing to pull 
+				//then there was nothing to pull 
 				//so try to find a platelet to pu
-			  	for (unsigned iter = beginIndex; iter < endIndex; iter++){
+				for (unsigned iter = beginIndex; iter < endIndex; iter++){
 					unsigned newpullPlt_id = idPlt_value_expanded[iter];
 
-				   	double vecN_PX = pltLocX - pltLocXAddr[newpullPlt_id];
-				   	double vecN_PY = pltLocY - pltLocYAddr[newpullPlt_id];
-				   	double vecN_PZ = pltLocZ - pltLocZAddr[newpullPlt_id];
-				  	//Calculate distance from plt to node.
-				   	double dist = sqrt(
-						  (vecN_PX) * (vecN_PX) +
-						  (vecN_PY) * (vecN_PY) +
-						  (vecN_PZ) * (vecN_PZ));
+					double vecN_PX = pltLocX - pltLocXAddr[newpullPlt_id];
+					double vecN_PY = pltLocY - pltLocYAddr[newpullPlt_id];
+					double vecN_PZ = pltLocZ - pltLocZAddr[newpullPlt_id];
+					//Calculate distance from plt to node.
+					double dist = sqrt(
+						(vecN_PX) * (vecN_PX) +
+						(vecN_PY) * (vecN_PY) +
+						(vecN_PZ) * (vecN_PZ));
 
 					//check if new node is in interaction range and fill tenril with new node than break neighbors loop
 					if ((dist < 2.0 * pltRForce) && (dist > 2.0 * pltR) ) {//pull this node
@@ -147,12 +146,12 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 						tndrlNodeType[storageLocation + interactionCounter] = 1;//assign type
 						break;
 					}
-			  	}
+				}
 			}
 
 			//check if tendril has been filled with plt and apply pulling forces. Note if filled direction and distence of forces are already calculated
 			if ( ((tndrlNodeId[storageLocation + interactionCounter]) != maxIdCountFlag) && 
-			  	( (tndrlNodeType[storageLocation + interactionCounter]) == 1) && (dist < 2.0 * pltRForce) && (dist > 2.0 * pltR)){
+				( (tndrlNodeType[storageLocation + interactionCounter]) == 1) && (dist < 2.0 * pltRForce) && (dist > 2.0 * pltR)){
 				//Determine direction of force based on positions and multiply magnitude force
 				double forceNodeX = (vecN_PX / dist) * (pltForce);
 				double forceNodeY = (vecN_PY / dist) * (pltForce);
@@ -164,11 +163,10 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 				sumPltForceZ += (-1.0) * forceNodeZ;
 
 			}
-
 		}
 		//after counting force from pulling other platelets, apply to self. 
-    	//return platelet forces
-    	return thrust::make_tuple(sumPltForceX, sumPltForceY, sumPltForceZ);
+		//return platelet forces
+		return thrust::make_tuple(sumPltForceX, sumPltForceY, sumPltForceZ);
 	}
 
 };
