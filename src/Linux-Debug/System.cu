@@ -84,7 +84,8 @@ void System::solveForces() {
 	thrust::fill(pltInfoVecs.pltForceY.begin(),pltInfoVecs.pltForceY.end(),0);
 	thrust::fill(pltInfoVecs.pltForceZ.begin(),pltInfoVecs.pltForceZ.end(),0);
 
-	unsigned _seed = rand();
+//no random detach for now. 
+/*	unsigned _seed = rand();
 	thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
 
 	thrust::transform(thrust::device, index_sequence_begin, 
@@ -107,7 +108,7 @@ void System::solveForces() {
 		pltInfoVecs.tndrlNodeId.begin(),
 	functor_prob_detach(generalParams.dtTemp, P, generalParams.maxIdCountFlag));
 
-
+*/
 	
 	if (generalParams.linking == true) {
 		

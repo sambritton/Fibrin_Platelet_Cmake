@@ -23,7 +23,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
   	unsigned maxNeighborCount;
 	bool pltrelease;
 	bool plthandhand;
-	bool agg_release;
 
   	double* nodeLocXAddr;
 	double* nodeLocYAddr;
@@ -70,7 +69,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
             unsigned& _maxNeighborCount,
 			bool& _pltrelease,
 			bool& _plthandhand,
-			bool& _agg_release,
 
             double* _nodeLocXAddr,
             double* _nodeLocYAddr,
@@ -114,7 +112,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
     maxNeighborCount(_maxNeighborCount),
 	pltrelease(_pltrelease),
 	plthandhand(_plthandhand),
-	agg_release(_agg_release),
 
     nodeLocXAddr(_nodeLocXAddr),
 	nodeLocYAddr(_nodeLocYAddr),
@@ -226,14 +223,14 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 									if (newPullNode_id != tndrlNodeId[storageLocation + checkId]) {
 										
 										bool isNodeInPltVol = false;
-										if (pltrelease) {//was agg_release
+										if (pltrelease) {
 											isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
 										}
 										//then newPullNode_id isn't yet pulled.
 										//We can break out of this for statement
 										//and check if it is close enough
 
-										//This ensures that agg_release controls the node in plt volume
+										//This ensures that pltrelease controls the node in plt volume
 										//variables.
 										if (isNodeInPltVol == false){
 											break;
@@ -310,7 +307,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         	        unsigned newPullNode_id = id_value_expanded[ rand_choice];//could be newpull_index
 
 					bool isNodeInPltVol = false;
-					if (pltrelease) {//was agg-realease
+					if (pltrelease) {
 						isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
 					}
 
@@ -323,7 +320,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         	        	}
         	      	}
 					  
-					//only pull on new nodes that(if agg is on) are not in plt volume
+					//only pull on new nodes that(if pltrelease is on) are not in plt volume
 					if ( (node_is_new) && (isNodeInPltVol == false) ){
 
 						double vecN_PX = pltLocX - nodeLocXAddr[newPullNode_id];

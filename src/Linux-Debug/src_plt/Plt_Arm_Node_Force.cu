@@ -66,7 +66,7 @@ void Plt_Arm_Node_Force(
 					pltInfoVecs.pltForceZ.begin())) + generalParams.maxPltCount,
          thrust::make_zip_iterator(
         	 thrust::make_tuple(
-				 //DOES NOT RESET FORCES
+				 //DOES NOT RESET FORCES 
         		 pltInfoVecs.pltForceX.begin(),
         		 pltInfoVecs.pltForceY.begin(),
         		 pltInfoVecs.pltForceZ.begin())), 
@@ -87,7 +87,6 @@ void Plt_Arm_Node_Force(
                 generalParams.maxNeighborCount,
 				generalParams.pltrelease,
 				generalParams.plthandhand,
-				generalParams.agg_release,
 
                 thrust::raw_pointer_cast(nodeInfoVecs.nodeLocX.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.nodeLocY.data()),

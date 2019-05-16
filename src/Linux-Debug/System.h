@@ -278,7 +278,6 @@ struct GeneralParams{
 	bool pltrelease;
 	bool plthandhand;
 	bool pltonplt;
-	bool agg_release;
 
 	bool use_dynamic_plt_force;
 	double max_dynamic_plt_force;
