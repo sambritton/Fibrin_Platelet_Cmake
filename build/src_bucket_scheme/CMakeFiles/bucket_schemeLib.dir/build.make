@@ -60,7 +60,7 @@ include src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/flags.make
 src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o: src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/flags.make
 src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme/Bucket_Net.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_bucket_scheme && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme/Bucket_Net.cu -o CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_bucket_scheme && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme/Bucket_Net.cu -o CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.o
 
 src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.i"
@@ -73,7 +73,7 @@ src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Net.cu.s: cmake_force
 src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o: src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/flags.make
 src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme/Bucket_Plt.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_bucket_scheme && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme/Bucket_Plt.cu -o CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_bucket_scheme && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_bucket_scheme/Bucket_Plt.cu -o CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.o
 
 src_bucket_scheme/CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/bucket_schemeLib.dir/Bucket_Plt.cu.i"

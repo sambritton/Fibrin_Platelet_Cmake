@@ -60,7 +60,7 @@ include CMakeFiles/storageLib.dir/flags.make
 CMakeFiles/storageLib.dir/Storage.cu.o: CMakeFiles/storageLib.dir/flags.make
 CMakeFiles/storageLib.dir/Storage.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/Storage.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object CMakeFiles/storageLib.dir/Storage.cu.o"
-	/opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/Storage.cu -o CMakeFiles/storageLib.dir/Storage.cu.o
+	/afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/Storage.cu -o CMakeFiles/storageLib.dir/Storage.cu.o
 
 CMakeFiles/storageLib.dir/Storage.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/storageLib.dir/Storage.cu.i"

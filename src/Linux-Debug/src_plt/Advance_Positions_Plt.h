@@ -4,10 +4,12 @@
 
 struct GeneralParams;
 struct PltInfoVecs;
+struct RandVecs;
 
 void Advance_Positions_Plt(
 	PltInfoVecs& pltInfoVecs,
-	GeneralParams& generalParams);
+	GeneralParams& generalParams,
+	RandVecs& randVecs);
 
 
 

@@ -14,7 +14,8 @@ void Plt_Arm_Node_Force(
 	WLCInfoVecs& wlcInfoVecs,
 	GeneralParams& generalParams,
 	PltInfoVecs& pltInfoVecs,
-	AuxVecs& auxVecs) {
+	AuxVecs& auxVecs,
+	RandVecs& randVecs) {
 
 
 		thrust::fill(pltInfoVecs.nodeUnreducedForceX.begin(), pltInfoVecs.nodeUnreducedForceX.end(), 0.0);
@@ -31,6 +32,12 @@ void Plt_Arm_Node_Force(
 		thrust::counting_iterator<unsigned> counter(0);
 
 
+
+		unsigned _seedplt = rand();
+
+		thrust::counting_iterator<unsigned> index_sequence_plt_begin(_seedplt);
+		thrust::transform(thrust::device, index_sequence_plt_begin, index_sequence_plt_begin + (generalParams.maxPltCount),
+		randVecs.bucketPltStart.begin(), psrunifgen(0.0, 1.0));
         //Call the plt force on nodes functor
 		//WARNING:
 		//writes to unreduced vector entries from 0 to maxPltCount*plt_tndrl_intrct
@@ -38,7 +45,8 @@ void Plt_Arm_Node_Force(
         	thrust::make_zip_iterator(
         		thrust::make_tuple(
 					counter,
-   					auxVecs.idPlt_bucket.begin(),
+					auxVecs.idPlt_bucket.begin(),
+					randVecs.bucketPltStart.begin(),
         			pltInfoVecs.pltLocX.begin(),
         			pltInfoVecs.pltLocY.begin(),
         			pltInfoVecs.pltLocZ.begin(),
@@ -48,7 +56,8 @@ void Plt_Arm_Node_Force(
         	thrust::make_zip_iterator(
         		thrust::make_tuple(
 					counter,
-        			auxVecs.idPlt_bucket.begin(),
+					auxVecs.idPlt_bucket.begin(),
+					randVecs.bucketPltStart.begin(),
         		 	pltInfoVecs.pltLocX.begin(),
         		 	pltInfoVecs.pltLocY.begin(),
         		 	pltInfoVecs.pltLocZ.begin(),
@@ -62,6 +71,10 @@ void Plt_Arm_Node_Force(
         		 pltInfoVecs.pltForceY.begin(),
         		 pltInfoVecs.pltForceZ.begin())), 
              functor_plt_arm_node(
+				generalParams.use_dynamic_plt_force,
+				generalParams.CLM,
+				generalParams.max_dynamic_plt_force,
+
                 generalParams.plt_tndrl_intrct,
                 generalParams.pltRForce,
                 generalParams.pltForce,
@@ -94,10 +107,12 @@ void Plt_Arm_Node_Force(
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeType.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.isNodeInPltVol.data()),
                 thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
+                thrust::raw_pointer_cast(wlcInfoVecs.lengthZero.data()),
+                thrust::raw_pointer_cast(wlcInfoVecs.numOriginalNeighborsNodeVector.data()),
 
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocX.data()),
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocY.data()),
-                thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) );
+                thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) ); 
 
 		
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.

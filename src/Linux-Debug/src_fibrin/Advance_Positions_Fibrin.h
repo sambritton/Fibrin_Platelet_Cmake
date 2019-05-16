@@ -3,11 +3,12 @@
 
 struct NodeInfoVecs;
 struct GeneralParams;
-
+struct RandVecs;
 
 void Advance_Positions_Fibrin(
 	NodeInfoVecs& nodeInfoVecs,
-	GeneralParams& generalParams);
+	GeneralParams& generalParams,
+	RandVecs& randVecs);
 
 
 

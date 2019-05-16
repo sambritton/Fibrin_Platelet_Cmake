@@ -6,15 +6,17 @@
 
 void Advance_Positions_Plt(
 	PltInfoVecs& pltInfoVecs,
-	GeneralParams& generalParams) {
+	GeneralParams& generalParams,
+	RandVecs& randVecs) {
 
-unsigned _seedplt = rand();
- thrust::device_vector<double> gaussianPltData;
- gaussianPltData.resize(generalParams.maxPltCount); //
-thrust::counting_iterator<unsigned> index_sequence_plt_begin(_seedplt);
+	unsigned _seedplt = rand();
 
- thrust::transform(thrust::device, index_sequence_plt_begin, index_sequence_plt_begin + (generalParams.maxPltCount),
-	 gaussianPltData.begin(), psrunifgen(-1.0, 1.0));
+	thrust::counting_iterator<unsigned> index_sequence_plt_begin(_seedplt);
+
+
+	
+ 	thrust::transform(thrust::device, index_sequence_plt_begin, index_sequence_plt_begin + (generalParams.maxPltCount),
+		randVecs.gaussianPltData.begin(), psrunifgen(-1.0, 1.0));
 
 thrust::counting_iterator<unsigned> pltIndexBegin(0);
 
@@ -34,7 +36,7 @@ thrust::transform(
  //second vector begin
  thrust::make_zip_iterator(
 	 thrust::make_tuple(
-		 gaussianPltData.begin(),
+		 randVecs.gaussianPltData.begin(),
 		 pltInfoVecs.pltForceX.begin(),
 		 pltInfoVecs.pltForceY.begin(),
 		 pltInfoVecs.pltForceZ.begin())),
@@ -53,8 +55,5 @@ thrust::transform(
 	 generalParams.maxPltCount,
 	 thrust::raw_pointer_cast(pltInfoVecs.isPltFixed.data())));
 
-//finally, clear the random data.
-	 gaussianPltData.clear();
-	 gaussianPltData.shrink_to_fit();
 
-}
+};

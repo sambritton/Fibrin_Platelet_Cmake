@@ -60,7 +60,7 @@ include src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o: src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Advance_Positions_Plt.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object src_plt/CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Advance_Positions_Plt.cu -o CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Advance_Positions_Plt.cu -o CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.o
 
 src_plt/CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.i"
@@ -73,7 +73,7 @@ src_plt/CMakeFiles/pltLib.dir/Advance_Positions_Plt.cu.s: cmake_force
 src_plt/CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o: src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Vol_Exc_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object src_plt/CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Vol_Exc_Force.cu -o CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Vol_Exc_Force.cu -o CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.o
 
 src_plt/CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.i"
@@ -86,7 +86,7 @@ src_plt/CMakeFiles/pltLib.dir/Plt_Vol_Exc_Force.cu.s: cmake_force
 src_plt/CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o: src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Field_Plt_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CUDA object src_plt/CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Field_Plt_Force.cu -o CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Field_Plt_Force.cu -o CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.o
 
 src_plt/CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.i"
@@ -99,7 +99,7 @@ src_plt/CMakeFiles/pltLib.dir/Plt_Field_Plt_Force.cu.s: cmake_force
 src_plt/CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o: src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Field_Node_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CUDA object src_plt/CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Field_Node_Force.cu -o CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Field_Node_Force.cu -o CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.o
 
 src_plt/CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.i"
@@ -112,7 +112,7 @@ src_plt/CMakeFiles/pltLib.dir/Plt_Field_Node_Force.cu.s: cmake_force
 src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o: src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Arm_Plt_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CUDA object src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Arm_Plt_Force.cu -o CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Arm_Plt_Force.cu -o CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.o
 
 src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.i"
@@ -125,7 +125,7 @@ src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Plt_Force.cu.s: cmake_force
 src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o: src_plt/CMakeFiles/pltLib.dir/flags.make
 src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o: /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Arm_Node_Force.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CUDA object src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o"
-	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /opt/crc/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Arm_Node_Force.cu -o CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o
+	cd /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/build/src_plt && /afs/crc.nd.edu/x86_64_linux/c/cuda/10.0/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /afs/crc.nd.edu/user/s/sbritto2/temp/FibrinPlatelet/src/Linux-Debug/src_plt/Plt_Arm_Node_Force.cu -o CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.o
 
 src_plt/CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/pltLib.dir/Plt_Arm_Node_Force.cu.i"

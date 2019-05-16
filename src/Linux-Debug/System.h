@@ -3,6 +3,15 @@
 
 #include "SystemStructures.h"
 
+struct RandVecs {
+	
+  thrust::device_vector<double> gaussianData;
+  thrust::device_vector<double> filopodia_detach; //size tndrlNodeId
+	
+  thrust::device_vector<double> gaussianPltData;
+  thrust::device_vector<double> bucketPltStart;
+
+};
 
 //Data Structure for node location. velocity and force
 struct NodeInfoVecs {
@@ -252,7 +261,7 @@ struct GeneralParams{
 	double nodeMass = 1;
 	double persistenceLengthMon;
 
-	double fiberDiameter = 0.1;
+	double fiberDiameter;
 
   //platelet parameters
   //look in builder for default parameter settings.
@@ -264,12 +273,15 @@ struct GeneralParams{
 	double pltRAdhesion;
 	double pltMass;
 	double pltDensity;
-	bool pltfrcfld = false;
-	bool plttndrl = true; 
-	bool pltrelease = true;
-	bool plthandhand = true;
-	bool pltonplt = true;
-	bool agg_release = true;
+	bool pltfrcfld;
+	bool plttndrl; 
+	bool pltrelease;
+	bool plthandhand;
+	bool pltonplt;
+	bool agg_release;
+
+	bool use_dynamic_plt_force;
+	double max_dynamic_plt_force;
 	unsigned maxIdCountFlag;//flag variable
 
 	//parameters for advancing timestep and determining equilibrium
@@ -291,11 +303,13 @@ class System {
 public:
 	DomainParams domainParams;
 	NodeInfoVecs nodeInfoVecs;
-  	PltInfoVecs pltInfoVecs;
+  PltInfoVecs pltInfoVecs;
 	AuxVecs auxVecs;
 	WLCInfoVecs wlcInfoVecs;
 	TorsionInfoVecs torsionInfoVecs;
 	GeneralParams generalParams;
+
+	RandVecs randVecs;
 
 	std::shared_ptr<Storage> storage;
 
@@ -358,7 +372,8 @@ public:
 		thrust::host_vector<unsigned>& hostWLCSubEdgeLeft,
 		thrust::host_vector<unsigned>& hostWLCSubEdgeRight,
 		thrust::host_vector<double>& hostWLCSubLenZero );
-
+	
+	void setRandVecs();
 };
 
 
