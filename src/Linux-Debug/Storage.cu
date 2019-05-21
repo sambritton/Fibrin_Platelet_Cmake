@@ -416,13 +416,33 @@ void Storage::print_VTK_File() {
 		}
 		ofs<<" "<< std::endl;
 
-		//std::cout<<'here2'<<std::flush;
+		
 		for (unsigned edge = 0; edge < num_connections; edge++ ){
 
-			unsigned node_Id = maxPltCount + edge;
+			//because nodes are placed after platelets, their vtk file id is incremented. 
+			//notice that this represents the vtk id, not the id within the c++ program
+			unsigned node_id_vtk = maxPltCount + edge;
+			unsigned node_id = sys->pltInfoVecs.nodeImagingConnection[edge];
+			
 			unsigned plt_id = sys->pltInfoVecs.pltImagingConnection[edge];
 				
-			ofs <<2<< " "<< node_Id << " "<< plt_id <<std::endl;
+			ofs <<2<< " "<< node_id_vtk << " "<< plt_id <<std::endl;
+
+			//TEMP DELETE AFTER USE
+			//double locX = sys->nodeInfoVecs.nodeLocX[node_id];
+			//double locY = sys->nodeInfoVecs.nodeLocY[node_id];
+			//double locZ = sys->nodeInfoVecs.nodeLocZ[node_id];
+			//double pltX = sys->pltInfoVecs.pltLocX[plt_id];
+			//double pltY = sys->pltInfoVecs.pltLocY[plt_id];
+			//double pltZ = sys->pltInfoVecs.pltLocZ[plt_id];
+			//double distX = locX - pltX;
+			//double distY = locY - pltY;
+			//double distZ = locZ - pltZ;
+			//
+			//double dist = sqrt(distX*distX + distY*distY + distZ * distZ);
+			//std::cout<<"dist: "<< dist<<std::endl;
+
+
 		}
 		ofs << "CELL_TYPES " << numCells << std::endl;  
 		//set edges and last set scattered points

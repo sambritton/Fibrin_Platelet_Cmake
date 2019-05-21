@@ -133,8 +133,26 @@ void Plt_Arm_Node_Force(
     	    pltInfoVecs.nodeImagingConnection.begin(),
     	    pltInfoVecs.nodeImagingConnection.end(), is_less_than(generalParams.maxNodeCount) );
 
+/*
+		for (unsigned i = 0; i < pltInfoVecs.numConnections; i++) {
+			unsigned node_Id = pltInfoVecs.nodeImagingConnection[i];
+			unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
+				
 
-
+			//TEMP DELETE AFTER USE
+			double locX = nodeInfoVecs.nodeLocX[node_Id];
+			double locY = nodeInfoVecs.nodeLocY[node_Id];
+			double locZ = nodeInfoVecs.nodeLocZ[node_Id];
+			double pltX = pltInfoVecs.pltLocX[plt_id];
+			double pltY = pltInfoVecs.pltLocY[plt_id];
+			double pltZ = pltInfoVecs.pltLocZ[plt_id];
+			double distX = locX - pltX;
+			double distY = locY - pltY;
+			double distZ = locZ - pltZ;
+			
+			double dist = sqrt(distX*distX + distY*distY + distZ * distZ);
+			std::cout<<"dist true: "<< dist<<std::endl;
+		} */
 		/*for (unsigned i = 0; i < auxVecs.idPlt_bucket.size(); i++){
 			std::cout<<"plt buckettndrl_1_2: "<<auxVecs.idPlt_bucket[i] << std::endl;
 		}

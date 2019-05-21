@@ -131,6 +131,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
     tndrlNodeType(_tndrlNodeType),
 	isNodeInPltVolAddr(_isNodeInPltVolAddr),
     glblNghbrsId(_glblNghbrsId),
+	
 	lengthZero(_lengthZero),
 	numOriginalNeighborsNodeVector(_numOriginalNeighborsNodeVector),
 
