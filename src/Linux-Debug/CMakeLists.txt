@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.9 FATAL_ERROR)
 
 set(src_bucket_scheme "${CMAKE_CURRENT_SOURCE_DIR}/src_bucket_scheme")
 set(src_fibrin "${CMAKE_CURRENT_SOURCE_DIR}/src_fibrin")
