@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsystemLib.a  CMakeFiles/systemLib.dir/System.cu.o CMakeFiles/systemLib.dir/System_Builder.cpp.o
-/usr/bin/ranlib libsystemLib.a
