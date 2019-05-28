@@ -428,21 +428,6 @@ void Storage::print_VTK_File() {
 				
 			ofs <<2<< " "<< node_id_vtk << " "<< plt_id <<std::endl;
 
-			//TEMP DELETE AFTER USE
-			double locX = sys->nodeInfoVecs.nodeLocX[node_id];
-			double locY = sys->nodeInfoVecs.nodeLocY[node_id];
-			double locZ = sys->nodeInfoVecs.nodeLocZ[node_id];
-			double pltX = sys->pltInfoVecs.pltLocX[plt_id];
-			double pltY = sys->pltInfoVecs.pltLocY[plt_id];
-			double pltZ = sys->pltInfoVecs.pltLocZ[plt_id];
-			double distX = locX - pltX;
-			double distY = locY - pltY;
-			double distZ = locZ - pltZ;
-			 
-			double dist = sqrt(distX*distX + distY*distY + distZ * distZ);
-			std::cout<<"dist: "<< dist<<std::endl;
-
-
 		}
 		ofs << "CELL_TYPES " << numCells << std::endl;  
 		//set edges and last set scattered points
