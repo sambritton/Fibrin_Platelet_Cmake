@@ -215,7 +215,7 @@ struct functor_neighbor : public thrust::unary_function<Tuu, Tuu> {
 			//break;
 		}
 		default:{
-			unsigned default_Id=ULONG_MAX;
+			unsigned default_Id = ULONG_MAX;
 			return (default_Id);
 		}
 

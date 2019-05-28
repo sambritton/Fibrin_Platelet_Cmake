@@ -84,33 +84,31 @@ void System::solveForces() {
 	thrust::fill(pltInfoVecs.pltForceY.begin(),pltInfoVecs.pltForceY.end(),0);
 	thrust::fill(pltInfoVecs.pltForceZ.begin(),pltInfoVecs.pltForceZ.end(),0);
 
-	unsigned _seed = rand();
-    thrust::device_vector<double> temp_unif_rand;
-unsigned size = pltInfoVecs.tndrlNodeId.size();
-    temp_unif_rand.resize(size); //
+//no random detach for now. 
+/*	unsigned _seed = rand();
 	thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
 
-    thrust::transform(thrust::device, temp_unif_rand.begin(), temp_unif_rand.begin() + size,
-        temp_unif_rand.begin(), psrunifgen(0, 1.0));
+	thrust::transform(thrust::device, index_sequence_begin, 
+		index_sequence_begin + pltInfoVecs.tndrlNodeId.size(),
+		randVecs.filopodia_detach.begin(), psrunifgen(0, 1.0));
+	
 	//reset attachment due to prob
-	double P = 0.05;
+	double P = 0.20;
 	thrust::transform(
         thrust::make_zip_iterator(
         	thrust::make_tuple(
 				pltInfoVecs.tndrlNodeId.begin(),
-				temp_unif_rand.begin())),
+				randVecs.filopodia_detach.begin())),
 
         thrust::make_zip_iterator(
         	thrust::make_tuple(
 				pltInfoVecs.tndrlNodeId.end(),
-				temp_unif_rand.end())),
+				randVecs.filopodia_detach.end())),
 
 		pltInfoVecs.tndrlNodeId.begin(),
 	functor_prob_detach(generalParams.dtTemp, P, generalParams.maxIdCountFlag));
 
-        temp_unif_rand.clear();
-        temp_unif_rand.shrink_to_fit();
-
+*/
 	
 	if (generalParams.linking == true) {
 		
@@ -150,7 +148,8 @@ unsigned size = pltInfoVecs.tndrlNodeId.size();
 		  wlcInfoVecs,
 		  generalParams,
 		  pltInfoVecs,
-		  auxVecs);
+		  auxVecs,
+		  randVecs);
 
 		//Tndrl-Plt pulling
 		if (generalParams.pltonplt == true) {
@@ -186,19 +185,37 @@ void System::solveSystem() {
 
 	while (generalParams.runSim == true) {
 
+		if (generalParams.iterationCounter == 1) {
+			//save initial files
+			storage->print_VTK_File();
+			//store sum of all forces on each node. Used in stress calculations
+			//store before upadting storage class.
+
+			//WARNING BEFORE CALLING SAVE_PARAMS CALCULATE THEM FIRST
+			Params_Calc(
+					wlcInfoVecs,
+					nodeInfoVecs,
+					generalParams,
+					pltInfoVecs);
+
+			storage->save_params();
+		}
+
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
-		std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
+		//std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
 
 		Advance_Positions_Fibrin(
 			nodeInfoVecs,
-			generalParams);
+			generalParams,
+			randVecs);
 
 		Advance_Positions_Plt(
 			pltInfoVecs,
-			generalParams);
+			generalParams,
+			randVecs);
 		
-		if (generalParams.iterationCounter % 50 == 0) {
+		if (generalParams.iterationCounter % 100 == 0) {
 			setBucketScheme();
 		}
 
@@ -206,7 +223,7 @@ void System::solveSystem() {
 		solveForces(); //resets and solves forces for next time step
 
 
-		if (generalParams.iterationCounter % 5000 == 0) {
+		if (generalParams.iterationCounter % 10000 == 0) {
 
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations
@@ -296,8 +313,18 @@ void System::initializeSystem(
 		hostWLCLenZero );
 
 	std::cout << "done setting wlc" << std::endl;
+
+	setRandVecs();
 		
 };
+
+void System::setRandVecs(){
+	randVecs.filopodia_detach.resize(pltInfoVecs.tndrlNodeId.size());
+	randVecs.gaussianData.resize(generalParams.maxNodeCount);
+	randVecs.gaussianPltData.resize(generalParams.maxPltCount); //
+	randVecs.bucketPltStart.resize(generalParams.maxPltCount);
+		
+}
 
 void System::setNodeVecs(
 	thrust::host_vector<bool>& hostIsNodeFixed,

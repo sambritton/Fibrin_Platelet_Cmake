@@ -39,6 +39,21 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	}
 
 	//default settings in NSB.h
+	double base_tor = 0.00226259342068;
+	double base_diam = 0.1;
+	int base_num_mon=1100;
+	if (auto p = props.child("link-diameter")){//base diameter 0.1 microns
+		builder->defaultLinkDiameter = (p.text().as_double());
+		double r_ratio= (p.text().as_double())/base_diam;
+		builder->defaultTorsionSpringStiffness = pow(r_ratio,2.4)*base_tor;//E prop to r^-1.6 and I prop to r^4
+		builder->defaultNumMonFiberArea = base_num_mon*pow(r_ratio,2);// N prop to r^2
+	}
+	else{
+		builder->defaultLinkDiameter = base_diam;
+		builder->defaultTorsionSpringStiffness = base_tor;
+		builder->defaultNumMonFiberArea = base_num_mon;
+	}
+	
 	if (auto p = props.child("resistance_fibrin"))
 		builder->viscousDamp_Fibrin = (p.text().as_double());
 
@@ -48,11 +63,11 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	if (auto p = props.child("spring-stiffness"))
 		builder->defaultSpringStiffness = (p.text().as_double());
 
-	if (auto p = props.child("torsion-stiffness"))
-		builder->defaultTorsionSpringStiffness = (p.text().as_double());
+	/* if (auto p = props.child("torsion-stiffness"))
+		builder->defaultTorsionSpringStiffness = (p.text().as_double());*/
 
 	if (auto p = props.child("persistance-length"))
-		builder->defaultPersistanceLength = (p.text().as_double());
+		builder->defaultPersistanceLength = (p.text().as_double()); 
 
 	if (auto p = props.child("absolute-temperature"))
 		builder->defaultTemperature = (p.text().as_double());
@@ -71,9 +86,6 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 
 	if (auto p = props.child("constant-extra-nodes"))
 		builder->useConstantNumberOfExtraNodes = (p.text().as_bool());
-
-	if (auto p = props.child("link-diameter"))
-		builder->defaultLinkDiameter = (p.text().as_double());
 
 	if (auto p = props.child("worm-like"))
 		builder->wormLikeEnabled = (p.text().as_bool());
@@ -134,10 +146,19 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->plthandhand = (p.text().as_bool());	
 		std::cout<<"plthandhand: "<< builder->plthandhand<<std::endl;
 	}
-	
-	if (auto p = props.child("use-pltonplt")){
+
+	if (auto p = props.child("use-pltonplt")) {
 		builder->pltonplt = (p.text().as_bool());
-		std::cout<<"plt_interact: "<< builder->pltonplt<<std::endl;
+		std::cout << "plt_interact: " << builder->pltonplt << std::endl;
+	}
+
+	if (auto p = props.child("dynamic-plt")) {
+		builder->use_dynamic_plt_force = (p.text().as_bool());
+		std::cout << "dynamic_plt: " << builder->use_dynamic_plt_force << std::endl;
+	}
+	if (auto p = props.child("dynamic-plt-max-force")) {
+		builder->max_dynamic_plt_force = (p.text().as_double());
+		std::cout << "dynamic_plt_max_force: " << builder->max_dynamic_plt_force << std::endl;
 	}
 
 	std::cout << "builder ptr address: " << builder << std::endl;
