@@ -116,53 +116,28 @@ void Plt_Arm_Node_Force(
 		
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.
         //then make a functor that takes the id and force (4 tuple) and takes that force and adds it to the id'th entry in nodeInfoVecs.nodeForceX,Y,Z
-        
+
+		
 		unsigned total_num_arms = pltInfoVecs.nodeImagingConnection.size();
 		
-		thrust::sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
+		//correspondance kept between nodeUnreducedId and pltImagingConnection
+		thrust::stable_sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
         			thrust::make_zip_iterator(
         				thrust::make_tuple(
 							pltInfoVecs.pltImagingConnection.begin(),
         					pltInfoVecs.nodeUnreducedForceX.begin(),
         					pltInfoVecs.nodeUnreducedForceY.begin(),
-        					pltInfoVecs.nodeUnreducedForceZ.begin())), thrust::less<unsigned>());
-
+							pltInfoVecs.nodeUnreducedForceZ.begin())), thrust::less<unsigned>());
+							
+		//now nodeImagingConnection contains the corresponding nodes to pltImagingConnection
     	thrust::copy(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.begin() + total_num_arms, pltInfoVecs.nodeImagingConnection.begin());
 
     	pltInfoVecs.numConnections = thrust::count_if(
     	    pltInfoVecs.nodeImagingConnection.begin(),
     	    pltInfoVecs.nodeImagingConnection.end(), is_less_than(generalParams.maxNodeCount) );
 
-/*
-		for (unsigned i = 0; i < pltInfoVecs.numConnections; i++) {
-			unsigned node_Id = pltInfoVecs.nodeImagingConnection[i];
-			unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
-				
 
-			//TEMP DELETE AFTER USE
-			double locX = nodeInfoVecs.nodeLocX[node_Id];
-			double locY = nodeInfoVecs.nodeLocY[node_Id];
-			double locZ = nodeInfoVecs.nodeLocZ[node_Id];
-			double pltX = pltInfoVecs.pltLocX[plt_id];
-			double pltY = pltInfoVecs.pltLocY[plt_id];
-			double pltZ = pltInfoVecs.pltLocZ[plt_id];
-			double distX = locX - pltX;
-			double distY = locY - pltY;
-			double distZ = locZ - pltZ;
-			
-			double dist = sqrt(distX*distX + distY*distY + distZ * distZ);
-			std::cout<<"dist true: "<< dist<<std::endl;
-		} */
-		/*for (unsigned i = 0; i < auxVecs.idPlt_bucket.size(); i++){
-			std::cout<<"plt buckettndrl_1_2: "<<auxVecs.idPlt_bucket[i] << std::endl;
-		}
-		for (unsigned i = 0; i < pltInfoVecs.nodeImagingConnection.size(); i++){
-			std::cout<<"plt nodeimaging_1_2: "<<pltInfoVecs.nodeImagingConnection[i] << std::endl;
-		}
-		for (unsigned i = 0; i < total_num_arms; i++){
-			std::cout<<"plt nodeUnreducedId_1_2: "<<pltInfoVecs.nodeUnreducedId[i] << std::endl;
-		}*/
-//reduce and apply force
+		//reduce and apply force
  		unsigned endKey = thrust::get<0>(
  			thrust::reduce_by_key(
  				pltInfoVecs.nodeUnreducedId.begin(),
