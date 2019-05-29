@@ -412,7 +412,15 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						else {
 							ave_strain = 0.0;
 						}
-						mag_force = pltForce + max_dynamic_force * (ave_strain / contour_length_mult);
+						mag_force = pltForce + (max_dynamic_force-pltForce) * (ave_strain / contour_length_mult);
+
+						//alternate version
+						//this alpha scales the the strain in the negative strain
+						//alpha is back calculated by imposing fmax at C/2
+						//double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
+						//double alpha = -(contour_length_mult/2.0) / (log(force_scale));
+
+						//mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
 
 					}
 					else {
