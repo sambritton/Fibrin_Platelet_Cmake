@@ -287,7 +287,7 @@ void run(int argc, char** argv) {
 		auto builder = std::make_shared<SystemBuilder>(epsilon, timeStep);
 
 		auto system = createSystem(argv[argc-1], builder);
-
+		
 		//once the system is set, we'll store the initial values via the ptr system.
 		//Storage storage( system, outputFileName);
 		auto storage = std::make_shared<Storage>(system, builder);

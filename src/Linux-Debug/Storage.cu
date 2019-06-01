@@ -1,4 +1,4 @@
-
+#include <sys/stat.h>
 
 #include "System.h"
 #include "System_Builder.h"
@@ -13,6 +13,63 @@ Storage::Storage(std::weak_ptr<System> a_system,
 	system = a_system;
 	builder = b_system;
 
+	std::shared_ptr<System> sys = system.lock();
+	if (sys) {
+
+		unsigned domain_size = ceil((sys->domainParams.maxX + 
+			sys->domainParams.maxY + 
+			sys->domainParams.maxZ) / 3.0);
+
+		unsigned plt_count = sys->generalParams.maxPltCount;
+		unsigned num_filo = sys->generalParams.plttndrl;
+		unsigned max_force = sys->generalParams.max_dynamic_plt_force;
+		unsigned min_force = sys->generalParams.pltRForce;
+
+		std::string str_domain = "_domain_";
+		std::string str_plt_count = "_plt_count_";
+		std::string str_filo_count = "_filo_count_";
+		std::string str_maxF = "_maxForce_";
+		std::string str_minF = "_minForce_";
+		std::string str_a = "Animation_";
+		std::string str_p = "Params_";
+		
+		str_animation = str_a +
+			str_domain + std::to_string(domain_size) +
+			str_plt_count + std::to_string(plt_count) + 
+			str_filo_count + std::to_string(num_filo) + 
+			str_maxF + std::to_string(max_force) + 
+			str_minF + std::to_string(min_force);
+
+		const int dir_err_anim = mkdir(str_animation.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		if (-1 == dir_err_anim)
+		{
+			printf("Error creating directory animation test!n");
+			exit(1);
+		}
+		else {
+			printf("making folder!n");
+			printf(str_animation.c_str());
+		}
+
+		str_params = str_p + 
+			str_domain + std::to_string(domain_size) +
+			str_plt_count + std::to_string(plt_count) + 
+			str_filo_count + std::to_string(num_filo) + 
+			str_maxF + std::to_string(max_force) + 
+			str_minF + std::to_string(min_force);
+
+		const int dir_err_params = mkdir(str_params.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		if (-1 == dir_err_params)
+		{
+			printf("Error creating directory params!n");
+			exit(1);
+		}
+		else {
+			printf("making folder!n");
+			printf(str_params.c_str());
+		}
+		
+	}
 };
 
 
@@ -26,7 +83,7 @@ void Storage::save_params(void) {
 		std::string format = ".sta";
 		
 		std::string strain =  std::to_string(sys->generalParams.currentTime);
-		std::string initial = "Params/Param_";
+		std::string initial = str_params+"/Param_";
 		std::ofstream ofs;
 		std::string Filename = initial + strain + format;
 		ofs.open(Filename.c_str());
@@ -135,7 +192,7 @@ void Storage::print_VTK_File() {
 		unsigned digits = ceil(log10(iteration + 1));
 		std::string format = ".vtk";
 		std::string Number;
-		std::string initial = "AnimationTest/FibrinNetwork_";
+		std::string initial = str_animation + "/FibrinNetwork_";
 		std::ofstream ofs;
 		if (digits == 1 || digits == 0) {
 			Number = "0000" + std::to_string(iteration);
@@ -274,7 +331,7 @@ void Storage::print_VTK_File() {
 		unsigned digits = ceil(log10(iteration + 1));
 		std::string format = ".vtk";
 		std::string Number;
-		std::string initial = "AnimationTest/Platelet";
+		std::string initial = str_animation+"/Platelet";
 		std::ofstream ofs;
 		if (digits == 1 || digits == 0) {
 			Number = "0000" + std::to_string(iteration);
@@ -342,7 +399,7 @@ void Storage::print_VTK_File() {
 		unsigned digits = ceil(log10(iteration + 1));
 		std::string format = ".vtk";
 		std::string Number;
-		std::string initial = "AnimationTest/PlateletConn";
+		std::string initial = str_animation+"/PlateletConn";
 		std::ofstream ofs;
 		if (digits == 1 || digits == 0) {
 			Number = "0000" + std::to_string(iteration);

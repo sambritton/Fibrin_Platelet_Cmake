@@ -11,7 +11,8 @@ mkdir -p $BUILD_NAME && cd $BUILD_NAME
 cmake ../src/Linux-Debug/ \
 -DCMAKE_C_COMPILER=$(which gcc)  \
 -DCMAKE_CXX_COMPILER=$(which g++)  \
--DCUDA_INCLUDE_DIRS=${CUDA_HOME}/include \
+-DCUDA_INCLUDE_DIRS=/usr/include/cuda/include \
+-DCMAKE_CUDA_COMPILER=$(which nvcc) \
 -DBUILD_TESTING=OFF \
 
 

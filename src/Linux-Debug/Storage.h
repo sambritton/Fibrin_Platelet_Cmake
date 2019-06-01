@@ -29,6 +29,8 @@ class Storage {
 	int currentAddedEdges = 0;
 	int previousAddedEdges = 0;
 	unsigned iteration = 0;
+	std::string str_animation;
+	std::string str_params;
 
 public: 
 	Storage(std::weak_ptr<System> a_system,

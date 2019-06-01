@@ -300,6 +300,7 @@ class Storage;
 
 class System {
 public:
+
 	DomainParams domainParams;
 	NodeInfoVecs nodeInfoVecs;
   PltInfoVecs pltInfoVecs;
