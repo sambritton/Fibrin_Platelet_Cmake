@@ -183,8 +183,16 @@ void System::solveSystem() {
 	generalParams.epsilon = (1.0) *
 		sqrt(6.0*generalParams.kB * generalParams.temperature * generalParams.dtTemp / generalParams.viscousDamp_Fibrin);
 
+	double final_time = 45.0;
+
 	while (generalParams.runSim == true) {
 
+		double time_iter = (generalParams.iterationCounter);
+
+		//Simulations force quite after 45 minutes of real time running 
+		if ((time_iter * generalParams.dtTemp) > final_time ) {
+			generalParams.runSim = false;
+		};
 		if (generalParams.iterationCounter == 1) {
 			//save initial files
 			storage->print_VTK_File();
@@ -199,7 +207,7 @@ void System::solveSystem() {
 					pltInfoVecs);
 
 			storage->save_params();
-		}
+		};
 
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
