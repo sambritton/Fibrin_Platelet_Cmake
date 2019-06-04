@@ -21,7 +21,7 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			sys->domainParams.maxZ) / 3.0);
 
 		unsigned plt_count = sys->generalParams.maxPltCount;
-		unsigned num_filo = sys->generalParams.plttndrl;
+		unsigned num_filo = sys->generalParams.plt_tndrl_intrct;
 		unsigned max_force = sys->generalParams.max_dynamic_plt_force;
 		unsigned min_force = sys->generalParams.pltRForce;
 
@@ -39,6 +39,11 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_filo_count + std::to_string(num_filo) + 
 			str_maxF + std::to_string(max_force) + 
 			str_minF + std::to_string(min_force);
+
+		std::cout<<"domain: " << str_domain<<
+			" str_plt_count: " << str_plt_count<<
+			" str_filo_count: " << str_filo_count<<
+			" str_minF: " << str_minF<< std::endl;
 
 		const int dir_err_anim = mkdir(str_animation.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		if (-1 == dir_err_anim)
