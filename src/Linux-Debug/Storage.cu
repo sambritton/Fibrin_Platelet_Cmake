@@ -23,7 +23,7 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		unsigned plt_count = sys->generalParams.maxPltCount;
 		unsigned num_filo = sys->generalParams.plt_tndrl_intrct;
 		unsigned max_force = sys->generalParams.max_dynamic_plt_force;
-		unsigned min_force = sys->generalParams.pltRForce;
+		unsigned min_force = sys->generalParams.pltForce;
 
 		std::string str_domain = "_domain_";
 		std::string str_plt_count = "_plt_count_";
