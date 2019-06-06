@@ -183,14 +183,14 @@ void System::solveSystem() {
 	generalParams.epsilon = (1.0) *
 		sqrt(6.0*generalParams.kB * generalParams.temperature * generalParams.dtTemp / generalParams.viscousDamp_Fibrin);
 
-	double final_time = 45.0;
+	double final_time = 45.0 * 60.0;
 
 	while (generalParams.runSim == true) {
 
 		double time_iter = (generalParams.iterationCounter);
 
 		//Simulations force quite after 45 minutes of real time running 
-		if ((time_iter * generalParams.dtTemp) > final_time ) {
+		if ((time_iter * generalParams.dtTemp) > final_time ) {//convert seconds to minutes requires *60
 			generalParams.runSim = false;
 		};
 		if (generalParams.iterationCounter == 1) {

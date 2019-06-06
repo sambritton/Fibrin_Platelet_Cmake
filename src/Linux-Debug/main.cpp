@@ -161,6 +161,10 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		std::cout << "dynamic_plt_max_force: " << builder->max_dynamic_plt_force << std::endl;
 	}
 
+	if (auto p = props.child("plt_nonlinear_respnose")) {
+		builder->max_plt_nonlinear_respnose = (p.text().as_double());
+		std::cout << "max_plt_nonlinear_respnose: " << builder->plt_nonlinear_response << std::end;
+	}
 	std::cout << "builder ptr address: " << builder << std::endl;
 	std::vector<unsigned> originNodes;
 //buid nodes
