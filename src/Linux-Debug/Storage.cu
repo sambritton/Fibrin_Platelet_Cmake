@@ -454,7 +454,7 @@ void Storage::print_VTK_File() {
 		ofs << "ASCII" << std::endl << std::endl;
 		ofs << "DATASET UNSTRUCTURED_GRID" << std::endl;
 		
-		 
+		
 		ofs << "POINTS " << maxPltCount + num_connections << " float" << std::endl;
 		for (unsigned i = 0; i< maxPltCount; i++) {
 			xPos = sys->pltInfoVecs.pltLocX[i];
