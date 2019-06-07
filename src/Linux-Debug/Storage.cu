@@ -441,7 +441,7 @@ void Storage::print_VTK_File() {
 		ofs.open(Filename.c_str());
 		
 	
-		unsigned maxPltCount = sys->generalParams.maxPltCount;
+		unsigned maxPltCount = sys->pltInfoVecs.pltLocX.size();
 
 		unsigned num_connections = sys->pltInfoVecs.numConnections;
 		
@@ -468,13 +468,16 @@ void Storage::print_VTK_File() {
 		//ie  
 		for (unsigned i = 0; i < num_connections; i++ ) {
 			unsigned node_id = sys->pltInfoVecs.nodeImagingConnection[i];
-
-			xPos = sys->nodeInfoVecs.nodeLocX[node_id];
-			yPos = sys->nodeInfoVecs.nodeLocY[node_id];
-			zPos = sys->nodeInfoVecs.nodeLocZ[node_id];
-			
-			ofs << std::setprecision(5) <<std::fixed<< xPos << " " << yPos << " " << zPos << " " << '\n'<< std::fixed;
-		
+			if (node_id < sys->generalParams.maxNodeCount) {
+				xPos = sys->nodeInfoVecs.nodeLocX[node_id];
+				yPos = sys->nodeInfoVecs.nodeLocY[node_id];
+				zPos = sys->nodeInfoVecs.nodeLocZ[node_id];
+				
+				ofs << std::setprecision(5) <<std::fixed<< xPos << " " << yPos << " " << zPos << " " << '\n'<< std::fixed;
+			}
+			else{
+				std::cout<<"imaging not working, node out of bounds" << std::endl;
+			}
 		}
 
 

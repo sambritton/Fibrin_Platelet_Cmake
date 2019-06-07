@@ -106,7 +106,8 @@ void Plt_Arm_Node_Force(
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeId.data()),
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeType.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.isNodeInPltVol.data()),
-                thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
+				thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
+				
                 thrust::raw_pointer_cast(wlcInfoVecs.lengthZero.data()),
                 thrust::raw_pointer_cast(wlcInfoVecs.numOriginalNeighborsNodeVector.data()),
 

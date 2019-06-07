@@ -193,7 +193,7 @@ void System::solveSystem() {
 		if ((time_iter * generalParams.dtTemp) > final_time ) {
 			generalParams.runSim = false;
 		};
-		if (generalParams.iterationCounter == 0) {
+		if (generalParams.iterationCounter == 10) {
 			//save initial files
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations
@@ -211,8 +211,10 @@ void System::solveSystem() {
 
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
-		//std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
 
+		if (generalParams.iterationCounter % 10 == 0) {
+			std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
+		}
 		Advance_Positions_Fibrin(
 			nodeInfoVecs,
 			generalParams,
@@ -231,7 +233,7 @@ void System::solveSystem() {
 		solveForces(); //resets and solves forces for next time step
 
 
-		if (generalParams.iterationCounter % 10000 == 0) {
+		if (generalParams.iterationCounter % 100 == 0) {
 
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations
