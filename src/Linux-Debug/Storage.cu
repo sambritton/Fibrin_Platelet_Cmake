@@ -77,8 +77,8 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_domain + std::to_string(domain_size) +
 			str_plt_count + std::to_string(plt_count) + 
 			str_filo_count + std::to_string(num_filo) + 
-			str_maxF + std::to_string(max_force) + 
-			str_minF + std::to_string(min_force);
+			str_maxF + str_max_force + 
+			str_minF + str_min_force;
 
 		const int dir_err_params = mkdir(str_params.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		if (-1 == dir_err_params)
