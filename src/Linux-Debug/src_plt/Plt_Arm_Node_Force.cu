@@ -122,7 +122,7 @@ void Plt_Arm_Node_Force(
 		unsigned total_num_arms = pltInfoVecs.nodeImagingConnection.size();
 		
 		//correspondance kept between nodeUnreducedId and pltImagingConnection
-		thrust::stable_sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
+		thrust::sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
         			thrust::make_zip_iterator(
         				thrust::make_tuple(
 							pltInfoVecs.pltImagingConnection.begin(),

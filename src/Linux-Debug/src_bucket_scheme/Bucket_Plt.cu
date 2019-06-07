@@ -31,15 +31,14 @@ void init_plt_inct_bucket(
 	//start with padding and only resize if larger
 	if ( (domainParams.XBucketCount_plt_intc * domainParams.YBucketCount_plt_intc * domainParams.ZBucketCount_plt_intc) > domainParams.totalBucketCount_plt_intc) {
 		std::cout<<"resetting plt intct"<< std::endl;
-        std::cout<<"x-bucket: "<< domainParams.XBucketCount_plt_intc<<std::endl;
-		std::cout<<"y-bucket: "<< domainParams.YBucketCount_plt_intc<<std::endl;
-		std::cout<<"z-bucket: "<< domainParams.ZBucketCount_plt_intc<<std::endl;
+        std::cout<<"x-bucket plt: "<< domainParams.XBucketCount_plt_intc<<std::endl;
+		std::cout<<"y-bucket plt: "<< domainParams.YBucketCount_plt_intc<<std::endl;
+		std::cout<<"z-bucket plt: "<< domainParams.ZBucketCount_plt_intc<<std::endl;
 		//double amount of buckets in case of resizing networks
 		domainParams.totalBucketCount_plt_intc = domainParams.XBucketCount_plt_intc * domainParams.YBucketCount_plt_intc * domainParams.ZBucketCount_plt_intc;
 		std::cout<<"grid: "<< domainParams.gridSpacing_plt_intc << std::endl;
-		std::cout<<"total bucket count: "<< domainParams.totalBucketCount_plt_intc<<std::endl;
+		std::cout<<"total bucket count plt: "<< domainParams.totalBucketCount_plt_intc<<std::endl;
 
-		
 		auxVecs.keyBegin_plt_intc.resize(domainParams.totalBucketCount_plt_intc);
 		auxVecs.keyEnd_plt_intc.resize(domainParams.totalBucketCount_plt_intc);
 			
@@ -47,8 +46,6 @@ void init_plt_inct_bucket(
 		auxVecs.keyPltBegin.resize(domainParams.totalBucketCount_plt_intc); 
 		auxVecs.keyPltEnd.resize(domainParams.totalBucketCount_plt_intc); 
 		
-
- 
 	}
 
 	thrust::fill(auxVecs.keyBegin_plt_intc.begin(),auxVecs.keyBegin_plt_intc.end(),0);

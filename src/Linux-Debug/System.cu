@@ -176,6 +176,8 @@ void System::solveForces() {
 
 void System::solveSystem() {
 
+	//make sure iterationCounter is zero for padding init. 
+	generalParams.iterationCounter = 0;
 	//set initial bucket scheme
 	setBucketScheme();
 

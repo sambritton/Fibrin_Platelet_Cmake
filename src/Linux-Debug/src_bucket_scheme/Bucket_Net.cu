@@ -84,10 +84,15 @@ void init_net_inct_bucket(
 		std::cout<<"grid: "<< domainParams.gridSpacing_net_intc << std::endl;
 		std::cout<<"total bucket count: "<< domainParams.totalBucketCount_net_intc<<std::endl;
 
+		std::cout<<"minX: " << domainParams.minX << std::endl;
+		std::cout<<"maxX: " << domainParams.maxX << std::endl;
+		std::cout<<"minY: " << domainParams.minY << std::endl;
+		std::cout<<"maxY: " << domainParams.maxY << std::endl;
+		std::cout<<"minZ: " << domainParams.minZ << std::endl;
+		std::cout<<"maxZ: " << domainParams.maxZ << std::endl;
 
 		auxVecs.keyBegin_net_intc.resize(domainParams.totalBucketCount_net_intc);
 		auxVecs.keyEnd_net_intc.resize(domainParams.totalBucketCount_net_intc);
-
  
 	}
 
