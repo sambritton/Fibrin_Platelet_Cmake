@@ -406,6 +406,9 @@ std::shared_ptr<System> SystemBuilder::create() {
 	host_ptr_devNodeSystem->generalParams.pltonplt = pltonplt;
 	host_ptr_devNodeSystem->generalParams.use_dynamic_plt_force = use_dynamic_plt_force;
 	host_ptr_devNodeSystem->generalParams.max_dynamic_plt_force = max_dynamic_plt_force;
+	host_ptr_devNodeSystem->generalParams.use_nonlinear_dynamic_force = use_nonlinear_dynamic_force;
+
+	
 
 	host_ptr_devNodeSystem->initializeSystem(
 		hostIsNodeFixed,

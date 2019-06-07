@@ -10,6 +10,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	bool use_dynamic_plt_force;
 	double contour_length_mult;
 	double max_dynamic_force;
+	bool use_nonlinear_dynamic_force;
 
   	unsigned plt_tndrl_intrct;
   	double pltRForce;
@@ -53,9 +54,10 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
    __host__ __device__
    //
        functor_plt_arm_node(
-			bool _use_dynamic_plt_force,
-			double _contour_length_mult,
-			double _max_dynamic_force,
+			bool& _use_dynamic_plt_force,
+			double& _contour_length_mult,
+			double& _max_dynamic_force,
+			bool& _use_nonlinear_dynamic_force,
 
             unsigned& _plt_tndrl_intrct,
             double& _pltRForce,
@@ -99,6 +101,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	use_dynamic_plt_force(_use_dynamic_plt_force),
 	contour_length_mult(_contour_length_mult),
 	max_dynamic_force(_max_dynamic_force),
+	use_nonlinear_dynamic_force(_use_nonlinear_dynamic_force),
 
     plt_tndrl_intrct(_plt_tndrl_intrct),
     pltRForce(_pltRForce),
@@ -417,10 +420,12 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						//alternate version
 						//this alpha scales the the strain in the negative strain
 						//alpha is back calculated by imposing fmax at C/2
-						//double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
-						//double alpha = -(contour_length_mult/2.0) / (log(force_scale));
+						if (use_nonlinear_dynamic_force == true) {
+							double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
+							double alpha = -(contour_length_mult/2.0) / (log(force_scale));
 
-						//mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+							mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+						}
 
 					}
 					else {

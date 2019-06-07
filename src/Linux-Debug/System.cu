@@ -183,17 +183,17 @@ void System::solveSystem() {
 	generalParams.epsilon = (1.0) *
 		sqrt(6.0*generalParams.kB * generalParams.temperature * generalParams.dtTemp / generalParams.viscousDamp_Fibrin);
 
-	double final_time = 45.0 * 60.0;
+	double final_time = 45.0 * 60.0;//convert seconds to minutes requires *60
 
 	while (generalParams.runSim == true) {
 
 		double time_iter = (generalParams.iterationCounter);
 
 		//Simulations force quite after 45 minutes of real time running 
-		if ((time_iter * generalParams.dtTemp) > final_time ) {//convert seconds to minutes requires *60
+		if ((time_iter * generalParams.dtTemp) > final_time ) {
 			generalParams.runSim = false;
 		};
-		if (generalParams.iterationCounter == 1) {
+		if (generalParams.iterationCounter == 0) {
 			//save initial files
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations

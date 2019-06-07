@@ -59,12 +59,21 @@ void init_net_inct_bucket(
 	AuxVecs& auxVecs,
 	GeneralParams& generalParams) {
 
+	unsigned padding = 1;
+	if (generalParams.iterationCounter == 0) {
+		padding = 2;
+	}
+	else {
+		padding = 1;
+	}
+	
+	//on the first iteration, we allocate more, we don't plan on using it. 
 	//always set bucket count. Update total if different. 
-	domainParams.XBucketCount_net_intc = ceil((domainParams.maxX - domainParams.minX) / domainParams.gridSpacing_net_intc) + 1;
-	domainParams.YBucketCount_net_intc = ceil((domainParams.maxY - domainParams.minY) / domainParams.gridSpacing_net_intc) + 1;
-	domainParams.ZBucketCount_net_intc = ceil((domainParams.maxZ - domainParams.minZ) / domainParams.gridSpacing_net_intc) + 1;
+	domainParams.XBucketCount_net_intc = padding * ceil((domainParams.maxX - domainParams.minX) / domainParams.gridSpacing_net_intc) + 1;
+	domainParams.YBucketCount_net_intc = padding * ceil((domainParams.maxY - domainParams.minY) / domainParams.gridSpacing_net_intc) + 1;
+	domainParams.ZBucketCount_net_intc = padding * ceil((domainParams.maxZ - domainParams.minZ) / domainParams.gridSpacing_net_intc) + 1;
 
-	if ( (domainParams.XBucketCount_net_intc * domainParams.YBucketCount_net_intc * domainParams.ZBucketCount_net_intc) != domainParams.totalBucketCount_net_intc	) {
+	if ( (domainParams.XBucketCount_net_intc * domainParams.YBucketCount_net_intc * domainParams.ZBucketCount_net_intc) > domainParams.totalBucketCount_net_intc	) {
 		std::cout<<"resetting grid for network interact" << std::endl;
 		std::cout<<"x-bucket: "<< domainParams.XBucketCount_net_intc<<std::endl;
 		std::cout<<"y-bucket: "<< domainParams.YBucketCount_net_intc<<std::endl;
@@ -74,6 +83,7 @@ void init_net_inct_bucket(
 		domainParams.totalBucketCount_net_intc = domainParams.XBucketCount_net_intc * domainParams.YBucketCount_net_intc * domainParams.ZBucketCount_net_intc;
 		std::cout<<"grid: "<< domainParams.gridSpacing_net_intc << std::endl;
 		std::cout<<"total bucket count: "<< domainParams.totalBucketCount_net_intc<<std::endl;
+
 
 		auxVecs.keyBegin_net_intc.resize(domainParams.totalBucketCount_net_intc);
 		auxVecs.keyEnd_net_intc.resize(domainParams.totalBucketCount_net_intc);

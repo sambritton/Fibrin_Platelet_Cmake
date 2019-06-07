@@ -86,6 +86,7 @@ public:
 	bool use_dynamic_plt_force = true;
 	double max_dynamic_plt_force = 29;
 	bool use_nonlinear_dynamic_force = false;
+	
 	//std::shared_ptr<NodeSystemDevice> host_ptr_devNodeSystem;
 	std::vector<std::shared_ptr<BuildNode>> buildNodes;
 	//platelets

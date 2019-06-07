@@ -1,5 +1,8 @@
 #include <sys/stat.h>
 
+#include <iomanip> // setprecision
+#include <sstream> // stringstream
+
 #include "System.h"
 #include "System_Builder.h"
 #include "SystemStructures.h"
@@ -16,15 +19,26 @@ Storage::Storage(std::weak_ptr<System> a_system,
 	std::shared_ptr<System> sys = system.lock();
 	if (sys) {
 
+		std::stringstream stream_min;
+		std::stringstream stream_max;
+
 		unsigned domain_size = ceil((sys->domainParams.maxX + 
 			sys->domainParams.maxY + 
 			sys->domainParams.maxZ) / 3.0);
 
 		unsigned plt_count = sys->generalParams.maxPltCount;
 		unsigned num_filo = sys->generalParams.plt_tndrl_intrct;
-		unsigned max_force = sys->generalParams.max_dynamic_plt_force;
-		unsigned min_force = sys->generalParams.pltForce;
+		double max_force = sys->generalParams.max_dynamic_plt_force;
+		double min_force = sys->generalParams.pltForce;
+		bool response = sys->generalParams.use_nonlinear_dynamic_force;
+		
+		stream_min << std::fixed << std::setprecision(2) << min_force;
+		std::string str_min_force = stream_min.str();
+		
+		stream_max << std::fixed << std::setprecision(2) << max_force;
+		std::string str_max_force = stream_max.str();
 
+		std::string str_nonlinear_response = "_nonlinResp_";
 		std::string str_domain = "_domain_";
 		std::string str_plt_count = "_plt_count_";
 		std::string str_filo_count = "_filo_count_";
@@ -37,13 +51,16 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_domain + std::to_string(domain_size) +
 			str_plt_count + std::to_string(plt_count) + 
 			str_filo_count + std::to_string(num_filo) + 
-			str_maxF + std::to_string(max_force) + 
-			str_minF + std::to_string(min_force);
+			str_maxF + str_max_force + 
+			str_minF + str_min_force +
+			str_nonlinear_response + std::to_string(response);
 
-		std::cout<<"domain: " << str_domain<<
-			" str_plt_count: " << str_plt_count<<
-			" str_filo_count: " << str_filo_count<<
-			" str_minF: " << str_minF<< std::endl;
+		std::cout<<"domain: " << domain_size<<
+			" str_plt_count: " << plt_count<<
+			" str_filo_count: " << num_filo<<
+			" str_minF: " << min_force<< 
+			" str_response: " << response << std::endl;
+
 
 		const int dir_err_anim = mkdir(str_animation.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		if (-1 == dir_err_anim)

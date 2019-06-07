@@ -74,6 +74,7 @@ void Plt_Arm_Node_Force(
 				generalParams.use_dynamic_plt_force,
 				generalParams.CLM,
 				generalParams.max_dynamic_plt_force,
+				generalParams.use_nonlinear_dynamic_force,
 
                 generalParams.plt_tndrl_intrct,
                 generalParams.pltRForce,
