@@ -128,6 +128,7 @@ void Plt_Field_Node_Force(
         			pltInfoVecs.nodeReducedForceY.begin(),
         			pltInfoVecs.nodeReducedForceZ.begin())) + endKey,
         	functor_add_UCVec3_CVec3(
+				generalParams.maxNodeCount,
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceX.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceY.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceZ.data())));

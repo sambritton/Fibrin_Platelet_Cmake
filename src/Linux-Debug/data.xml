@@ -1939,6 +1939,9 @@
         <node>6.1992 6.0253 17.8061</node>
         <node>1.1444 4.8584 11.6649</node>
     </nodes>
+	<plts plt-mass="0.486"><!-- these are use only if plt_density is set to 0.0-->
+	        <plt>9.0026 -12.0197 -12.1047</plt>
+    </plts>
     <links>
         <link>1523 1229</link>
         <link>1398 468</link>

@@ -102,6 +102,7 @@ if (generalParams.totalTorsionCount>0) {
 					torsionInfoVecs.tempForceY.begin(),
 					torsionInfoVecs.tempForceZ.begin())) + endKey,
 			functor_add_UCVec3_CVec3(
+				generalParams.maxNodeCount,
 				thrust::raw_pointer_cast(nodeInfoVecs.nodeForceX.data()),
 				thrust::raw_pointer_cast(nodeInfoVecs.nodeForceY.data()),
 				thrust::raw_pointer_cast(nodeInfoVecs.nodeForceZ.data())));

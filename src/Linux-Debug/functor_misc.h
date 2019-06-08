@@ -19,6 +19,7 @@ inline double dot_product(CVec3 v1, CVec3 v2) {
 
 
 struct functor_add_UCVec3_CVec3 {//same as torsion
+	unsigned maxNodeCount;
 	double* forceXAddr;
 	double* forceYAddr;
 	double* forceZAddr;
@@ -26,9 +27,11 @@ struct functor_add_UCVec3_CVec3 {//same as torsion
 	__host__ __device__
 	//
 		functor_add_UCVec3_CVec3(
+				unsigned& _maxNodeCount,
 				double* _forceXAddr,
 				double* _forceYAddr,
 				double* _forceZAddr) :
+			maxNodeCount(maxNodeCount),
 			forceXAddr(_forceXAddr),
 			forceYAddr(_forceYAddr),
 			forceZAddr(_forceZAddr) {}
@@ -36,19 +39,22 @@ struct functor_add_UCVec3_CVec3 {//same as torsion
 	__device__
 	void operator() (const Tuddd& u1d3) {
 			unsigned idToAssign = thrust::get<0>(u1d3);
-			if (!isnan(thrust::get<1>(u1d3)) && !isnan(thrust::get<2>(u1d3)) && !isnan(thrust::get<3>(u1d3))) {
+			
+			if (idToAssign < maxNodeCount) {
+				if (!isnan(thrust::get<1>(u1d3)) && !isnan(thrust::get<2>(u1d3)) && !isnan(thrust::get<3>(u1d3))) {
 
-			forceXAddr[idToAssign] += thrust::get<1>(u1d3);
-			forceYAddr[idToAssign] += thrust::get<2>(u1d3);
-			forceZAddr[idToAssign] += thrust::get<3>(u1d3);
+					forceXAddr[idToAssign] += thrust::get<1>(u1d3);
+					forceYAddr[idToAssign] += thrust::get<2>(u1d3);
+					forceZAddr[idToAssign] += thrust::get<3>(u1d3);
+				}
 			}
-
 	}
 
 };
 
 
 struct functor_add_UCVec3_CVec3_pltVol {
+	unsigned maxNodeCount;
 	double* forceXAddr;
 	double* forceYAddr;
 	double* forceZAddr;
@@ -57,10 +63,12 @@ struct functor_add_UCVec3_CVec3_pltVol {
 	__host__ __device__
 	//
 		functor_add_UCVec3_CVec3_pltVol(
+				unsigned& _maxNodeCount,
 				double* _forceXAddr,
 				double* _forceYAddr,
 				double* _forceZAddr,
 				bool* _isNodeInPltVolAddr) :
+			maxNodeCount(maxNodeCount),
 			forceXAddr(_forceXAddr),
 			forceYAddr(_forceYAddr),
 			forceZAddr(_forceZAddr),
@@ -73,15 +81,17 @@ struct functor_add_UCVec3_CVec3_pltVol {
 			double f2 = thrust::get<2>(u1d3); 
 			double f3 = thrust::get<3>(u1d3); 
 
-			if ((f1 != 0.0) || (f2 != 0.0) || (f3 !=0.0)) {
+			if (idToAssign < maxNodeCount) {
+				if ((f1 != 0.0) || (f2 != 0.0) || (f3 !=0.0)) {
 
-				forceXAddr[idToAssign] += thrust::get<1>(u1d3);
-				forceYAddr[idToAssign] += thrust::get<2>(u1d3);
-				forceZAddr[idToAssign] += thrust::get<3>(u1d3); 
-				isNodeInPltVolAddr[idToAssign] = true;
-			}
-			if( (f1 == 0.0) && (f2 == 0.0) && (f3 == 0.0) ){
-				isNodeInPltVolAddr[idToAssign] = false;
+					forceXAddr[idToAssign] += thrust::get<1>(u1d3);
+					forceYAddr[idToAssign] += thrust::get<2>(u1d3);
+					forceZAddr[idToAssign] += thrust::get<3>(u1d3); 
+					isNodeInPltVolAddr[idToAssign] = true;
+				}
+				if( (f1 == 0.0) && (f2 == 0.0) && (f3 == 0.0) ){
+					isNodeInPltVolAddr[idToAssign] = false;
+				}
 			}
 
 

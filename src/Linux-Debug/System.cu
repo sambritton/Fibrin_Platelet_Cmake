@@ -454,8 +454,8 @@ void System::setPltVecs(
 	pltInfoVecs.pltForceY.resize(generalParams.maxPltCount);
 	pltInfoVecs.pltForceZ.resize(generalParams.maxPltCount);
 
-	pltInfoVecs.pltImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_tndrl_intrct);
-	pltInfoVecs.nodeImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_tndrl_intrct);
+	pltInfoVecs.pltImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);
+	pltInfoVecs.nodeImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);
 
 	pltInfoVecs.nodeUnreducedId.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);
 	pltInfoVecs.nodeUnreducedForceX.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);

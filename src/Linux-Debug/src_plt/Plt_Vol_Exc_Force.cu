@@ -26,6 +26,9 @@ void Plt_Vol_Exc_Force(
 		thrust::fill(pltInfoVecs.nodeReducedForceY.begin(), pltInfoVecs.nodeReducedForceY.end(), 0.0);
 		thrust::fill(pltInfoVecs.nodeReducedForceZ.begin(), pltInfoVecs.nodeReducedForceZ.end(), 0.0);
 
+		
+    	thrust::fill(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.end(), generalParams.maxNodeCount);
+		thrust::fill(pltInfoVecs.nodeImagingConnection.begin(),pltInfoVecs.nodeImagingConnection.end(), generalParams.maxNodeCount);
 
 		thrust::counting_iterator<unsigned> counter(0);
 
@@ -134,6 +137,7 @@ void Plt_Vol_Exc_Force(
         			pltInfoVecs.nodeReducedForceY.begin(),
         			pltInfoVecs.nodeReducedForceZ.begin())) + endKey,
         	functor_add_UCVec3_CVec3_pltVol(
+				generalParams.maxNodeCount,
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceX.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceY.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceZ.data()),
