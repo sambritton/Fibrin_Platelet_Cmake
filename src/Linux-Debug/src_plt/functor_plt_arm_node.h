@@ -460,23 +460,23 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	
 	//The last step is to scale the forces we stored
 	
-	double divisor = __ll2double_ru(final_interaction_count);
-	if (divisor > 0.0) {
-		sumPltForceX = sumPltForceX/divisor;
-		sumPltForceY = sumPltForceY/divisor;
-		sumPltForceZ = sumPltForceZ/divisor;
-	}
-	for (unsigned arm = 0; arm < final_interaction_count; arm++) {
-		if (divisor > 0.0) {
-			double forceNodeX = nodeUForceXAddr[storageLocation + arm];
-			double forceNodeY = nodeUForceYAddr[storageLocation + arm];
-			double forceNodeZ = nodeUForceZAddr[storageLocation + arm];
-			//store force in temporary vector if a node is pulled. Call reduction later.
-			nodeUForceXAddr[storageLocation + arm] = forceNodeX/divisor;
-			nodeUForceYAddr[storageLocation + arm] = forceNodeY/divisor;
-			nodeUForceZAddr[storageLocation + arm] = forceNodeZ/divisor;
-		}
-	}
+//	double divisor = __ll2double_ru(final_interaction_count);
+//	if (divisor > 0.0) {
+//		sumPltForceX = sumPltForceX/divisor;
+//		sumPltForceY = sumPltForceY/divisor;
+//		sumPltForceZ = sumPltForceZ/divisor;
+//	}
+//	for (unsigned arm = 0; arm < final_interaction_count; arm++) {
+//		if (divisor > 0.0) {
+//			double forceNodeX = nodeUForceXAddr[storageLocation + arm];
+//			double forceNodeY = nodeUForceYAddr[storageLocation + arm];
+//			double forceNodeZ = nodeUForceZAddr[storageLocation + arm];
+//			//store force in temporary vector if a node is pulled. Call reduction later.
+//			nodeUForceXAddr[storageLocation + arm] = forceNodeX/divisor;
+//			nodeUForceYAddr[storageLocation + arm] = forceNodeY/divisor;
+//			nodeUForceZAddr[storageLocation + arm] = forceNodeZ/divisor;
+//		}
+//	}
 
     //return platelet forces
     return thrust::make_tuple(sumPltForceX, sumPltForceY, sumPltForceZ);

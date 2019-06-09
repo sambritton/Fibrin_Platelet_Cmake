@@ -12,7 +12,7 @@
 //as well as the self platelet from other platelets to create volume exclusion
 //The interaction count is: plt_other_intrct. No imaging is done here. 
 void Plt_Vol_Exc_Force(
-  NodeInfoVecs& nodeInfoVecs,
+  	NodeInfoVecs& nodeInfoVecs,
 	WLCInfoVecs& wlcInfoVecs,
 	GeneralParams& generalParams,
 	PltInfoVecs& pltInfoVecs,
@@ -28,7 +28,7 @@ void Plt_Vol_Exc_Force(
 
 		
     	thrust::fill(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.end(), generalParams.maxNodeCount);
-		thrust::fill(pltInfoVecs.nodeImagingConnection.begin(),pltInfoVecs.nodeImagingConnection.end(), generalParams.maxNodeCount);
+		//thrust::fill(pltInfoVecs.nodeImagingConnection.begin(),pltInfoVecs.nodeImagingConnection.end(), generalParams.maxNodeCount);
 
 		thrust::counting_iterator<unsigned> counter(0);
 
