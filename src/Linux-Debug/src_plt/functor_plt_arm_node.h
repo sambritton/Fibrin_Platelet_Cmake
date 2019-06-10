@@ -380,7 +380,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 					double forceNodeZ;
 					double mag_force;
 
-					if (use_dynamic_plt_force) {
+					if (use_dynamic_plt_force == true) {
 						double strain_count = 0;
 						double sum_strain=0;
 						//first calculate the strain of neighbors of pullNode_id

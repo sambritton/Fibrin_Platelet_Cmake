@@ -9,7 +9,7 @@
 <absolute-temperature>300.0</absolute-temperature>
 <contour-length-multiplier>2.351243606987286</contour-length-multiplier>
 <use-extra-nodes>true</use-extra-nodes>
-<units-per-extra-node>0.3</units-per-extra-node>
+<units-per-extra-node>0.75</units-per-extra-node>
 <extra-nodes-per-edge>9</extra-nodes-per-edge>
 <constant-extra-nodes>false</constant-extra-nodes>
 <mass>1.0</mass><!--used?-->
@@ -31,6 +31,10 @@
 	<plt_r_force>2.18</plt_r_force><!-- force radius from platelet center-->
 	<plt_r_adhesion>0.9</plt_r_adhesion><!-- fractional radius of adhesion of platelt. This should be between 0 and 1. Nodes adhere to platelet between this fraction and the whole platelet radius-->
 	<plt_density>0.0</plt_density>
+	
+	<dynamic-plt>false</dynamic-plt>
+	<use_nonlinear_dynamic_force>false</use_nonlinear_dynamic_force><!-- used if pltforcefield==false. modifies force response-->
+
 </settings>
     <nodes default-mass="1.0">
         <node>-3.0802 -10.4882 11.8213</node>

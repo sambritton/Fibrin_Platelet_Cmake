@@ -30,7 +30,8 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		unsigned num_filo = sys->generalParams.plt_tndrl_intrct;
 		double max_force = sys->generalParams.max_dynamic_plt_force;
 		double min_force = sys->generalParams.pltForce;
-		bool response = sys->generalParams.use_nonlinear_dynamic_force;
+		bool response_nonlin = sys->generalParams.use_nonlinear_dynamic_force;
+		bool response = sys->generalParams.use_dynamic_plt_force;
 		
 		stream_min << std::fixed << std::setprecision(2) << min_force;
 		std::string str_min_force = stream_min.str();
@@ -38,7 +39,8 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		stream_max << std::fixed << std::setprecision(2) << max_force;
 		std::string str_max_force = stream_max.str();
 
-		std::string str_nonlinear_response = "_nonlinResp_";
+		std::string str_nonlinear_response = "_nonlinDynamicResp_";
+		std::string str_dynamic_response = "_dynamicResp_";
 		std::string str_domain = "_domain_";
 		std::string str_plt_count = "_plt_count_";
 		std::string str_filo_count = "_filo_count_";
@@ -53,7 +55,8 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_filo_count + std::to_string(num_filo) + 
 			str_maxF + str_max_force + 
 			str_minF + str_min_force +
-			str_nonlinear_response + std::to_string(response);
+			str_dynamic_response + std::to_string(response);
+			str_nonlinear_response + std::to_string(response_nonlin);
 
 		std::cout<<"domain: " << domain_size<<
 			" str_plt_count: " << plt_count<<
@@ -66,7 +69,7 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		if (-1 == dir_err_anim)
 		{
 			printf("Error creating directory animation test!n");
-			exit(1);
+			//exit(1);
 		}
 		else {
 			printf("making folder!n");
@@ -78,13 +81,15 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_plt_count + std::to_string(plt_count) + 
 			str_filo_count + std::to_string(num_filo) + 
 			str_maxF + str_max_force + 
-			str_minF + str_min_force;
+			str_minF + str_min_force + 
+			str_dynamic_response + std::to_string(response);
+			str_nonlinear_response + std::to_string(response_nonlin);
 
 		const int dir_err_params = mkdir(str_params.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		if (-1 == dir_err_params)
 		{
 			printf("Error creating directory params!n");
-			exit(1);
+			//exit(1);
 		}
 		else {
 			printf("making folder!n");
