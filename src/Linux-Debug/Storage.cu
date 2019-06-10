@@ -32,6 +32,7 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		double min_force = sys->generalParams.pltForce;
 		bool response_nonlin = sys->generalParams.use_nonlinear_dynamic_force;
 		bool response = sys->generalParams.use_dynamic_plt_force;
+		bool force_scale = sys->generalParams.distribute_plt_force;
 		
 		stream_min << std::fixed << std::setprecision(2) << min_force;
 		std::string str_min_force = stream_min.str();
@@ -39,6 +40,7 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		stream_max << std::fixed << std::setprecision(2) << max_force;
 		std::string str_max_force = stream_max.str();
 
+		std::string str_force_scale = "_pltForceScale_";
 		std::string str_nonlinear_response = "_nonlinDynamicResp_";
 		std::string str_dynamic_response = "_dynamicResp_";
 		std::string str_domain = "_domain_";
@@ -46,6 +48,7 @@ Storage::Storage(std::weak_ptr<System> a_system,
 		std::string str_filo_count = "_filo_count_";
 		std::string str_maxF = "_maxForce_";
 		std::string str_minF = "_minForce_";
+
 		std::string str_a = "Animation_";
 		std::string str_p = "Params_";
 		
@@ -55,7 +58,8 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_filo_count + std::to_string(num_filo) + 
 			str_maxF + str_max_force + 
 			str_minF + str_min_force +
-			str_dynamic_response + std::to_string(response);
+			str_force_scale + std::to_string(force_scale) +
+			str_dynamic_response + std::to_string(response) +
 			str_nonlinear_response + std::to_string(response_nonlin);
 
 		std::cout<<"domain: " << domain_size<<
@@ -81,8 +85,9 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			str_plt_count + std::to_string(plt_count) + 
 			str_filo_count + std::to_string(num_filo) + 
 			str_maxF + str_max_force + 
-			str_minF + str_min_force + 
-			str_dynamic_response + std::to_string(response);
+			str_minF + str_min_force +
+			str_force_scale + std::to_string(force_scale) +
+			str_dynamic_response + std::to_string(response) +
 			str_nonlinear_response + std::to_string(response_nonlin);
 
 		const int dir_err_params = mkdir(str_params.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);

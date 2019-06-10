@@ -156,6 +156,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->use_dynamic_plt_force = (p.text().as_bool());
 		std::cout << "dynamic_plt: " << builder->use_dynamic_plt_force << std::endl;
 	}
+	
 	if (auto p = props.child("dynamic-plt-max-force")) {
 		builder->max_dynamic_plt_force = (p.text().as_double());
 		std::cout << "dynamic_plt_max_force: " << builder->max_dynamic_plt_force << std::endl;
@@ -164,6 +165,9 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	if (auto p = props.child("use_nonlinear_dynamic_force")) {
 		builder->use_nonlinear_dynamic_force = (p.text().as_bool());
 		//std::cout << "use_nonlinear_dynamic_force: " << builder->use_nonlinear_dynamic_force << std::end;
+	}
+	if (auto p = props.child("distribute_plt_force")) {
+		builder->distribute_plt_force = (p.text().as_bool());
 	}
 	std::cout << "builder ptr address: " << builder << std::endl;
 	std::vector<unsigned> originNodes;

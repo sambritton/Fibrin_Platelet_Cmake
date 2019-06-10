@@ -11,6 +11,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	double contour_length_mult;
 	double max_dynamic_force;
 	bool use_nonlinear_dynamic_force;
+	bool distribute_plt_force;
 
   	unsigned plt_tndrl_intrct;
   	double pltRForce;
@@ -58,6 +59,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 			double& _contour_length_mult,
 			double& _max_dynamic_force,
 			bool& _use_nonlinear_dynamic_force,
+			bool& _distribute_plt_force,
 
             unsigned& _plt_tndrl_intrct,
             double& _pltRForce,
@@ -102,6 +104,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	contour_length_mult(_contour_length_mult),
 	max_dynamic_force(_max_dynamic_force),
 	use_nonlinear_dynamic_force(_use_nonlinear_dynamic_force),
+	distribute_plt_force(_distribute_plt_force),
 
     plt_tndrl_intrct(_plt_tndrl_intrct),
     pltRForce(_pltRForce),
@@ -458,26 +461,26 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 
         }
 	
-	//The last step is to scale the forces we stored
-	
-//	double divisor = __ll2double_ru(final_interaction_count);
-//	if (divisor > 0.0) {
-//		sumPltForceX = sumPltForceX/divisor;
-//		sumPltForceY = sumPltForceY/divisor;
-//		sumPltForceZ = sumPltForceZ/divisor;
-//	}
-//	for (unsigned arm = 0; arm < final_interaction_count; arm++) {
-//		if (divisor > 0.0) {
-//			double forceNodeX = nodeUForceXAddr[storageLocation + arm];
-//			double forceNodeY = nodeUForceYAddr[storageLocation + arm];
-//			double forceNodeZ = nodeUForceZAddr[storageLocation + arm];
-//			//store force in temporary vector if a node is pulled. Call reduction later.
-//			nodeUForceXAddr[storageLocation + arm] = forceNodeX/divisor;
-//			nodeUForceYAddr[storageLocation + arm] = forceNodeY/divisor;
-//			nodeUForceZAddr[storageLocation + arm] = forceNodeZ/divisor;
-//		}
-//	}
-
+	//The last step is to scale the forces we stored if distribute_plt_force is true.
+	if (distribute_plt_force == true) {
+		double divisor = __ll2double_ru(final_interaction_count);
+		if (divisor > 0.0) {
+			sumPltForceX = sumPltForceX/divisor;
+			sumPltForceY = sumPltForceY/divisor;
+			sumPltForceZ = sumPltForceZ/divisor;
+		}
+		for (unsigned arm = 0; arm < final_interaction_count; arm++) {
+			if (divisor > 0.0) {
+				double forceNodeX = nodeUForceXAddr[storageLocation + arm];
+				double forceNodeY = nodeUForceYAddr[storageLocation + arm];
+				double forceNodeZ = nodeUForceZAddr[storageLocation + arm];
+				//store force in temporary vector if a node is pulled. Call reduction later.
+				nodeUForceXAddr[storageLocation + arm] = forceNodeX/divisor;
+				nodeUForceYAddr[storageLocation + arm] = forceNodeY/divisor;
+				nodeUForceZAddr[storageLocation + arm] = forceNodeZ/divisor;
+			}
+		}
+	}
     //return platelet forces
     return thrust::make_tuple(sumPltForceX, sumPltForceY, sumPltForceZ);
 

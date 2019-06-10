@@ -282,6 +282,7 @@ struct GeneralParams{
 	bool use_dynamic_plt_force;
 	double max_dynamic_plt_force;
 	bool use_nonlinear_dynamic_force;
+	bool distribute_plt_force;
 
 	unsigned maxIdCountFlag;//flag variable
 

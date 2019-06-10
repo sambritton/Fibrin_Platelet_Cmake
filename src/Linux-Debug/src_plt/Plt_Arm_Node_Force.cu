@@ -75,6 +75,7 @@ void Plt_Arm_Node_Force(
 				generalParams.CLM,
 				generalParams.max_dynamic_plt_force,
 				generalParams.use_nonlinear_dynamic_force,
+				generalParams.distribute_plt_force,
 
                 generalParams.plt_tndrl_intrct,
                 generalParams.pltRForce,
@@ -171,13 +172,13 @@ void Plt_Arm_Node_Force(
  			thrust::equal_to<unsigned>(), CVec3Add())) - pltInfoVecs.nodeReducedId.begin();//binary_pred, binary_op
 
 
-			// double maxFx = (*(thrust::max_element(pltInfoVecs.nodeReducedForceX.begin(), pltInfoVecs.nodeReducedForceX.begin() + endKey)));
-			// double maxFy = (*(thrust::max_element(pltInfoVecs.nodeReducedForceY.begin(), pltInfoVecs.nodeReducedForceY.begin() + endKey)));
-			// double maxFz = (*(thrust::min_element(pltInfoVecs.nodeReducedForceZ.begin(), pltInfoVecs.nodeReducedForceZ.begin() + endKey)));
+			//double maxFx = (*(thrust::max_element(pltInfoVecs.nodeReducedForceX.begin(), pltInfoVecs.nodeReducedForceX.begin() + endKey)));
+			//double maxFy = (*(thrust::max_element(pltInfoVecs.nodeReducedForceY.begin(), pltInfoVecs.nodeReducedForceY.begin() + endKey)));
+			//double maxFz = (*(thrust::min_element(pltInfoVecs.nodeReducedForceZ.begin(), pltInfoVecs.nodeReducedForceZ.begin() + endKey)));
 	
-			// std::cout<<"maxFx: "<< maxFx<< std::endl;
-			// std::cout<<"maxFy: "<< maxFy<< std::endl;
-			// std::cout<<"maxFz: "<< maxFz<< std::endl;
+			//std::cout<<"maxFx: "<< maxFx<< std::endl;
+			//std::cout<<"maxFy: "<< maxFy<< std::endl;
+			//std::cout<<"maxFz: "<< maxFz<< std::endl;
 		//std::cout<<"endkey: "<< endKey<<std::endl;
         thrust::for_each(
         	thrust::make_zip_iterator(//1st begin
