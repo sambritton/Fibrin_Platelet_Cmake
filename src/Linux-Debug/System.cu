@@ -195,22 +195,7 @@ void System::solveSystem() {
 		if ((time_iter * generalParams.dtTemp) > final_time ) {
 			generalParams.runSim = false;
 		};
-		if (generalParams.iterationCounter == 10000) {
-			//save initial files
-			storage->print_VTK_File();
-			//store sum of all forces on each node. Used in stress calculations
-			//store before upadting storage class.
-
-			//WARNING BEFORE CALLING SAVE_PARAMS CALCULATE THEM FIRST
-			Params_Calc(
-					wlcInfoVecs,
-					nodeInfoVecs,
-					generalParams,
-					pltInfoVecs);
-
-			storage->save_params();
-		};
-
+		
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
 
@@ -235,7 +220,7 @@ void System::solveSystem() {
 		solveForces(); //resets and solves forces for next time step
 
 
-		if (generalParams.iterationCounter % 100 == 0) {
+		if ((generalParams.iterationCounter % 10000 == 0) || (generalParams.iterationCounter == 10)) {
 
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations

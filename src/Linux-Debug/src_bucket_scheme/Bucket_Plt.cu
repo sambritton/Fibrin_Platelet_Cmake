@@ -39,6 +39,14 @@ void init_plt_inct_bucket(
 		std::cout<<"grid: "<< domainParams.gridSpacing_plt_intc << std::endl;
 		std::cout<<"total bucket count plt: "<< domainParams.totalBucketCount_plt_intc<<std::endl;
 
+		
+		std::cout<<"plt minX: " << domainParams.pltminX << std::endl;
+		std::cout<<"plt maxX: " << domainParams.pltmaxX << std::endl;
+		std::cout<<"plt minY: " << domainParams.pltminY << std::endl;
+		std::cout<<"plt maxY: " << domainParams.pltmaxY << std::endl;
+		std::cout<<"plt minZ: " << domainParams.pltminZ << std::endl;
+		std::cout<<"plt maxZ: " << domainParams.pltmaxZ << std::endl;
+
 		auxVecs.keyBegin_plt_intc.resize(domainParams.totalBucketCount_plt_intc);
 		auxVecs.keyEnd_plt_intc.resize(domainParams.totalBucketCount_plt_intc);
 			
