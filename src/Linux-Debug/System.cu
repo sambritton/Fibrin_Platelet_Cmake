@@ -218,9 +218,9 @@ void System::solveSystem() {
 
 		
 		solveForces(); //resets and solves forces for next time step
-
-
-		if ((generalParams.iterationCounter % 10000 == 0) || (generalParams.iterationCounter == 10)) {
+		double temp_current_iter = static_cast<double>(generalParams.iterationCounter);
+		double temp_current_time = temp_current_iter * generalParams.dtTemp;
+		if ( ( fmod(temp_current_time, 10.0) == 0.0) || (generalParams.iterationCounter == 10) ) {
 
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations

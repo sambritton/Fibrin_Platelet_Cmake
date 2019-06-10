@@ -225,7 +225,7 @@ struct functor_plt_vol_exc : public thrust::unary_function< U2CVec6, CVec3 >  {
                       //Determine direction of force based on positions and multiply magnitude force
 					  
 					  //Lennard-Jones force coeff
-					  double LJF=48*eps*(pow(sigma,12)/pow(dist,13)-pow(sigma,6)/pow(dist,7));
+					  double LJF=12.0*eps*(pow(sigma,12)/pow(dist,13)-pow(sigma,6)/pow(dist,7));
 					  
                       double forcePltX = -(vecN_PX / dist) * (pltForce) *LJF;// (dist * dist + dist - pltR) / (dist * dist);//(1.0 + 2.0 * pltR - dist);
                       double forcePltY = -(vecN_PY / dist) * (pltForce) *LJF;// (dist * dist + dist - pltR) / (dist * dist);//(1.0 + 2.0 * pltR - dist);
