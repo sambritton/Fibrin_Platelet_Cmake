@@ -15,27 +15,45 @@ void init_plt_inct_bucket(
 	GeneralParams& generalParams) {
 
 	//always set bucket count. Update total if different. 
-	domainParams.XBucketCount_plt_intc = ceil((domainParams.maxX - domainParams.minX) / domainParams.gridSpacing_plt_intc) + 1;
-	domainParams.YBucketCount_plt_intc = ceil((domainParams.maxY - domainParams.minY) / domainParams.gridSpacing_plt_intc) + 1;
-	domainParams.ZBucketCount_plt_intc = ceil((domainParams.maxZ - domainParams.minZ) / domainParams.gridSpacing_plt_intc) + 1;
+	unsigned padding = 1;
+	if (generalParams.iterationCounter == 0) {
+		padding = 2;
+	}
+	else {
+		padding = 1;
+	}
 
-	if ( (domainParams.XBucketCount_plt_intc * domainParams.YBucketCount_plt_intc * domainParams.ZBucketCount_plt_intc) != domainParams.totalBucketCount_plt_intc) {
+	//on the first iteration, we allocate more, we don't plan on using it. 
+	domainParams.XBucketCount_plt_intc = padding * ceil(((domainParams.maxX - domainParams.minX) / domainParams.gridSpacing_plt_intc)) + 1;
+	domainParams.YBucketCount_plt_intc = padding * ceil(((domainParams.maxY - domainParams.minY) / domainParams.gridSpacing_plt_intc)) + 1;
+	domainParams.ZBucketCount_plt_intc = padding * ceil(((domainParams.maxZ - domainParams.minZ) / domainParams.gridSpacing_plt_intc)) + 1;
+
+	//start with padding and only resize if larger
+	if ( (domainParams.XBucketCount_plt_intc * domainParams.YBucketCount_plt_intc * domainParams.ZBucketCount_plt_intc) > domainParams.totalBucketCount_plt_intc) {
 		std::cout<<"resetting plt intct"<< std::endl;
-        std::cout<<"x-bucket: "<< domainParams.XBucketCount_plt_intc<<std::endl;
-		std::cout<<"y-bucket: "<< domainParams.YBucketCount_plt_intc<<std::endl;
-		std::cout<<"z-bucket: "<< domainParams.ZBucketCount_plt_intc<<std::endl;
+        std::cout<<"x-bucket plt: "<< domainParams.XBucketCount_plt_intc<<std::endl;
+		std::cout<<"y-bucket plt: "<< domainParams.YBucketCount_plt_intc<<std::endl;
+		std::cout<<"z-bucket plt: "<< domainParams.ZBucketCount_plt_intc<<std::endl;
 		//double amount of buckets in case of resizing networks
 		domainParams.totalBucketCount_plt_intc = domainParams.XBucketCount_plt_intc * domainParams.YBucketCount_plt_intc * domainParams.ZBucketCount_plt_intc;
 		std::cout<<"grid: "<< domainParams.gridSpacing_plt_intc << std::endl;
-		std::cout<<"total bucket count: "<< domainParams.totalBucketCount_plt_intc<<std::endl;
+		std::cout<<"total bucket count plt: "<< domainParams.totalBucketCount_plt_intc<<std::endl;
+
+		
+		std::cout<<"plt minX: " << domainParams.pltminX << std::endl;
+		std::cout<<"plt maxX: " << domainParams.pltmaxX << std::endl;
+		std::cout<<"plt minY: " << domainParams.pltminY << std::endl;
+		std::cout<<"plt maxY: " << domainParams.pltmaxY << std::endl;
+		std::cout<<"plt minZ: " << domainParams.pltminZ << std::endl;
+		std::cout<<"plt maxZ: " << domainParams.pltmaxZ << std::endl;
 
 		auxVecs.keyBegin_plt_intc.resize(domainParams.totalBucketCount_plt_intc);
 		auxVecs.keyEnd_plt_intc.resize(domainParams.totalBucketCount_plt_intc);
-		
-        //platelets
+			
+		//platelets
 		auxVecs.keyPltBegin.resize(domainParams.totalBucketCount_plt_intc); 
 		auxVecs.keyPltEnd.resize(domainParams.totalBucketCount_plt_intc); 
- 
+		
 	}
 
 	thrust::fill(auxVecs.keyBegin_plt_intc.begin(),auxVecs.keyBegin_plt_intc.end(),0);

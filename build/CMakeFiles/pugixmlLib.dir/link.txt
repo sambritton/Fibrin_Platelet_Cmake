@@ -1,2 +1,0 @@
-/usr/bin/ar qc libpugixmlLib.a  CMakeFiles/pugixmlLib.dir/src_ext_lib/pugixml/src/pugixml.cpp.o
-/usr/bin/ranlib libpugixmlLib.a

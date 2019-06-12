@@ -84,7 +84,8 @@ void System::solveForces() {
 	thrust::fill(pltInfoVecs.pltForceY.begin(),pltInfoVecs.pltForceY.end(),0);
 	thrust::fill(pltInfoVecs.pltForceZ.begin(),pltInfoVecs.pltForceZ.end(),0);
 
-	unsigned _seed = rand();
+//no random detach for now. 
+/*	unsigned _seed = rand();
 	thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
 
 	thrust::transform(thrust::device, index_sequence_begin, 
@@ -107,7 +108,7 @@ void System::solveForces() {
 		pltInfoVecs.tndrlNodeId.begin(),
 	functor_prob_detach(generalParams.dtTemp, P, generalParams.maxIdCountFlag));
 
-
+*/
 	
 	if (generalParams.linking == true) {
 		
@@ -175,33 +176,32 @@ void System::solveForces() {
 
 void System::solveSystem() {
 
+	//make sure iterationCounter is zero for padding init. 
+	generalParams.iterationCounter = 0;
 	//set initial bucket scheme
 	setBucketScheme();
-
-	//save initial files
-	storage->print_VTK_File();
-	//store sum of all forces on each node. Used in stress calculations
-	//store before upadting storage class.
-
-	//WARNING BEFORE CALLING SAVE_PARAMS CALCULATE THEM FIRST
-	Params_Calc(
-			wlcInfoVecs,
-			nodeInfoVecs,
-			generalParams,
-			pltInfoVecs);
-
-	storage->save_params();
 
 	//set initial epsilon
 	generalParams.epsilon = (1.0) *
 		sqrt(6.0*generalParams.kB * generalParams.temperature * generalParams.dtTemp / generalParams.viscousDamp_Fibrin);
 
+	double final_time = 45.0 * 60.0;//convert seconds to minutes requires *60
+
 	while (generalParams.runSim == true) {
 
+		double time_iter = (generalParams.iterationCounter);
+
+		//Simulations force quite after 45 minutes of real time running 
+		if ((time_iter * generalParams.dtTemp) > final_time ) {
+			generalParams.runSim = false;
+		};
+		
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
-		//std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
 
+		//if (generalParams.iterationCounter % 10 == 0) {
+		//	std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
+		//}
 		Advance_Positions_Fibrin(
 			nodeInfoVecs,
 			generalParams,
@@ -218,9 +218,9 @@ void System::solveSystem() {
 
 		
 		solveForces(); //resets and solves forces for next time step
-
-
-		if (generalParams.iterationCounter % 10000 == 0) {
+		double temp_current_iter = static_cast<double>(generalParams.iterationCounter);
+		double temp_current_time = temp_current_iter * generalParams.dtTemp;
+		if ( ( fmod(temp_current_time, 10.0) == 0.0) || (generalParams.iterationCounter == 10) ) {
 
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations
@@ -439,8 +439,8 @@ void System::setPltVecs(
 	pltInfoVecs.pltForceY.resize(generalParams.maxPltCount);
 	pltInfoVecs.pltForceZ.resize(generalParams.maxPltCount);
 
-	pltInfoVecs.pltImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_tndrl_intrct);
-	pltInfoVecs.nodeImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_tndrl_intrct);
+	pltInfoVecs.pltImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);
+	pltInfoVecs.nodeImagingConnection.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);
 
 	pltInfoVecs.nodeUnreducedId.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);
 	pltInfoVecs.nodeUnreducedForceX.resize(generalParams.maxPltCount * generalParams.plt_other_intrct);

@@ -278,10 +278,12 @@ struct GeneralParams{
 	bool pltrelease;
 	bool plthandhand;
 	bool pltonplt;
-	bool agg_release;
 
 	bool use_dynamic_plt_force;
 	double max_dynamic_plt_force;
+	bool use_nonlinear_dynamic_force;
+	bool distribute_plt_force;
+
 	unsigned maxIdCountFlag;//flag variable
 
 	//parameters for advancing timestep and determining equilibrium
@@ -301,6 +303,7 @@ class Storage;
 
 class System {
 public:
+
 	DomainParams domainParams;
 	NodeInfoVecs nodeInfoVecs;
   PltInfoVecs pltInfoVecs;

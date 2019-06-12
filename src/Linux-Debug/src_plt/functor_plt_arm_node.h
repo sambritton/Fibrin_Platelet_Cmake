@@ -10,6 +10,8 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	bool use_dynamic_plt_force;
 	double contour_length_mult;
 	double max_dynamic_force;
+	bool use_nonlinear_dynamic_force;
+	bool distribute_plt_force;
 
   	unsigned plt_tndrl_intrct;
   	double pltRForce;
@@ -23,7 +25,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
   	unsigned maxNeighborCount;
 	bool pltrelease;
 	bool plthandhand;
-	bool agg_release;
 
   	double* nodeLocXAddr;
 	double* nodeLocYAddr;
@@ -54,9 +55,11 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
    __host__ __device__
    //
        functor_plt_arm_node(
-			bool _use_dynamic_plt_force,
-			double _contour_length_mult,
-			double _max_dynamic_force,
+			bool& _use_dynamic_plt_force,
+			double& _contour_length_mult,
+			double& _max_dynamic_force,
+			bool& _use_nonlinear_dynamic_force,
+			bool& _distribute_plt_force,
 
             unsigned& _plt_tndrl_intrct,
             double& _pltRForce,
@@ -70,7 +73,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
             unsigned& _maxNeighborCount,
 			bool& _pltrelease,
 			bool& _plthandhand,
-			bool& _agg_release,
 
             double* _nodeLocXAddr,
             double* _nodeLocYAddr,
@@ -101,6 +103,8 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	use_dynamic_plt_force(_use_dynamic_plt_force),
 	contour_length_mult(_contour_length_mult),
 	max_dynamic_force(_max_dynamic_force),
+	use_nonlinear_dynamic_force(_use_nonlinear_dynamic_force),
+	distribute_plt_force(_distribute_plt_force),
 
     plt_tndrl_intrct(_plt_tndrl_intrct),
     pltRForce(_pltRForce),
@@ -114,7 +118,6 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
     maxNeighborCount(_maxNeighborCount),
 	pltrelease(_pltrelease),
 	plthandhand(_plthandhand),
-	agg_release(_agg_release),
 
     nodeLocXAddr(_nodeLocXAddr),
 	nodeLocYAddr(_nodeLocYAddr),
@@ -134,6 +137,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
     tndrlNodeType(_tndrlNodeType),
 	isNodeInPltVolAddr(_isNodeInPltVolAddr),
     glblNghbrsId(_glblNghbrsId),
+	
 	lengthZero(_lengthZero),
 	numOriginalNeighborsNodeVector(_numOriginalNeighborsNodeVector),
 
@@ -226,14 +230,14 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 									if (newPullNode_id != tndrlNodeId[storageLocation + checkId]) {
 										
 										bool isNodeInPltVol = false;
-										if (pltrelease) {//was agg_release
+										if (pltrelease) {
 											isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
 										}
 										//then newPullNode_id isn't yet pulled.
 										//We can break out of this for statement
 										//and check if it is close enough
 
-										//This ensures that agg_release controls the node in plt volume
+										//This ensures that pltrelease controls the node in plt volume
 										//variables.
 										if (isNodeInPltVol == false){
 											break;
@@ -310,7 +314,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         	        unsigned newPullNode_id = id_value_expanded[ rand_choice];//could be newpull_index
 
 					bool isNodeInPltVol = false;
-					if (pltrelease) {//was agg-realease
+					if (pltrelease) {
 						isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
 					}
 
@@ -323,7 +327,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         	        	}
         	      	}
 					  
-					//only pull on new nodes that(if agg is on) are not in plt volume
+					//only pull on new nodes that(if pltrelease is on) are not in plt volume
 					if ( (node_is_new) && (isNodeInPltVol == false) ){
 
 						double vecN_PX = pltLocX - nodeLocXAddr[newPullNode_id];
@@ -379,7 +383,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 					double forceNodeZ;
 					double mag_force;
 
-					if (use_dynamic_plt_force) {
+					if (use_dynamic_plt_force == true) {
 						double strain_count = 0;
 						double sum_strain=0;
 						//first calculate the strain of neighbors of pullNode_id
@@ -414,7 +418,17 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						else {
 							ave_strain = 0.0;
 						}
-						mag_force = pltForce + max_dynamic_force * (ave_strain / contour_length_mult);
+						mag_force = pltForce + (max_dynamic_force-pltForce) * (ave_strain / contour_length_mult);
+
+						//alternate version
+						//this alpha scales the the strain in the negative strain
+						//alpha is back calculated by imposing fmax at C/2
+						if (use_nonlinear_dynamic_force == true) {
+							double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
+							double alpha = -(contour_length_mult/2.0) / (log(force_scale));
+
+							mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+						}
 
 					}
 					else {
@@ -447,26 +461,26 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 
         }
 	
-	//The last step is to scale the forces we stored
-	
-	double divisor = __ll2double_ru(final_interaction_count);
-	if (divisor > 0.0) {
-		sumPltForceX = sumPltForceX/divisor;
-		sumPltForceY = sumPltForceY/divisor;
-		sumPltForceZ = sumPltForceZ/divisor;
-	}
-	for (unsigned arm = 0; arm < final_interaction_count; arm++) {
+	//The last step is to scale the forces we stored if distribute_plt_force is true.
+	if (distribute_plt_force == true) {
+		double divisor = __ll2double_ru(final_interaction_count);
 		if (divisor > 0.0) {
-			double forceNodeX = nodeUForceXAddr[storageLocation + arm];
-			double forceNodeY = nodeUForceYAddr[storageLocation + arm];
-			double forceNodeZ = nodeUForceZAddr[storageLocation + arm];
-			//store force in temporary vector if a node is pulled. Call reduction later.
-			nodeUForceXAddr[storageLocation + arm] = forceNodeX/divisor;
-			nodeUForceYAddr[storageLocation + arm] = forceNodeY/divisor;
-			nodeUForceZAddr[storageLocation + arm] = forceNodeZ/divisor;
+			sumPltForceX = sumPltForceX/divisor;
+			sumPltForceY = sumPltForceY/divisor;
+			sumPltForceZ = sumPltForceZ/divisor;
+		}
+		for (unsigned arm = 0; arm < final_interaction_count; arm++) {
+			if (divisor > 0.0) {
+				double forceNodeX = nodeUForceXAddr[storageLocation + arm];
+				double forceNodeY = nodeUForceYAddr[storageLocation + arm];
+				double forceNodeZ = nodeUForceZAddr[storageLocation + arm];
+				//store force in temporary vector if a node is pulled. Call reduction later.
+				nodeUForceXAddr[storageLocation + arm] = forceNodeX/divisor;
+				nodeUForceYAddr[storageLocation + arm] = forceNodeY/divisor;
+				nodeUForceZAddr[storageLocation + arm] = forceNodeZ/divisor;
+			}
 		}
 	}
-
     //return platelet forces
     return thrust::make_tuple(sumPltForceX, sumPltForceY, sumPltForceZ);
 

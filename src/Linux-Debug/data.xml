@@ -30,7 +30,7 @@
 	<plt_r>1.13</plt_r>   <!-- radius of platelet from center (volume exclusion)-->
 	<plt_r_force>2.18</plt_r_force><!-- force radius from platelet center-->
 	<plt_r_adhesion>0.9</plt_r_adhesion><!-- fractional radius of adhesion of platelt. This should be between 0 and 1. Nodes adhere to platelet between this fraction and the whole platelet radius-->
-	<plt_density>0.0001</plt_density>
+	<plt_density>0.0</plt_density>
 </settings>
     <nodes default-mass="1.0">
         <node>10.6599 4.0288 9.4742</node>
@@ -1939,6 +1939,9 @@
         <node>6.1992 6.0253 17.8061</node>
         <node>1.1444 4.8584 11.6649</node>
     </nodes>
+	<plts plt-mass="0.486"><!-- these are use only if plt_density is set to 0.0-->
+	        <plt>9.0026 -12.0197 -12.1047</plt>
+    </plts>
     <links>
         <link>1523 1229</link>
         <link>1398 468</link>

@@ -156,11 +156,19 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->use_dynamic_plt_force = (p.text().as_bool());
 		std::cout << "dynamic_plt: " << builder->use_dynamic_plt_force << std::endl;
 	}
+	
 	if (auto p = props.child("dynamic-plt-max-force")) {
 		builder->max_dynamic_plt_force = (p.text().as_double());
 		std::cout << "dynamic_plt_max_force: " << builder->max_dynamic_plt_force << std::endl;
 	}
 
+	if (auto p = props.child("use_nonlinear_dynamic_force")) {
+		builder->use_nonlinear_dynamic_force = (p.text().as_bool());
+		//std::cout << "use_nonlinear_dynamic_force: " << builder->use_nonlinear_dynamic_force << std::end;
+	}
+	if (auto p = props.child("distribute_plt_force")) {
+		builder->distribute_plt_force = (p.text().as_bool());
+	}
 	std::cout << "builder ptr address: " << builder << std::endl;
 	std::vector<unsigned> originNodes;
 //buid nodes
@@ -254,7 +262,7 @@ void run(int argc, char** argv) {
 	t0 = time(0);
 
 	double epsilon = 0.01;
-	double timeStep = 0.001;
+	double timeStep = 0.0005;
 
 	for (int i = 0; i < argc; i++) {
 
@@ -287,7 +295,7 @@ void run(int argc, char** argv) {
 		auto builder = std::make_shared<SystemBuilder>(epsilon, timeStep);
 
 		auto system = createSystem(argv[argc-1], builder);
-
+		
 		//once the system is set, we'll store the initial values via the ptr system.
 		//Storage storage( system, outputFileName);
 		auto storage = std::make_shared<Storage>(system, builder);

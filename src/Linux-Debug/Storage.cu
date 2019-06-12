@@ -1,4 +1,7 @@
+#include <sys/stat.h>
 
+#include <iomanip> // setprecision
+#include <sstream> // stringstream
 
 #include "System.h"
 #include "System_Builder.h"
@@ -13,6 +16,92 @@ Storage::Storage(std::weak_ptr<System> a_system,
 	system = a_system;
 	builder = b_system;
 
+	std::shared_ptr<System> sys = system.lock();
+	if (sys) {
+
+		std::stringstream stream_min;
+		std::stringstream stream_max;
+
+		unsigned domain_size = ceil((sys->domainParams.maxX + 
+			sys->domainParams.maxY + 
+			sys->domainParams.maxZ) / 3.0);
+
+		unsigned plt_count = sys->generalParams.maxPltCount;
+		unsigned num_filo = sys->generalParams.plt_tndrl_intrct;
+		double max_force = sys->generalParams.max_dynamic_plt_force;
+		double min_force = sys->generalParams.pltForce;
+		bool response_nonlin = sys->generalParams.use_nonlinear_dynamic_force;
+		bool response = sys->generalParams.use_dynamic_plt_force;
+		bool force_scale = sys->generalParams.distribute_plt_force;
+		
+		stream_min << std::fixed << std::setprecision(2) << min_force;
+		std::string str_min_force = stream_min.str();
+		
+		stream_max << std::fixed << std::setprecision(2) << max_force;
+		std::string str_max_force = stream_max.str();
+
+		std::string str_force_scale = "_pltForceScale_";
+		std::string str_nonlinear_response = "_nonlinDynamicResp_";
+		std::string str_dynamic_response = "_dynamicResp_";
+		std::string str_domain = "_domain_";
+		std::string str_plt_count = "_plt_count_";
+		std::string str_filo_count = "_filo_count_";
+		std::string str_maxF = "_maxForce_";
+		std::string str_minF = "_minForce_";
+
+		std::string str_a = "Animation_";
+		std::string str_p = "Params_";
+		
+		str_animation = str_a +
+			str_domain + std::to_string(domain_size) +
+			str_plt_count + std::to_string(plt_count) + 
+			str_filo_count + std::to_string(num_filo) + 
+			str_maxF + str_max_force + 
+			str_minF + str_min_force +
+			str_force_scale + std::to_string(force_scale) +
+			str_dynamic_response + std::to_string(response) +
+			str_nonlinear_response + std::to_string(response_nonlin);
+
+		std::cout<<"domain: " << domain_size<<
+			" str_plt_count: " << plt_count<<
+			" str_filo_count: " << num_filo<<
+			" str_minF: " << min_force<< 
+			" str_response: " << response << std::endl;
+
+
+		const int dir_err_anim = mkdir(str_animation.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		if (-1 == dir_err_anim)
+		{
+			printf("Error creating directory animation test!n");
+			//exit(1);
+		}
+		else {
+			printf("making folder!n");
+			printf(str_animation.c_str());
+		}
+
+		str_params = str_p + 
+			str_domain + std::to_string(domain_size) +
+			str_plt_count + std::to_string(plt_count) + 
+			str_filo_count + std::to_string(num_filo) + 
+			str_maxF + str_max_force + 
+			str_minF + str_min_force +
+			str_force_scale + std::to_string(force_scale) +
+			str_dynamic_response + std::to_string(response) +
+			str_nonlinear_response + std::to_string(response_nonlin);
+
+		const int dir_err_params = mkdir(str_params.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		if (-1 == dir_err_params)
+		{
+			printf("Error creating directory params!n");
+			//exit(1);
+		}
+		else {
+			printf("making folder!n");
+			printf(str_params.c_str());
+		}
+		
+	}
 };
 
 
@@ -26,7 +115,7 @@ void Storage::save_params(void) {
 		std::string format = ".sta";
 		
 		std::string strain =  std::to_string(sys->generalParams.currentTime);
-		std::string initial = "Params/Param_";
+		std::string initial = str_params+"/Param_";
 		std::ofstream ofs;
 		std::string Filename = initial + strain + format;
 		ofs.open(Filename.c_str());
@@ -135,7 +224,7 @@ void Storage::print_VTK_File() {
 		unsigned digits = ceil(log10(iteration + 1));
 		std::string format = ".vtk";
 		std::string Number;
-		std::string initial = "AnimationTest/FibrinNetwork_";
+		std::string initial = str_animation + "/FibrinNetwork_";
 		std::ofstream ofs;
 		if (digits == 1 || digits == 0) {
 			Number = "0000" + std::to_string(iteration);
@@ -274,7 +363,7 @@ void Storage::print_VTK_File() {
 		unsigned digits = ceil(log10(iteration + 1));
 		std::string format = ".vtk";
 		std::string Number;
-		std::string initial = "AnimationTest/Platelet";
+		std::string initial = str_animation+"/Platelet";
 		std::ofstream ofs;
 		if (digits == 1 || digits == 0) {
 			Number = "0000" + std::to_string(iteration);
@@ -342,7 +431,7 @@ void Storage::print_VTK_File() {
 		unsigned digits = ceil(log10(iteration + 1));
 		std::string format = ".vtk";
 		std::string Number;
-		std::string initial = "AnimationTest/PlateletConn";
+		std::string initial = str_animation+"/PlateletConn";
 		std::ofstream ofs;
 		if (digits == 1 || digits == 0) {
 			Number = "0000" + std::to_string(iteration);
@@ -362,7 +451,7 @@ void Storage::print_VTK_File() {
 		ofs.open(Filename.c_str());
 		
 	
-		unsigned maxPltCount = sys->generalParams.maxPltCount;
+		unsigned maxPltCount = sys->pltInfoVecs.pltLocX.size();
 
 		unsigned num_connections = sys->pltInfoVecs.numConnections;
 		
@@ -375,7 +464,7 @@ void Storage::print_VTK_File() {
 		ofs << "ASCII" << std::endl << std::endl;
 		ofs << "DATASET UNSTRUCTURED_GRID" << std::endl;
 		
-		 
+		
 		ofs << "POINTS " << maxPltCount + num_connections << " float" << std::endl;
 		for (unsigned i = 0; i< maxPltCount; i++) {
 			xPos = sys->pltInfoVecs.pltLocX[i];
@@ -389,13 +478,16 @@ void Storage::print_VTK_File() {
 		//ie  
 		for (unsigned i = 0; i < num_connections; i++ ) {
 			unsigned node_id = sys->pltInfoVecs.nodeImagingConnection[i];
-
-			xPos = sys->nodeInfoVecs.nodeLocX[node_id];
-			yPos = sys->nodeInfoVecs.nodeLocY[node_id];
-			zPos = sys->nodeInfoVecs.nodeLocZ[node_id];
-			
-			ofs << std::setprecision(5) <<std::fixed<< xPos << " " << yPos << " " << zPos << " " << '\n'<< std::fixed;
-		
+			if (node_id < sys->generalParams.maxNodeCount) {
+				xPos = sys->nodeInfoVecs.nodeLocX[node_id];
+				yPos = sys->nodeInfoVecs.nodeLocY[node_id];
+				zPos = sys->nodeInfoVecs.nodeLocZ[node_id];
+				
+				ofs << std::setprecision(5) <<std::fixed<< xPos << " " << yPos << " " << zPos << " " << '\n'<< std::fixed;
+			}
+			else{
+				std::cout<<"imaging not working, node out of bounds" << std::endl;
+			}
 		}
 
 
@@ -416,13 +508,18 @@ void Storage::print_VTK_File() {
 		}
 		ofs<<" "<< std::endl;
 
-		//std::cout<<'here2'<<std::flush;
+		
 		for (unsigned edge = 0; edge < num_connections; edge++ ){
 
-			unsigned node_Id = maxPltCount + edge;
+			//because nodes are placed after platelets, their vtk file id is incremented. 
+			//notice that this represents the vtk id, not the id within the c++ program
+			unsigned node_id_vtk = maxPltCount + edge;
+			unsigned node_id = sys->pltInfoVecs.nodeImagingConnection[edge];
+			
 			unsigned plt_id = sys->pltInfoVecs.pltImagingConnection[edge];
 				
-			ofs <<2<< " "<< node_Id << " "<< plt_id <<std::endl;
+			ofs <<2<< " "<< node_id_vtk << " "<< plt_id <<std::endl;
+
 		}
 		ofs << "CELL_TYPES " << numCells << std::endl;  
 		//set edges and last set scattered points

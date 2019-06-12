@@ -66,7 +66,7 @@ void Plt_Arm_Node_Force(
 					pltInfoVecs.pltForceZ.begin())) + generalParams.maxPltCount,
          thrust::make_zip_iterator(
         	 thrust::make_tuple(
-				 //DOES NOT RESET FORCES
+				 //DOES NOT RESET FORCES 
         		 pltInfoVecs.pltForceX.begin(),
         		 pltInfoVecs.pltForceY.begin(),
         		 pltInfoVecs.pltForceZ.begin())), 
@@ -74,6 +74,8 @@ void Plt_Arm_Node_Force(
 				generalParams.use_dynamic_plt_force,
 				generalParams.CLM,
 				generalParams.max_dynamic_plt_force,
+				generalParams.use_nonlinear_dynamic_force,
+				generalParams.distribute_plt_force,
 
                 generalParams.plt_tndrl_intrct,
                 generalParams.pltRForce,
@@ -87,7 +89,6 @@ void Plt_Arm_Node_Force(
                 generalParams.maxNeighborCount,
 				generalParams.pltrelease,
 				generalParams.plthandhand,
-				generalParams.agg_release,
 
                 thrust::raw_pointer_cast(nodeInfoVecs.nodeLocX.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.nodeLocY.data()),
@@ -106,7 +107,8 @@ void Plt_Arm_Node_Force(
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeId.data()),
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeType.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.isNodeInPltVol.data()),
-                thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
+				thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
+				
                 thrust::raw_pointer_cast(wlcInfoVecs.lengthZero.data()),
                 thrust::raw_pointer_cast(wlcInfoVecs.numOriginalNeighborsNodeVector.data()),
 
@@ -117,35 +119,41 @@ void Plt_Arm_Node_Force(
 		
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.
         //then make a functor that takes the id and force (4 tuple) and takes that force and adds it to the id'th entry in nodeInfoVecs.nodeForceX,Y,Z
-        
+		//for (unsigned i = 0; i < pltInfoVecs.pltImagingConnection.size(); i++) {
+		//	unsigned node_Id = pltInfoVecs.nodeUnreducedId[i];
+		//	unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
+		//	if (node_Id < generalParams.maxNodeCount ){
+		//		std::cout<<"pre_sort node: " << node_Id << " pltId: " << plt_id<< " iter: " <<i << std::endl;
+		//	}
+		//}
+
 		unsigned total_num_arms = pltInfoVecs.nodeImagingConnection.size();
 		
+		//correspondance kept between nodeUnreducedId and pltImagingConnection
 		thrust::sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
         			thrust::make_zip_iterator(
         				thrust::make_tuple(
 							pltInfoVecs.pltImagingConnection.begin(),
         					pltInfoVecs.nodeUnreducedForceX.begin(),
         					pltInfoVecs.nodeUnreducedForceY.begin(),
-        					pltInfoVecs.nodeUnreducedForceZ.begin())), thrust::less<unsigned>());
-
+							pltInfoVecs.nodeUnreducedForceZ.begin())), thrust::less<unsigned>());
+							
+		//now nodeImagingConnection contains the corresponding nodes to pltImagingConnection
     	thrust::copy(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.begin() + total_num_arms, pltInfoVecs.nodeImagingConnection.begin());
-
+ 
+		//for (unsigned i = 0; i < pltInfoVecs.pltImagingConnection.size(); i++) {
+		//	unsigned node_Id = pltInfoVecs.nodeUnreducedId[i];
+		//	unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
+		//	if (node_Id < generalParams.maxNodeCount ){
+		//		std::cout<<"post_sort node: " << node_Id << " pltId: " << plt_id<< " iter: " <<i << std::endl;
+		//	}
+		//}
     	pltInfoVecs.numConnections = thrust::count_if(
     	    pltInfoVecs.nodeImagingConnection.begin(),
     	    pltInfoVecs.nodeImagingConnection.end(), is_less_than(generalParams.maxNodeCount) );
 
 
-
-		/*for (unsigned i = 0; i < auxVecs.idPlt_bucket.size(); i++){
-			std::cout<<"plt buckettndrl_1_2: "<<auxVecs.idPlt_bucket[i] << std::endl;
-		}
-		for (unsigned i = 0; i < pltInfoVecs.nodeImagingConnection.size(); i++){
-			std::cout<<"plt nodeimaging_1_2: "<<pltInfoVecs.nodeImagingConnection[i] << std::endl;
-		}
-		for (unsigned i = 0; i < total_num_arms; i++){
-			std::cout<<"plt nodeUnreducedId_1_2: "<<pltInfoVecs.nodeUnreducedId[i] << std::endl;
-		}*/
-//reduce and apply force
+		//reduce and apply force
  		unsigned endKey = thrust::get<0>(
  			thrust::reduce_by_key(
  				pltInfoVecs.nodeUnreducedId.begin(),
@@ -163,6 +171,14 @@ void Plt_Arm_Node_Force(
  					pltInfoVecs.nodeReducedForceZ.begin())),
  			thrust::equal_to<unsigned>(), CVec3Add())) - pltInfoVecs.nodeReducedId.begin();//binary_pred, binary_op
 
+
+			//double maxFx = (*(thrust::max_element(pltInfoVecs.nodeReducedForceX.begin(), pltInfoVecs.nodeReducedForceX.begin() + endKey)));
+			//double maxFy = (*(thrust::max_element(pltInfoVecs.nodeReducedForceY.begin(), pltInfoVecs.nodeReducedForceY.begin() + endKey)));
+			//double maxFz = (*(thrust::min_element(pltInfoVecs.nodeReducedForceZ.begin(), pltInfoVecs.nodeReducedForceZ.begin() + endKey)));
+	
+			//std::cout<<"maxFx: "<< maxFx<< std::endl;
+			//std::cout<<"maxFy: "<< maxFy<< std::endl;
+			//std::cout<<"maxFz: "<< maxFz<< std::endl;
 		//std::cout<<"endkey: "<< endKey<<std::endl;
         thrust::for_each(
         	thrust::make_zip_iterator(//1st begin
@@ -178,6 +194,7 @@ void Plt_Arm_Node_Force(
         			pltInfoVecs.nodeReducedForceY.begin(),
         			pltInfoVecs.nodeReducedForceZ.begin())) + endKey,
 			functor_add_UCVec3_CVec3(
+				generalParams.maxNodeCount,
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceX.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceY.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceZ.data())));
