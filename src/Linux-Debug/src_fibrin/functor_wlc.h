@@ -102,6 +102,9 @@ struct functor_wlc {
 							(posZA_ZB) * (posZA_ZB));
 	
 						double strain = ((currentLength - lengthZero) / lengthZero);
+						if (strain>2){
+							strain=2;
+						}
 
 						double dL_norm = strain / ( CLM);//CLM is unitless since it was already normalized. 
 						double magForce = (numMonFiberArea*(Kb*Temp) / PLengthMon) * ( 0.25 * pow(1.0 - dL_norm, -2.0) - 0.25 + dL_norm);
