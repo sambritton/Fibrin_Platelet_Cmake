@@ -432,7 +432,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						//	double alpha = -(contour_length_mult/2.0) / (log(force_scale));
 
 						//	mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
-							mag_force=mag_mult*pltforce;
+							mag_force=mag_mult*pltForce;
 						}
 
 					}
