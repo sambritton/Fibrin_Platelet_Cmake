@@ -167,6 +167,10 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         double sumPltForceX = pltCurrentForceX;
         double sumPltForceY = pltCurrentForceY;
         double sumPltForceZ = pltCurrentForceZ;
+	
+	// non linear switch values
+	double mag_mult=3;
+	double strain_switch=0.5;
 
 		//set random generator
 
@@ -423,11 +427,12 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						//alternate version
 						//this alpha scales the the strain in the negative strain
 						//alpha is back calculated by imposing fmax at C/2
-						if (use_nonlinear_dynamic_force == true) {
-							double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
-							double alpha = -(contour_length_mult/2.0) / (log(force_scale));
+						if (use_nonlinear_dynamic_force == true && ave_strain>strain_switch) {
+						//	double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
+						//	double alpha = -(contour_length_mult/2.0) / (log(force_scale));
 
-							mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+						//	mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+							mag_force=mag_mult*pltforce;
 						}
 
 					}
