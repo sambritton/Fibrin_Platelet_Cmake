@@ -7,7 +7,7 @@
 //tendril-like force
 //The limit is plt_tndrl_intrct (small number)
 //Force is applied to nodes
-//We use the tndrl for imaging. 
+//We use the tndrl for imaging.
 
 void Plt_Arm_Node_Force(
 	NodeInfoVecs& nodeInfoVecs,
@@ -66,10 +66,10 @@ void Plt_Arm_Node_Force(
 					pltInfoVecs.pltForceZ.begin())) + generalParams.maxPltCount,
          thrust::make_zip_iterator(
         	 thrust::make_tuple(
-				 //DOES NOT RESET FORCES 
+				 //DOES NOT RESET FORCES
         		 pltInfoVecs.pltForceX.begin(),
         		 pltInfoVecs.pltForceY.begin(),
-        		 pltInfoVecs.pltForceZ.begin())), 
+        		 pltInfoVecs.pltForceZ.begin())),
              functor_plt_arm_node(
 				generalParams.use_dynamic_plt_force,
 				generalParams.CLM,
@@ -89,6 +89,7 @@ void Plt_Arm_Node_Force(
                 generalParams.maxNeighborCount,
 				generalParams.pltrelease,
 				generalParams.plthandhand,
+				generalParams.strainswitch,
 
                 thrust::raw_pointer_cast(nodeInfoVecs.nodeLocX.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.nodeLocY.data()),
@@ -108,15 +109,15 @@ void Plt_Arm_Node_Force(
                 thrust::raw_pointer_cast(pltInfoVecs.tndrlNodeType.data()),
                 thrust::raw_pointer_cast(nodeInfoVecs.isNodeInPltVol.data()),
 				thrust::raw_pointer_cast(wlcInfoVecs.globalNeighbors.data()),
-				
+
                 thrust::raw_pointer_cast(wlcInfoVecs.lengthZero.data()),
                 thrust::raw_pointer_cast(wlcInfoVecs.numOriginalNeighborsNodeVector.data()),
 
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocX.data()),
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocY.data()),
-                thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) ); 
+                thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) );
 
-		
+
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.
         //then make a functor that takes the id and force (4 tuple) and takes that force and adds it to the id'th entry in nodeInfoVecs.nodeForceX,Y,Z
 		//for (unsigned i = 0; i < pltInfoVecs.pltImagingConnection.size(); i++) {
@@ -128,7 +129,7 @@ void Plt_Arm_Node_Force(
 		//}
 
 		unsigned total_num_arms = pltInfoVecs.nodeImagingConnection.size();
-		
+
 		//correspondance kept between nodeUnreducedId and pltImagingConnection
 		thrust::sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
         			thrust::make_zip_iterator(
@@ -137,10 +138,10 @@ void Plt_Arm_Node_Force(
         					pltInfoVecs.nodeUnreducedForceX.begin(),
         					pltInfoVecs.nodeUnreducedForceY.begin(),
 							pltInfoVecs.nodeUnreducedForceZ.begin())), thrust::less<unsigned>());
-							
+
 		//now nodeImagingConnection contains the corresponding nodes to pltImagingConnection
     	thrust::copy(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.begin() + total_num_arms, pltInfoVecs.nodeImagingConnection.begin());
- 
+
 		//for (unsigned i = 0; i < pltInfoVecs.pltImagingConnection.size(); i++) {
 		//	unsigned node_Id = pltInfoVecs.nodeUnreducedId[i];
 		//	unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
@@ -175,7 +176,7 @@ void Plt_Arm_Node_Force(
 			//double maxFx = (*(thrust::max_element(pltInfoVecs.nodeReducedForceX.begin(), pltInfoVecs.nodeReducedForceX.begin() + endKey)));
 			//double maxFy = (*(thrust::max_element(pltInfoVecs.nodeReducedForceY.begin(), pltInfoVecs.nodeReducedForceY.begin() + endKey)));
 			//double maxFz = (*(thrust::min_element(pltInfoVecs.nodeReducedForceZ.begin(), pltInfoVecs.nodeReducedForceZ.begin() + endKey)));
-	
+
 			//std::cout<<"maxFx: "<< maxFx<< std::endl;
 			//std::cout<<"maxFy: "<< maxFy<< std::endl;
 			//std::cout<<"maxFz: "<< maxFz<< std::endl;
@@ -198,5 +199,5 @@ void Plt_Arm_Node_Force(
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceX.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceY.data()),
         		thrust::raw_pointer_cast(nodeInfoVecs.nodeForceZ.data())));
-				
+
 };
