@@ -4,10 +4,10 @@
 #include "SystemStructures.h"
 
 struct RandVecs {
-	
+
   thrust::device_vector<double> gaussianData;
   thrust::device_vector<double> filopodia_detach; //size tndrlNodeId
-	
+
   thrust::device_vector<double> gaussianPltData;
   thrust::device_vector<double> bucketPltStart;
 
@@ -123,15 +123,15 @@ struct AuxVecs {
 	thrust::device_vector<unsigned> keyEnd_net_intc;
 
 	unsigned endIndexBucketKeys_net_intc;
-	
+
 
 	//////////////////////////////
-	//Same Grid used for both network->plt and plt->network. 
+	//Same Grid used for both network->plt and plt->network.
 	//////////////////////////////
 	//bucket set to interact with network->plt
 	thrust::device_vector<unsigned> id_bucket_plt_intc; //bucket id
 	thrust::device_vector<unsigned> id_value_plt_intc; //node id
-	
+
 	//Do I need the following???
 	thrust::device_vector<unsigned> id_bucket_expanded_plt_intc;
 	thrust::device_vector<unsigned> id_value_expanded_plt_intc;
@@ -142,7 +142,7 @@ struct AuxVecs {
 	unsigned endIndexBucketKeys_plt_intc;
 
   	//platelets
-	  
+
 	//bucket set to interact with plt->network
     thrust::device_vector<unsigned> idPlt_bucket; //bucket id
     thrust::device_vector<unsigned> idPlt_value; //node id
@@ -245,7 +245,7 @@ struct GeneralParams{
 	unsigned maxNodeCount;//after discretize
 	unsigned originNodeCount;//pre discretize
 	unsigned nummonfiberarea = 1100;//number of monomers per fiber crossesction;
-  	
+
 	  //platelets
   	unsigned maxPltCount;//after discretize
 	unsigned originPltCount;//pre discretize
@@ -274,9 +274,10 @@ struct GeneralParams{
 	double pltMass;
 	double pltDensity;
 	bool pltfrcfld;
-	bool plttndrl; 
+	bool plttndrl;
 	bool pltrelease;
 	bool plthandhand;
+	double strainswitch;
 	bool pltonplt;
 
 	bool use_dynamic_plt_force;
@@ -375,7 +376,7 @@ public:
 		thrust::host_vector<unsigned>& hostWLCSubEdgeLeft,
 		thrust::host_vector<unsigned>& hostWLCSubEdgeRight,
 		thrust::host_vector<double>& hostWLCSubLenZero );
-	
+
 	void setRandVecs();
 };
 
