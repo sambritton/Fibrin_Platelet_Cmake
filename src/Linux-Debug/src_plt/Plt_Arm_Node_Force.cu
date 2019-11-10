@@ -119,14 +119,8 @@ void Plt_Arm_Node_Force(
 
 
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.
-        //then make a functor that takes the id and force (4 tuple) and takes that force and adds it to the id'th entry in nodeInfoVecs.nodeForceX,Y,Z
-		//for (unsigned i = 0; i < pltInfoVecs.pltImagingConnection.size(); i++) {
-		//	unsigned node_Id = pltInfoVecs.nodeUnreducedId[i];
-		//	unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
-		//	if (node_Id < generalParams.maxNodeCount ){
-		//		std::cout<<"pre_sort node: " << node_Id << " pltId: " << plt_id<< " iter: " <<i << std::endl;
-		//	}
-		//}
+		//then make a functor that takes the id and force (4 tuple) 
+		//and takes that force and adds it to the id'th entry in nodeInfoVecs.nodeForceX,Y,Z
 
 		unsigned total_num_arms = pltInfoVecs.nodeImagingConnection.size();
 
@@ -142,13 +136,6 @@ void Plt_Arm_Node_Force(
 		//now nodeImagingConnection contains the corresponding nodes to pltImagingConnection
     	thrust::copy(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.begin() + total_num_arms, pltInfoVecs.nodeImagingConnection.begin());
 
-		//for (unsigned i = 0; i < pltInfoVecs.pltImagingConnection.size(); i++) {
-		//	unsigned node_Id = pltInfoVecs.nodeUnreducedId[i];
-		//	unsigned plt_id = pltInfoVecs.pltImagingConnection[i];
-		//	if (node_Id < generalParams.maxNodeCount ){
-		//		std::cout<<"post_sort node: " << node_Id << " pltId: " << plt_id<< " iter: " <<i << std::endl;
-		//	}
-		//}
     	pltInfoVecs.numConnections = thrust::count_if(
     	    pltInfoVecs.nodeImagingConnection.begin(),
     	    pltInfoVecs.nodeImagingConnection.end(), is_less_than(generalParams.maxNodeCount) );
@@ -166,21 +153,13 @@ void Plt_Arm_Node_Force(
  					pltInfoVecs.nodeUnreducedForceZ.begin())),
  			pltInfoVecs.nodeReducedId.begin(),
  			thrust::make_zip_iterator(
- 				thrust::make_tuple(//need t check
+ 				thrust::make_tuple(
  					pltInfoVecs.nodeReducedForceX.begin(),
  					pltInfoVecs.nodeReducedForceY.begin(),
  					pltInfoVecs.nodeReducedForceZ.begin())),
  			thrust::equal_to<unsigned>(), CVec3Add())) - pltInfoVecs.nodeReducedId.begin();//binary_pred, binary_op
 
 
-			//double maxFx = (*(thrust::max_element(pltInfoVecs.nodeReducedForceX.begin(), pltInfoVecs.nodeReducedForceX.begin() + endKey)));
-			//double maxFy = (*(thrust::max_element(pltInfoVecs.nodeReducedForceY.begin(), pltInfoVecs.nodeReducedForceY.begin() + endKey)));
-			//double maxFz = (*(thrust::min_element(pltInfoVecs.nodeReducedForceZ.begin(), pltInfoVecs.nodeReducedForceZ.begin() + endKey)));
-
-			//std::cout<<"maxFx: "<< maxFx<< std::endl;
-			//std::cout<<"maxFy: "<< maxFy<< std::endl;
-			//std::cout<<"maxFz: "<< maxFz<< std::endl;
-		//std::cout<<"endkey: "<< endKey<<std::endl;
         thrust::for_each(
         	thrust::make_zip_iterator(//1st begin
         		thrust::make_tuple(

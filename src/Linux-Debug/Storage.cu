@@ -162,9 +162,43 @@ void Storage::save_params(void) {
 			ofs << std::setprecision(5) <<std::fixed<< "plt " << x << " " << y << " " << z <<std::endl;
 		
 		}
-		//place force node is experiencing
+
+				
+		//place plts force
+		for (unsigned i = 0; i < sys->pltInfoVecs.pltForceX.size(); i++) {
+			double x = sys->pltInfoVecs.pltForceX[i];
+			double y = sys->pltInfoVecs.pltForceY[i];
+			double z = sys->pltInfoVecs.pltForceZ[i];
+			ofs << std::setprecision(5) <<std::fixed<< "force_on_plt " <<
+			x << " " << y << " " << z <<std::endl;
+		}
+
+		//now print plt and corresponding node it's connected to		
+		unsigned maxPltCount = sys->pltInfoVecs.pltLocX.size();
+		unsigned num_connections = sys->pltInfoVecs.numConnections;
+		for (unsigned edge = 0; edge < num_connections; edge++ ){
+
+			//because nodes are placed after platelets, their vtk file id is incremented. 
+			//notice that this represents the vtk id, not the id within the c++ program
+			unsigned node_id_vtk = maxPltCount + edge;
+			unsigned node_id = sys->pltInfoVecs.nodeImagingConnection[edge];
+			
+			unsigned plt_id = sys->pltInfoVecs.pltImagingConnection[edge];
+			
+			ofs << std::setprecision(5) << std::fixed<< 
+			"plt_id_node_id "<< plt_id << " "<< node_id_vtk <<std::endl;
+
+		}
+
+
+		//place force node is experiencing (vector form)
 		for (unsigned i = 0; i < sys->nodeInfoVecs.nodeLocX.size(); i++) {
-			ofs << std::setprecision(5) <<std::fixed<< "force_on_node " << sys->nodeInfoVecs.sumForcesOnNode[i]<<std::endl;
+			double f_x = sys->nodeInfoVecs.nodeForceX[i];
+			double f_y = sys->nodeInfoVecs.nodeForceY[i];
+			double f_z = sys->nodeInfoVecs.nodeForceZ[i];
+			
+			ofs << std::setprecision(5) <<std::fixed<< "force_on_node " << 
+			f_x <<" " << f_y <<" " << f_z << std::endl;
 		
 		}
 
@@ -328,32 +362,6 @@ void Storage::print_VTK_File() {
 			ofs << std::fixed << strain   << std::endl;
 
 		}
-	/*	for (unsigned idA = 0; idA < maxNodeCount; idA++ ){
-
-			unsigned beginIndex = idA * maxNeighborCount;
-			unsigned endIndex = beginIndex + maxNeighborCount;
-			for (unsigned i = beginIndex; i < endIndex; i++) {//currentSpringCount is the length of index and value vectors
-				unsigned idB = sys->wlcInfoVecs.globalNeighbors[i];//look through possible neighbors. May contain ULONG_MAX
-
-				if ((idA < idB) && (idB < maxNodeCount) ) {
-					__attribute__ ((unused)) unsigned index = idA * maxNeighborCount + idB;
-					double L0 = sys->wlcInfoVecs.lengthZero[i];
-					double xL = sys->nodeInfoVecs.nodeLocX[idA];
-					double yL = sys->nodeInfoVecs.nodeLocY[idA];
-					double zL = sys->nodeInfoVecs.nodeLocZ[idA];
-					double xR = sys->nodeInfoVecs.nodeLocX[idB];
-					double yR = sys->nodeInfoVecs.nodeLocY[idB];
-					double zR = sys->nodeInfoVecs.nodeLocZ[idB];
-
-
-
-					double L1 = std::sqrt( (xL - xR)*(xL - xR)+(yL - yR)*(yL - yR)+(zL - zR)*(zL - zR));
-					double strain = (L1 - L0) / L0;
-					ofs << std::fixed << strain   << std::endl;
-				}
-			}
-		}*/
-
 		ofs.close();
 
 	}
