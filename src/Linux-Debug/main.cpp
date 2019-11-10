@@ -53,7 +53,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->defaultTorsionSpringStiffness = base_tor;
 		builder->defaultNumMonFiberArea = base_num_mon;
 	}
-	
+
 	if (auto p = props.child("resistance_fibrin"))
 		builder->viscousDamp_Fibrin = (p.text().as_double());
 
@@ -67,7 +67,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->defaultTorsionSpringStiffness = (p.text().as_double());*/
 
 	if (auto p = props.child("persistance-length"))
-		builder->defaultPersistanceLength = (p.text().as_double()); 
+		builder->defaultPersistanceLength = (p.text().as_double());
 
 	if (auto p = props.child("absolute-temperature"))
 		builder->defaultTemperature = (p.text().as_double());
@@ -112,7 +112,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	if (auto p = props.child("plt_r_force")) {
 		builder->pltRForce = (p.text().as_double());
 	}
-	//fraction of platelet radius that adhesion is in. 
+	//fraction of platelet radius that adhesion is in.
 	if (auto p = props.child("plt_r_adhesion")) {
 		double RAdhesion=(p.text().as_double());
 		if (RAdhesion>0.0 && RAdhesion<1.0){
@@ -135,16 +135,20 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		std::cout<<"frcFld: "<< builder->pltfrcfld<<std::endl;
 	}
 	if (auto p = props.child("use-plttndrl")){
-		builder->plttndrl = (p.text().as_bool());	
+		builder->plttndrl = (p.text().as_bool());
 		std::cout<<"plttndrl: "<< builder->plttndrl<<std::endl;
 	}
 	if (auto p = props.child("use-pltrelease")){
-		builder->pltrelease = (p.text().as_bool());	
+		builder->pltrelease = (p.text().as_bool());
 		std::cout<<"pltrelease: "<< builder->pltrelease<<std::endl;
 	}
 	if (auto p = props.child("use-plthandhand")){
-		builder->plthandhand = (p.text().as_bool());	
+		builder->plthandhand = (p.text().as_bool());
 		std::cout<<"plthandhand: "<< builder->plthandhand<<std::endl;
+	}
+	if (auto p = props.child("strain_switch")){
+		builder->strainswitch = (p.text().as_double());
+		std::cout<<"strainswitch: "<< builder->strainswitch<<std::endl;
 	}
 
 	if (auto p = props.child("use-pltonplt")) {
@@ -156,7 +160,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		builder->use_dynamic_plt_force = (p.text().as_bool());
 		std::cout << "dynamic_plt: " << builder->use_dynamic_plt_force << std::endl;
 	}
-	
+
 	if (auto p = props.child("dynamic-plt-max-force")) {
 		builder->max_dynamic_plt_force = (p.text().as_double());
 		std::cout << "dynamic_plt_max_force: " << builder->max_dynamic_plt_force << std::endl;
@@ -221,7 +225,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 
 	double pltmass;
 	double pltx, plty, pltz; //variables to be used reading in data.
-	
+
 	//only use platelet input if density is zero
 	for (auto plt = plts.child("plt"); plt; plt = plt.next_sibling("plt")) {
 
@@ -234,7 +238,7 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 		}
 		int unused = builder->addPlt(builder->defaultPltMass, glm::dvec3(pltx, plty, pltz));
 	}
-	
+
 
 
 
@@ -295,7 +299,7 @@ void run(int argc, char** argv) {
 		auto builder = std::make_shared<SystemBuilder>(epsilon, timeStep);
 
 		auto system = createSystem(argv[argc-1], builder);
-		
+
 		//once the system is set, we'll store the initial values via the ptr system.
 		//Storage storage( system, outputFileName);
 		auto storage = std::make_shared<Storage>(system, builder);
@@ -323,7 +327,7 @@ void run(int argc, char** argv) {
 int main(int argc, char** argv)
 {
 	std::cout << argc << std::endl;
-	
+
 
 	run(argc, argv);
 

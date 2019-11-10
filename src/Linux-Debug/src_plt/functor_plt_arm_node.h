@@ -25,6 +25,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
   	unsigned maxNeighborCount;
 	bool pltrelease;
 	bool plthandhand;
+	double strain_switch;
 
   	double* nodeLocXAddr;
 	double* nodeLocYAddr;
@@ -73,6 +74,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
             unsigned& _maxNeighborCount,
 			bool& _pltrelease,
 			bool& _plthandhand,
+			double& _strain_switch,
 
             double* _nodeLocXAddr,
             double* _nodeLocYAddr,
@@ -118,6 +120,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
     maxNeighborCount(_maxNeighborCount),
 	pltrelease(_pltrelease),
 	plthandhand(_plthandhand),
+	strain_switch(_strain_switch),
 
     nodeLocXAddr(_nodeLocXAddr),
 	nodeLocYAddr(_nodeLocYAddr),
@@ -137,7 +140,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
     tndrlNodeType(_tndrlNodeType),
 	isNodeInPltVolAddr(_isNodeInPltVolAddr),
     glblNghbrsId(_glblNghbrsId),
-	
+
 	lengthZero(_lengthZero),
 	numOriginalNeighborsNodeVector(_numOriginalNeighborsNodeVector),
 
@@ -150,7 +153,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 
         unsigned pltId = thrust::get<0>(u3d6);
         unsigned bucketId = thrust::get<1>(u3d6);
-		
+
 		double unif_rand = thrust::get<2>(u3d6);//used for generator unif
 
         unsigned storageLocation = pltId * plt_tndrl_intrct;
@@ -168,13 +171,17 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         double sumPltForceY = pltCurrentForceY;
         double sumPltForceZ = pltCurrentForceZ;
 
+	// non linear switch values
+	double mag_mult=3;
+	//double strain_switch=0.5;
+
 		//set random generator
 
         //beginning and end of attempted interaction network nodes.
 		unsigned beginIndex = keyBegin[bucketId];
 		unsigned endIndex = keyEnd[bucketId];
 		double len = static_cast<double>(endIndex-beginIndex);
-		
+
 		double seed_d = round(len*unif_rand);
 		unsigned seed = static_cast<unsigned>(seed_d);
 		curandState state;
@@ -215,8 +222,8 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						tndrlNodeId[storageLocation + interactionCounter] = maxIdCountFlag;//reset
 					}
                   	//try to find a new node to pull within connections of previous node if plthandhand is true
-					
-					//HOW TO MAKE THE PLT CHOOSE ANOTHER 
+
+					//HOW TO MAKE THE PLT CHOOSE ANOTHER
 					//POINT WHEN TWO PLT's MEET?
 					if (plthandhand == true) {
 						unsigned startIndex_1 = maxNeighborCount * pullNode_id;
@@ -228,7 +235,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 								//check tentative node is not already connected
 								for (unsigned checkId = 0; checkId < plt_tndrl_intrct; checkId++) {
 									if (newPullNode_id != tndrlNodeId[storageLocation + checkId]) {
-										
+
 										bool isNodeInPltVol = false;
 										if (pltrelease) {
 											isNodeInPltVol = isNodeInPltVolAddr[newPullNode_id];
@@ -326,7 +333,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         	        		break;
         	        	}
         	      	}
-					  
+
 					//only pull on new nodes that(if pltrelease is on) are not in plt volume
 					if ( (node_is_new) && (isNodeInPltVol == false) ){
 
@@ -423,11 +430,12 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						//alternate version
 						//this alpha scales the the strain in the negative strain
 						//alpha is back calculated by imposing fmax at C/2
-						if (use_nonlinear_dynamic_force == true) {
-							double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
-							double alpha = -(contour_length_mult/2.0) / (log(force_scale));
+						if (use_nonlinear_dynamic_force == true && ave_strain>strain_switch) {
+						//	double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
+						//	double alpha = -(contour_length_mult/2.0) / (log(force_scale));
 
-							mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+						//	mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
+							mag_force=mag_mult*pltForce;
 						}
 
 					}
@@ -454,13 +462,13 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 					pltUId[storageLocation + final_interaction_count] = pltId;
 
 					final_interaction_count += 1;
-					
-				} 
+
+				}
 
         	}
 
         }
-	
+
 	//The last step is to scale the forces we stored if distribute_plt_force is true.
 	if (distribute_plt_force == true) {
 		double divisor = __ll2double_ru(final_interaction_count);
