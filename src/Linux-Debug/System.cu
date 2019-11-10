@@ -239,7 +239,6 @@ void System::solveSystem() {
 				sqrt(6.0 * generalParams.kB * generalParams.temperature * generalParams.dtTemp / generalParams.viscousDamp_Fibrin);
 
 		}
-
 	}
 
 };
