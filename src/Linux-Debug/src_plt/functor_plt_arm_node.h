@@ -171,9 +171,8 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         double sumPltForceY = pltCurrentForceY;
         double sumPltForceZ = pltCurrentForceZ;
 
-	// non linear switch values
-	double mag_mult=3;
-	//double strain_switch=0.5;
+		// non linear switch values
+		double mag_mult=3;
 
 		//set random generator
 
@@ -425,21 +424,27 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 						else {
 							ave_strain = 0.0;
 						}
-						mag_force = pltForce + (max_dynamic_force-pltForce) * (ave_strain / contour_length_mult);
 
+						if (use_nonlinear_dynamic_force == false){
+							//when false, use linear response
+							mag_force = pltForce + (max_dynamic_force-pltForce) * (ave_strain / contour_length_mult);
+						}
+						else {
+							//when true use default until strain increases (below)
+							mag_force = pltForce;
+						}
+						
 						//alternate version
 						//this alpha scales the the strain in the negative strain
 						//alpha is back calculated by imposing fmax at C/2
-						if (use_nonlinear_dynamic_force == true && ave_strain>strain_switch) {
-						//	double force_scale = 1.0 - ((max_dynamic_force - pltForce)/max_dynamic_force);
-						//	double alpha = -(contour_length_mult/2.0) / (log(force_scale));
+						if ((use_nonlinear_dynamic_force == true) && (ave_strain>strain_switch)) {
 
-						//	mag_force = pltForce + max_dynamic_force * fabsf(1.0 - exp(-ave_strain / alpha));
 							mag_force=mag_mult*pltForce;
 						}
 
 					}
 					else {
+						//when not using use_dynamic_plt_force, use default force
 						mag_force = pltForce;
 					}
 					//Determine direction of force based on positions and multiply magnitude force

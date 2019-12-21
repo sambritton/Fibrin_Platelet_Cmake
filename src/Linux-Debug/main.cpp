@@ -266,7 +266,7 @@ void run(int argc, char** argv) {
 	t0 = time(0);
 
 	double epsilon = 0.01;
-	double timeStep = 0.0005;
+	double timeStep = 0.001;
 
 	for (int i = 0; i < argc; i++) {
 
