@@ -1,0 +1,14 @@
+The system is: Linux - 3.10.0-1062.9.1.el7.x86_64 - x86_64
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /opt/crc/g/gcc/7.1.0/bin/g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/afs/crc.nd.edu/user/s/sbritto2/temp/Fibrin_Platelet_Cmake/buld/CMakeFiles/3.13.2/CompilerIdCXX/a.out"
+

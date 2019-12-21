@@ -171,9 +171,8 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
         double sumPltForceY = pltCurrentForceY;
         double sumPltForceZ = pltCurrentForceZ;
 
-	// non linear switch values
-	double mag_mult=3;
-	//double strain_switch=0.5;
+		// non linear switch values
+		double mag_mult=3;
 
 		//set random generator
 
