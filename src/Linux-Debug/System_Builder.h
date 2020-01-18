@@ -76,6 +76,8 @@ public:
 	double pltR = 0.1;
 	unsigned plt_other_intrct = 100;
 	unsigned plt_tndrl_intrct = 5;
+	double tndrl_M=0;
+	double tndrl_S=1;
 	double pltForce = 1.0;
 	double pltDensity = 0.0;
 	bool pltfrcfld = false;
@@ -86,6 +88,7 @@ public:
 	bool pltonplt = false;
 	bool use_dynamic_plt_force = true;
 	bool distribute_plt_force = true;
+	bool tndrl_plt_pdf = false;
 	double max_dynamic_plt_force = 29;
 	bool use_nonlinear_dynamic_force = true; //default true is step function when use_dynamic_plt_force is also true
 

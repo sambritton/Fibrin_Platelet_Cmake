@@ -17,7 +17,7 @@
 #include "Bucket_Plt.h"
 #include "functor_misc.h"
 #include "System.h"
-
+#include <random>
 
 
 void System::setBucketScheme() {
@@ -474,6 +474,7 @@ void System::setPltVecs(
 
     pltInfoVecs.tndrlNodeId.resize(generalParams.maxPltCount * generalParams.plt_tndrl_intrct);
 	pltInfoVecs.tndrlNodeType.resize(generalParams.maxPltCount * generalParams.plt_tndrl_intrct);
+	pltInfoVecs.tndrlNodeNum.resize(generalParams.maxPltCount);
 
 	//fill with flag vales.	
 	std::cout<<"maxIdFlag: "<< generalParams.maxIdCountFlag<<std::endl;
@@ -481,6 +482,21 @@ void System::setPltVecs(
 	thrust::fill(pltInfoVecs.tndrlNodeId.begin(),pltInfoVecs.tndrlNodeId.end(), generalParams.maxIdCountFlag);
 	
 	thrust::fill(pltInfoVecs.tndrlNodeType.begin(),pltInfoVecs.tndrlNodeType.end(), 0);
+	if (generalParams.tndrl_plt_pdf){
+		std::default_random_engine generator;
+		std::lognormal_distribution<double> distribution(generalParams.tndrl_M,generalParams.tndrl_S);
+
+		for (int i=0; i<generalParams.maxPltCount; ++i) {
+			double number = -1;
+			while ((number<0.0)||(number>generalParams.plt_tndrl_intrct)) {
+				double number = distribution(generator);
+			}
+			pltInfoVecs.tndrlNodeNum[i]=unsigned(number);
+		}
+	}
+	else{
+		thrust::fill(pltInfoVecs.tndrlNodeNum.begin(),pltInfoVecs.tndrlNodeNum.end(), generalParams.plt_tndrl_intrct);
+	}
   
 };
 
