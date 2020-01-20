@@ -6,7 +6,7 @@
 #include <curand.h>
 #include <curand_kernel.h>
 
-struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
+struct functor_plt_arm_node : public thrust::unary_function< U3CVec7, CVec3>  {
 	bool use_dynamic_plt_force;
 	double contour_length_mult;
 	double max_dynamic_force;
@@ -149,23 +149,24 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 	pltLocZAddr(_pltLocZAddr){}
 
    __device__
- 		CVec3 operator()(const U2CVec7 &u3d6) {
+ 		CVec3 operator()(const U3CVec7 &u3d6) {
 
-        unsigned pltId = thrust::get<0>(u3d6);
-        unsigned bucketId = thrust::get<1>(u3d6);
+	unsigned pltTndrl = thrust::get<0>(u3d6);		
+        unsigned pltId = thrust::get<1>(u3d6);
+        unsigned bucketId = thrust::get<2>(u3d6);
 
-		double unif_rand = thrust::get<2>(u3d6);//used for generator unif
+		double unif_rand = thrust::get<3>(u3d6);//used for generator unif
 
         unsigned storageLocation = pltId * plt_tndrl_intrct;
 
-        double pltLocX = thrust::get<3>(u3d6);
-        double pltLocY = thrust::get<4>(u3d6);
-        double pltLocZ = thrust::get<5>(u3d6);
+        double pltLocX = thrust::get<4>(u3d6);
+        double pltLocY = thrust::get<5>(u3d6);
+        double pltLocZ = thrust::get<6>(u3d6);
 
         //use for return.
-        double pltCurrentForceX = thrust::get<6>(u3d6);
-        double pltCurrentForceY = thrust::get<7>(u3d6);
-        double pltCurrentForceZ = thrust::get<8>(u3d6);
+        double pltCurrentForceX = thrust::get<7>(u3d6);
+        double pltCurrentForceY = thrust::get<8>(u3d6);
+        double pltCurrentForceZ = thrust::get<9>(u3d6);
 
         double sumPltForceX = pltCurrentForceX;
         double sumPltForceY = pltCurrentForceY;
@@ -188,7 +189,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 
         //Loop through the number of available filopodia
 		unsigned final_interaction_count = 0;
-        for(unsigned interactionCounter = 0; interactionCounter < plt_tndrl_intrct; interactionCounter++) {
+        for(unsigned interactionCounter = 0; interactionCounter < pltTndrl; interactionCounter++) {
 
             unsigned pullNode_id = tndrlNodeId[storageLocation + interactionCounter];
             unsigned pullNode_type = tndrlNodeType[storageLocation + interactionCounter];
@@ -232,7 +233,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 
 								unsigned newPullNode_id = glblNghbrsId[ nbr_loc ];
 								//check tentative node is not already connected
-								for (unsigned checkId = 0; checkId < plt_tndrl_intrct; checkId++) {
+								for (unsigned checkId = 0; checkId < pltTndrl; checkId++) {
 									if (newPullNode_id != tndrlNodeId[storageLocation + checkId]) {
 
 										bool isNodeInPltVol = false;
@@ -326,7 +327,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U2CVec7, CVec3>  {
 
 					bool node_is_new = true;
 					//check tentative node is not already connected
-				    for (unsigned checkId = 0; checkId < plt_tndrl_intrct; checkId++){
+				    for (unsigned checkId = 0; checkId < pltTndrl; checkId++){
         	        	if (newPullNode_id == tndrlNodeId[storageLocation + checkId]){
 							node_is_new = false;
         	        		break;
