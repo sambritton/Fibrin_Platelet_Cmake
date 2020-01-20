@@ -104,7 +104,7 @@ struct PltInfoVecs {
 
 	thrust::device_vector<unsigned> tndrlNodeId;
 	thrust::device_vector<unsigned> tndrlNodeType;
-
+	thrust::device_vector<unsigned> tndrlNodeNum;
 //
 
 
@@ -268,6 +268,8 @@ struct GeneralParams{
 	double pltForce;
 	unsigned plt_other_intrct;//used for unreduced force size. Set large so able to push out many nodes
 	unsigned plt_tndrl_intrct;//used for tendril arm counts
+	double tndrl_M;
+	double tndrl_S;
 	double pltR;
 	double pltRForce;
 	double pltRAdhesion;
@@ -284,7 +286,8 @@ struct GeneralParams{
 	double max_dynamic_plt_force;
 	bool use_nonlinear_dynamic_force;
 	bool distribute_plt_force;
-
+	bool tndrl_plt_pdf;
+	
 	unsigned maxIdCountFlag;//flag variable
 
 	//parameters for advancing timestep and determining equilibrium

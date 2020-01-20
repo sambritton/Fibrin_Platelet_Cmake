@@ -70,24 +70,25 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 
 
    __device__
-	CVec3 operator()(const U2CVec6 &u2d6) {
+	CVec3 operator()(const U3CVec6 &u2d6) {
 
-		unsigned pltId = thrust::get<0>(u2d6);
-		unsigned bucketId = thrust::get<1>(u2d6);
+		unsigned pltTndrl = thrust::get<0>(u2d6);
+		unsigned pltId = thrust::get<1>(u2d6);
+		unsigned bucketId = thrust::get<2>(u2d6);
 
 		//beginning and end of attempted interaction network nodes.
 		unsigned beginIndex = keyPltBegin[bucketId];
 		unsigned endIndex = keyPltEnd[bucketId];
 				
 		unsigned storageLocation = pltId * plt_tndrl_intrct;
-		double pltLocX = thrust::get<2>(u2d6);
-		double pltLocY = thrust::get<3>(u2d6);
-		double pltLocZ = thrust::get<4>(u2d6);
+		double pltLocX = thrust::get<3>(u2d6);
+		double pltLocY = thrust::get<4>(u2d6);
+		double pltLocZ = thrust::get<5>(u2d6);
 
 		//use for return. 
-		double pltCurrentForceX = thrust::get<5>(u2d6);
-		double pltCurrentForceY = thrust::get<6>(u2d6);
-		double pltCurrentForceZ = thrust::get<7>(u2d6);
+		double pltCurrentForceX = thrust::get<6>(u2d6);
+		double pltCurrentForceY = thrust::get<7>(u2d6);
+		double pltCurrentForceZ = thrust::get<8>(u2d6);
 
 		double sumPltForceX = pltCurrentForceX;
 		double sumPltForceY = pltCurrentForceY;
@@ -100,7 +101,7 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 
 		//pulling
 		//Loop through the number of available tendrils
-		for( unsigned interactionCounter = 0; interactionCounter < plt_tndrl_intrct; interactionCounter++ ) {
+		for( unsigned interactionCounter = 0; interactionCounter < pltTndrl; interactionCounter++ ) {
 
 			//check if tendril pulls a plt
 			if ( ((tndrlNodeId[storageLocation + interactionCounter]) != maxIdCountFlag) && 

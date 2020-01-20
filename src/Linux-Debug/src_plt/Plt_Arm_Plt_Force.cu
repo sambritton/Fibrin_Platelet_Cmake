@@ -24,6 +24,7 @@ void Plt_Arm_Plt_Force(
       	thrust::make_zip_iterator(
         	thrust::make_tuple(
 				counter,
+				pltInfoVecs.tndrlNodeNum.begin(),
         		auxVecs.idPlt_bucket.begin(),
           		pltInfoVecs.pltLocX.begin(),
           		pltInfoVecs.pltLocY.begin(),
@@ -34,6 +35,7 @@ void Plt_Arm_Plt_Force(
     thrust::make_zip_iterator(
         thrust::make_tuple(
 				counter,
+				pltInfoVecs.tndrlNodeNum.begin(),
         		auxVecs.idPlt_bucket.begin(),
           		pltInfoVecs.pltLocX.begin(),
           		pltInfoVecs.pltLocY.begin(),

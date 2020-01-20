@@ -106,6 +106,12 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	if (auto p = props.child("plt_tndrl_intrct"))
 		builder->plt_tndrl_intrct = (p.text().as_uint());
 
+	if (auto p = props.child("tndrl_M"))
+		builder->tndrl_M = (p.text().as_double());
+	if (auto p = props.child("tndrl_S"))
+		builder->tndrl_S = (p.text().as_double());
+
+
 	if (auto p = props.child("plt_r"))
 		builder->pltR = (p.text().as_double());
 
@@ -173,6 +179,10 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	if (auto p = props.child("distribute_plt_force")) {
 		builder->distribute_plt_force = (p.text().as_bool());
 	}
+	if (auto p = props.child("tndrl_plt_pdf")) {
+		builder->tndrl_plt_pdf = (p.text().as_bool());
+	}
+
 	std::cout << "builder ptr address: " << builder << std::endl;
 	std::vector<unsigned> originNodes;
 //buid nodes

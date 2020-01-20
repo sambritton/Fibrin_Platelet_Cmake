@@ -45,6 +45,7 @@ void Plt_Arm_Node_Force(
         	thrust::make_zip_iterator(
         		thrust::make_tuple(
 					counter,
+					pltInfoVecs.tndrlNodeNum.begin(),
 					auxVecs.idPlt_bucket.begin(),
 					randVecs.bucketPltStart.begin(),
         			pltInfoVecs.pltLocX.begin(),
@@ -56,6 +57,7 @@ void Plt_Arm_Node_Force(
         	thrust::make_zip_iterator(
         		thrust::make_tuple(
 					counter,
+					pltInfoVecs.tndrlNodeNum.begin(),
 					auxVecs.idPlt_bucket.begin(),
 					randVecs.bucketPltStart.begin(),
         		 	pltInfoVecs.pltLocX.begin(),

@@ -387,6 +387,8 @@ std::shared_ptr<System> SystemBuilder::create() {
 	host_ptr_devNodeSystem->generalParams.pltForce = pltForce;
 	host_ptr_devNodeSystem->generalParams.plt_other_intrct = plt_other_intrct;
 	host_ptr_devNodeSystem->generalParams.plt_tndrl_intrct = plt_tndrl_intrct;
+	host_ptr_devNodeSystem->generalParams.tndrl_M = tndrl_M;
+	host_ptr_devNodeSystem->generalParams.tndrl_S = tndrl_S;
 	host_ptr_devNodeSystem->generalParams.pltR = pltR;
 	host_ptr_devNodeSystem->generalParams.pltRForce = pltRForce;
 	host_ptr_devNodeSystem->generalParams.pltRAdhesion = pltRAdhesion;
@@ -408,6 +410,8 @@ std::shared_ptr<System> SystemBuilder::create() {
 	host_ptr_devNodeSystem->generalParams.use_dynamic_plt_force = use_dynamic_plt_force;
 	host_ptr_devNodeSystem->generalParams.max_dynamic_plt_force = max_dynamic_plt_force;
 	host_ptr_devNodeSystem->generalParams.distribute_plt_force = distribute_plt_force;
+
+	host_ptr_devNodeSystem->generalParams.tndrl_plt_pdf = tndrl_plt_pdf;
 
 	host_ptr_devNodeSystem->generalParams.use_nonlinear_dynamic_force = use_nonlinear_dynamic_force;
 
