@@ -488,10 +488,15 @@ void System::setPltVecs(
 
 		for (int i=0; i<generalParams.maxPltCount; ++i) {
 			double number = -1;
-			while ((number<0.0)||(number>generalParams.plt_tndrl_intrct)) {
-				double number = distribution(generator);
+
+			while ((number<1.0)||(number>generalParams.plt_tndrl_intrct+1)) {
+				number = distribution(generator);
+				std::cout<<number<<std::endl;
 			}
+			std::cout<<"plt number filo"<<std::endl;
+
 			pltInfoVecs.tndrlNodeNum[i]=unsigned(number);
+			std::cout<<pltInfoVecs.tndrlNodeNum[i]<<std::endl;
 		}
 	}
 	else{
