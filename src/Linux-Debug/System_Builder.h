@@ -75,7 +75,7 @@ public:
 	double pltRAdhesion=0.9;
 	double pltR = 0.1;
 	unsigned plt_other_intrct = 100;
-	unsigned plt_tndrl_intrct = 10;
+	unsigned plt_tndrl_intrct = 10;//default
 	double tndrl_M=0;
 	double tndrl_S=1;
 	double pltForce = 1.0;
