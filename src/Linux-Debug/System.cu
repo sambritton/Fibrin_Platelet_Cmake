@@ -214,14 +214,16 @@ void System::solveSystem() {
 		
 		if (generalParams.iterationCounter % 100 == 0) {
 			setBucketScheme();
+			std::cout<<"time: " << generalParams.currentTime << std::endl;
 		}
 
 		
 		solveForces(); //resets and solves forces for next time step
 		double temp_current_iter = static_cast<double>(generalParams.iterationCounter);
 		double temp_current_time = temp_current_iter * generalParams.dtTemp;
-		if ( ( fmod(temp_current_time, 60.0) == 0.0) || (generalParams.iterationCounter == 10) ) {
+		if ( ( fmod(temp_current_time, 1.0) == 0.0) || (generalParams.iterationCounter == 10) ) {
 
+			storage->save_current_state();
 			storage->print_VTK_File();
 			//store sum of all forces on each node. Used in stress calculations
 			//store before upadting storage class.
@@ -453,7 +455,6 @@ void System::setPltVecs(
 
 	thrust::fill(pltInfoVecs.sumForcesOnPlt.begin(), pltInfoVecs.sumForcesOnPlt.end(), 0);
 
-
 	thrust::copy(hostPltPosX.begin(), hostPltPosX.end(), pltInfoVecs.pltLocX.begin());
 	thrust::copy(hostPltPosY.begin(), hostPltPosY.end(), pltInfoVecs.pltLocY.begin());
 	thrust::copy(hostPltPosZ.begin(), hostPltPosZ.end(), pltInfoVecs.pltLocZ.begin());
@@ -569,8 +570,6 @@ void System::setWLCVecs(
 	thrust::fill(wlcInfoVecs.currentNodeEdgeCountVector.begin(), wlcInfoVecs.currentNodeEdgeCountVector.end(),0);
 	thrust::fill(wlcInfoVecs.lengthZero.begin(), wlcInfoVecs.lengthZero.end(), 0.0);
 
-
-
 	nodeInfoVecs.hostEdgeLeft = hostWLCSubEdgeLeft;
 	nodeInfoVecs.hostEdgeRight = hostWLCSubEdgeRight;
 
@@ -605,3 +604,5 @@ void System::setWLCVecs(
 	//at this point currentNodeEdgeCountVector holds the number of edges, copy this to
 	thrust::copy(wlcInfoVecs.currentNodeEdgeCountVector.begin(), wlcInfoVecs.currentNodeEdgeCountVector.end(), wlcInfoVecs.numOriginalNeighborsNodeVector.begin());
 };
+
+

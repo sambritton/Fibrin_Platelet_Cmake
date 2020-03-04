@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <cstddef>
+#include <sstream> 
 
 #include "pugixml.hpp"
 
@@ -17,6 +18,115 @@
 #include "Storage.h"
 
 
+void advanceSystem(std::string filename, std::shared_ptr<System> system){
+	std::ifstream ifs(filename.c_str());
+	std::string temp;
+	std::string line;
+
+	if(!ifs) {
+		std::cout << filename << " is not available" << std::endl;
+		return;
+	}
+
+	std::stringstream ss;
+
+	while (std::getline(ifs,line)) {
+		ss.str(line);
+
+		std::getline(ss,temp,' ');
+
+		
+		if (temp == "time") {
+			std::getline(ss,temp,' ');
+			double time = std::atof(temp.c_str());
+			system->generalParams.currentTime = time;
+			std::cout<<"resetting time: " << time << std::endl;
+		}
+		unsigned node_increment = 0;
+		if (temp == "node") {
+			std::getline(ss,temp,' ');
+			double x = std::atof(temp.c_str());
+			std::getline(ss,temp,' ');
+			double y = std::atof(temp.c_str());
+			std::getline(ss,temp,'\n');
+			double z = std::atof(temp.c_str());
+
+			system->nodeInfoVecs.nodeLocX[node_increment] = x;
+			system->nodeInfoVecs.nodeLocY[node_increment] = y;
+			system->nodeInfoVecs.nodeLocZ[node_increment] = z;
+			node_increment+=1;
+		}
+
+		unsigned plt_increment = 0;
+		if (temp == "plt") {
+			std::getline(ss,temp,' ');
+			double x = std::atof(temp.c_str());
+			std::getline(ss,temp,' ');
+			double y = std::atof(temp.c_str());
+			std::getline(ss,temp,'\n');
+			double z = std::atof(temp.c_str());
+
+			system->pltInfoVecs.pltLocX[plt_increment] = x;
+			system->pltInfoVecs.pltLocY[plt_increment] = y;
+			system->pltInfoVecs.pltLocZ[plt_increment] = z;
+			plt_increment+=1;
+		}
+
+		if (temp == "edge_count") {
+			std::getline(ss,temp,' ');
+			unsigned edge_count = std::stoi(temp.c_str());
+			system->generalParams.currentEdgeCount = edge_count;
+		}
+
+		/*
+		if (temp == "minX") {
+			std::getline(ss,temp,' ');
+			double minX = std::atof(temp.c_str());
+			system->domainParams.originMinX = minX;
+		}
+		if (temp == "maxX") {
+			std::getline(ss,temp,' ');
+			double maxX = std::atof(temp.c_str());
+			system->domainParams.originMaxX = maxX;
+		}
+		if (temp == "minY") {
+			std::getline(ss,temp,' ');
+			double minY = std::atof(temp.c_str());
+			system->domainParams.originMinY = minY;
+		}
+		if (temp == "maxY") {
+			std::getline(ss,temp,' ');
+			double maxY = std::atof(temp.c_str());
+			system->domainParams.originMaxY = maxY;
+		}
+		if (temp == "minZ") {
+			std::getline(ss,temp,' ');
+			double minZ = std::atof(temp.c_str());
+			system->domainParams.originMinZ = minZ;
+		}
+		if (temp == "maxZ") {
+			std::getline(ss,temp,' ');
+			double maxZ = std::atof(temp.c_str());
+			system->domainParams.originMaxZ = maxZ;
+		}
+		*/
+		unsigned gnbr_increment = 0;
+		if (temp == "global_nbr") {
+			std::getline(ss,temp,' ');
+			unsigned nbr_index = std::stoi(temp.c_str());
+			system->wlcInfoVecs.globalNeighbors[gnbr_increment] = nbr_index;
+			gnbr_increment+=1;
+		}
+
+		/*unsigned len_increment = 0;
+		if (temp == "length_zero") {
+			std::getline(ss,temp,' ');
+			double length = std::atof(temp.c_str());
+			system->wlcInfoVecs.lengthZero[len_increment] = length;
+			len_increment+=1;
+		}*/
+	}
+};
 
 std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<SystemBuilder> builder)	{
 	pugi::xml_document doc;
@@ -269,7 +379,6 @@ std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<Sys
 	return model;
 }
 
-
 void run(int argc, char** argv) {
 
 	time_t t0,t1;
@@ -331,15 +440,68 @@ void run(int argc, char** argv) {
 	sec = (total % 3600) % 60;
 	std::cout << "Total time hh: " << hours << " mm:" << min << " ss:" << sec <<"\n";
 
-}
+};
+
+void run_time_advance(int argc, char** argv) {
+
+	double epsilon = 0.01;
+	double timeStep = 0.001;
+
+	for (int i = 0; i < argc; i++) {
+
+		std::string arg = argv[i];
+		int pos = arg.find('=');
+
+		std::string key = arg.substr(0, pos);
+		std::string val = arg.substr(pos + 1);
+
+		std::cout<<"argc: "<< argc <<std::endl;
+		std::cout<<"arg: "<< arg <<std::endl;
+		std::cout<<"pos: "<< pos <<std::endl;
+		std::cout<<"key: "<< key <<std::endl;
+		std::cout<<"val: "<< val <<std::endl;
+
+		if (key == "-dt") {
+			timeStep = std::atof(val.c_str());
+
+			std::cout<<"setting timestep: "<< timeStep << std::endl;
+			continue;
+		}
+		if (key == "-eps") {
+			epsilon = std::atof(val.c_str());
+			std::cout<<"setting epsilon: "<< epsilon << std::endl;
+			continue;
+		}
+	}
+
+
+	auto builder = std::make_shared<SystemBuilder>(epsilon, timeStep);
+	auto system = createSystem(argv[argc-2], builder);
+	auto storage = std::make_shared<Storage>(system, builder);
+
+
+	std::cout << "assigning fdiagram in main" << std::endl;
+	system->assignStorage(storage);
+	std::cout << "resetting time" << std::endl;
+	advanceSystem(argv[argc-1], system);
+		
+	std::cout << "time reset" << std::endl;
+	std::cout << "solving system in main" << std::endl;
+	system->solveSystem();
+};
 
 
 int main(int argc, char** argv)
 {
 	std::cout << argc << std::endl;
-
-
-	run(argc, argv);
+	std::string mode = argv[1];
+	if (mode=="reset"){
+		
+		std::cout << "running reset mode" << std::endl;
+		run_time_advance(argc,argv);
+	}else{ run(argc, argv); }
+	
+	
 
 	return 0;
 }
