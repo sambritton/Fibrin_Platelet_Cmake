@@ -191,11 +191,21 @@ void Storage::save_current_state(){
 			ofs << std::setprecision(30) <<std::fixed<< "global_nbr " << nbr << std::endl;
 		}
 
-		/*for (unsigned i = 0; i < sys->wlcInfoVecs.lengthZero.size(); i++) {
-			double lengthZero = sys->wlcInfoVecs.lengthZero[i];
+		for (unsigned i = 0; i < sys->nodeInfoVecs.isNodeInPltVol.size(); i++) {
+			bool is_in_plt = sys->nodeInfoVecs.isNodeInPltVol[i];
 
-			ofs << std::setprecision(30) <<std::fixed<< "length_zero " << lengthZero << std::endl;
-		}*/
+			ofs << std::setprecision(3) <<std::fixed<< "is_node_in_plt " << is_in_plt << std::endl;
+		}
+		for (unsigned i = 0; i < sys->pltInfoVecs.tndrlNodeId.size(); i++) {
+			unsigned fil_node_id = sys->pltInfoVecs.tndrlNodeId[i];
+
+			ofs << std::setprecision(3) <<std::fixed<< "file_node_id " << fil_node_id << std::endl;
+		}
+		for (unsigned i = 0; i < sys->pltInfoVecs.tndrlNodeType.size(); i++) {
+			unsigned fil_node_type = sys->pltInfoVecs.tndrlNodeType[i];
+
+			ofs << std::setprecision(3) <<std::fixed<< "fil_node_type " << fil_node_type << std::endl;
+		}
 		
 	}
 }

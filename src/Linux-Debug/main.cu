@@ -78,38 +78,6 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 			system->generalParams.currentEdgeCount = edge_count;
 		}
 
-		/*
-		if (temp == "minX") {
-			std::getline(ss,temp,' ');
-			double minX = std::atof(temp.c_str());
-			system->domainParams.originMinX = minX;
-		}
-		if (temp == "maxX") {
-			std::getline(ss,temp,' ');
-			double maxX = std::atof(temp.c_str());
-			system->domainParams.originMaxX = maxX;
-		}
-		if (temp == "minY") {
-			std::getline(ss,temp,' ');
-			double minY = std::atof(temp.c_str());
-			system->domainParams.originMinY = minY;
-		}
-		if (temp == "maxY") {
-			std::getline(ss,temp,' ');
-			double maxY = std::atof(temp.c_str());
-			system->domainParams.originMaxY = maxY;
-		}
-		if (temp == "minZ") {
-			std::getline(ss,temp,' ');
-			double minZ = std::atof(temp.c_str());
-			system->domainParams.originMinZ = minZ;
-		}
-		if (temp == "maxZ") {
-			std::getline(ss,temp,' ');
-			double maxZ = std::atof(temp.c_str());
-			system->domainParams.originMaxZ = maxZ;
-		}
-		*/
 		unsigned gnbr_increment = 0;
 		if (temp == "global_nbr") {
 			std::getline(ss,temp,' ');
@@ -118,13 +86,30 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 			gnbr_increment+=1;
 		}
 
-		/*unsigned len_increment = 0;
-		if (temp == "length_zero") {
+		unsigned is_node_incr = 0;
+		if (temp == "is_node_in_plt") {
 			std::getline(ss,temp,' ');
-			double length = std::atof(temp.c_str());
-			system->wlcInfoVecs.lengthZero[len_increment] = length;
-			len_increment+=1;
-		}*/
+			bool is_in_plt = std::stoi(temp.c_str());
+			system->nodeInfoVecs.isNodeInPltVol[is_node_incr] = is_in_plt;
+			is_node_incr+=1;
+		}
+
+		unsigned fil_node_id_incr = 0;
+		if (temp == "is_node_in_plt") {
+			std::getline(ss,temp,' ');
+			unsigned fil_node_id = std::stoi(temp.c_str());
+			system->pltInfoVecs.tndrlNodeId[fil_node_id_incr] = fil_node_id;
+			fil_node_id_incr+=1;
+		}		
+		
+		unsigned fil_node_type_incr = 0;
+		if (temp == "is_node_in_plt") {
+			std::getline(ss,temp,' ');
+			unsigned fil_node_type = std::stoi(temp.c_str());
+			system->pltInfoVecs.tndrlNodeType[fil_node_type_incr] = fil_node_type;
+			fil_node_type_incr+=1;
+		}
+
 	}
 };
 
