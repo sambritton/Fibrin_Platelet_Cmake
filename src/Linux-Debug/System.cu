@@ -214,14 +214,14 @@ void System::solveSystem() {
 		
 		if (generalParams.iterationCounter % 100 == 0) {
 			setBucketScheme();
-			std::cout<<"time: " << generalParams.currentTime << std::endl;
+			//std::cout<<"time: " << generalParams.currentTime << std::endl;
 		}
 
 		
 		solveForces(); //resets and solves forces for next time step
 		double temp_current_iter = static_cast<double>(generalParams.iterationCounter);
 		double temp_current_time = temp_current_iter * generalParams.dtTemp;
-		if ( ( fmod(temp_current_time, 1.0) == 0.0) || (generalParams.iterationCounter == 10) ) {
+		if ( ( fmod(temp_current_time, 60.0) == 0.0) || (generalParams.iterationCounter == 10) ) {
 
 			storage->save_current_state();
 			storage->print_VTK_File();
