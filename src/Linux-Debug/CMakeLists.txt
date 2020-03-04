@@ -107,7 +107,7 @@ target_link_libraries(systemLib fibrinLib)
 target_link_libraries(systemLib pltLib)
 target_link_libraries(systemLib storageLib)
 
-set(MAIN_SOURCES main.cpp)
+set(MAIN_SOURCES main.cu)
 set(TARGET bend-model)
 add_executable(${TARGET} ${MAIN_SOURCES})
 

@@ -1,1 +1,6 @@
-\build
+
+slurm*
+/build
+/Animation*
+/Params*
+/State*

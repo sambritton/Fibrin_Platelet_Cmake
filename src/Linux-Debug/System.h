@@ -13,6 +13,7 @@ struct RandVecs {
 
 };
 
+
 //Data Structure for node location. velocity and force
 struct NodeInfoVecs {
 	thrust::host_vector<unsigned> hostEdgeLeft;

@@ -30,12 +30,14 @@ class Storage {
 	int previousAddedEdges = 0;
 	unsigned iteration = 0;
 	std::string str_animation;
+	std::string str_state;
 	std::string str_params;
 
 public: 
 	Storage(std::weak_ptr<System> a_system,
 		std::weak_ptr<SystemBuilder> b_system);
 
+	void save_current_state(void);
 	void save_params(void);
 
 	void updateStorage(void);

@@ -51,7 +51,8 @@ Storage::Storage(std::weak_ptr<System> a_system,
 
 		std::string str_a = "Animation_";
 		std::string str_p = "Params_";
-		
+		std::string str_s = "State_";
+
 		str_animation = str_a +
 			str_domain + std::to_string(domain_size) +
 			str_plt_count + std::to_string(plt_count) + 
@@ -100,11 +101,104 @@ Storage::Storage(std::weak_ptr<System> a_system,
 			printf("making folder!n");
 			printf(str_params.c_str());
 		}
-		
+
+		str_state = str_s + 
+			str_domain + std::to_string(domain_size) +
+			str_plt_count + std::to_string(plt_count) + 
+			str_filo_count + std::to_string(num_filo) + 
+			str_maxF + str_max_force + 
+			str_minF + str_min_force +
+			str_force_scale + std::to_string(force_scale) +
+			str_dynamic_response + std::to_string(response) +
+			str_nonlinear_response + std::to_string(response_nonlin);
+
+		const int dir_err_state = mkdir(str_state.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		if (-1 == dir_err_state)
+		{
+			printf("Error creating directory state!n");
+			//exit(1);
+		}
+		else {
+			printf("making folder!n");
+			printf(str_state.c_str());
+		}
 	}
 };
 
+void Storage::save_current_state(){
+	std::shared_ptr<System> sys = system.lock();
+	if (sys) {
 
+		//first create a new file using the current network strain
+		
+		std::string format = ".sta";
+		
+		std::string strain =  std::to_string(sys->generalParams.currentTime);
+		std::string initial = str_state+"/State_";
+		std::ofstream ofs;
+		std::string Filename = initial + strain + format;
+		ofs.open(Filename.c_str());
+
+
+
+		//unsigned maxNeighborCount = sys->generalParams.maxNeighborCount;
+		unsigned maxNodeCount = sys->generalParams.maxNodeCount;
+		unsigned originalNodeCount = sys->generalParams.originNodeCount;
+		unsigned originalEdgeCount = sys->generalParams.originLinkCount;
+		unsigned edgeCountDiscretize = sys->generalParams.originEdgeCount;
+		
+		//place nodes
+		ofs << std::setprecision(30) <<std::fixed<< "time " << sys->generalParams.currentTime<<std::endl;
+		
+		//thrust::copy(sys->nodeInfoVecs.nodeLocX.begin(),
+		//	sys->nodeInfoVecs.nodeLocX.end(), hostLocX.begin());
+		for (unsigned i = 0; i < sys->nodeInfoVecs.nodeLocX.size(); i++) {
+			
+			double x = sys->nodeInfoVecs.nodeLocX[i];
+			double y = sys->nodeInfoVecs.nodeLocY[i];
+			double z = sys->nodeInfoVecs.nodeLocZ[i];
+			ofs << std::setprecision(30) <<std::fixed<< "node " << x << " " << y << " " << z <<std::endl;
+		}
+		
+		//place plts
+		for (unsigned i = 0; i < sys->pltInfoVecs.pltLocX.size(); i++) {
+			double x = sys->pltInfoVecs.pltLocX[i];
+			double y = sys->pltInfoVecs.pltLocY[i];
+			double z = sys->pltInfoVecs.pltLocZ[i];
+			ofs << std::setprecision(30) <<std::fixed<< "plt " << x << " " << y << " " << z <<std::endl;
+		
+		}
+		
+		//
+		ofs << std::setprecision(30) <<std::fixed<< "edge_count " << sys->generalParams.currentEdgeCount<<std::endl;
+		for (unsigned i = 0; i < sys->generalParams.currentEdgeCount; i++) {
+			unsigned left = sys->nodeInfoVecs.hostEdgeLeft[i];
+			unsigned right = sys->nodeInfoVecs.hostEdgeRight[i];
+
+			ofs << std::setprecision(30) <<std::fixed<< "edge_lr " << left << " " << right <<std::endl;
+		}
+		/*
+		ofs << std::setprecision(30) <<std::fixed<< "minX " << sys->domainParams.originMinX<<std::endl;
+		ofs << std::setprecision(30) <<std::fixed<< "maxX " << sys->domainParams.originMaxX<<std::endl;
+		ofs << std::setprecision(30) <<std::fixed<< "minY " << sys->domainParams.originMinY<<std::endl;
+		ofs << std::setprecision(30) <<std::fixed<< "maxY " << sys->domainParams.originMaxY<<std::endl;
+		ofs << std::setprecision(30) <<std::fixed<< "minZ " << sys->domainParams.originMinZ<<std::endl;
+		ofs << std::setprecision(30) <<std::fixed<< "maxZ " << sys->domainParams.originMaxZ<<std::endl;
+		*/
+		for (unsigned i = 0; i < sys->wlcInfoVecs.globalNeighbors.size(); i++) {
+			unsigned nbr = sys->wlcInfoVecs.globalNeighbors[i];
+
+			ofs << std::setprecision(30) <<std::fixed<< "global_nbr " << nbr << std::endl;
+		}
+
+		/*for (unsigned i = 0; i < sys->wlcInfoVecs.lengthZero.size(); i++) {
+			double lengthZero = sys->wlcInfoVecs.lengthZero[i];
+
+			ofs << std::setprecision(30) <<std::fixed<< "length_zero " << lengthZero << std::endl;
+		}*/
+		
+	}
+}
 
 void Storage::save_params(void) {
 	std::shared_ptr<System> sys = system.lock();
