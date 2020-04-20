@@ -84,31 +84,6 @@ void System::solveForces() {
 	thrust::fill(pltInfoVecs.pltForceY.begin(),pltInfoVecs.pltForceY.end(),0);
 	thrust::fill(pltInfoVecs.pltForceZ.begin(),pltInfoVecs.pltForceZ.end(),0);
 
-//no random detach for now. 
-/*	unsigned _seed = rand();
-	thrust::counting_iterator<unsigned> index_sequence_begin(_seed);
-
-	thrust::transform(thrust::device, index_sequence_begin, 
-		index_sequence_begin + pltInfoVecs.tndrlNodeId.size(),
-		randVecs.filopodia_detach.begin(), psrunifgen(0, 1.0));
-	
-	//reset attachment due to prob
-	double P = 0.20;
-	thrust::transform(
-        thrust::make_zip_iterator(
-        	thrust::make_tuple(
-				pltInfoVecs.tndrlNodeId.begin(),
-				randVecs.filopodia_detach.begin())),
-
-        thrust::make_zip_iterator(
-        	thrust::make_tuple(
-				pltInfoVecs.tndrlNodeId.end(),
-				randVecs.filopodia_detach.end())),
-
-		pltInfoVecs.tndrlNodeId.begin(),
-	functor_prob_detach(generalParams.dtTemp, P, generalParams.maxIdCountFlag));
-
-*/
 	
 	if (generalParams.linking == true) {
 		
@@ -187,6 +162,15 @@ void System::solveSystem() {
 
 	double final_time = 45.0 * 60.0;//convert seconds to minutes requires *60
 
+	//Fill force with zero to double check
+	thrust::fill(nodeInfoVecs.nodeForceX.begin(),nodeInfoVecs.nodeForceX.end(),0);
+	thrust::fill(nodeInfoVecs.nodeForceY.begin(),nodeInfoVecs.nodeForceY.end(),0); 
+	thrust::fill(nodeInfoVecs.nodeForceZ.begin(),nodeInfoVecs.nodeForceZ.end(),0);
+	
+	thrust::fill(pltInfoVecs.pltForceX.begin(),pltInfoVecs.pltForceX.end(),0);
+	thrust::fill(pltInfoVecs.pltForceY.begin(),pltInfoVecs.pltForceY.end(),0);
+	thrust::fill(pltInfoVecs.pltForceZ.begin(),pltInfoVecs.pltForceZ.end(),0);
+
 	while (generalParams.runSim == true) {
 
 		double time_iter = (generalParams.iterationCounter);
@@ -199,9 +183,6 @@ void System::solveSystem() {
 		generalParams.iterationCounter++;
 		generalParams.currentTime += generalParams.dtTemp;
 
-		//if (generalParams.iterationCounter % 10 == 0) {
-		//	std::cout<<"iterationCount: "<< generalParams.iterationCounter <<std::endl;
-		//}
 		Advance_Positions_Fibrin(
 			nodeInfoVecs,
 			generalParams,

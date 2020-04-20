@@ -177,6 +177,7 @@ void Storage::save_current_state(){
 
 			ofs << std::setprecision(30) <<std::fixed<< "edge_lr " << left << " " << right <<std::endl;
 		}
+
 		/*
 		ofs << std::setprecision(30) <<std::fixed<< "minX " << sys->domainParams.originMinX<<std::endl;
 		ofs << std::setprecision(30) <<std::fixed<< "maxX " << sys->domainParams.originMaxX<<std::endl;
@@ -189,6 +190,12 @@ void Storage::save_current_state(){
 			unsigned nbr = sys->wlcInfoVecs.globalNeighbors[i];
 
 			ofs << std::setprecision(30) <<std::fixed<< "global_nbr " << nbr << std::endl;
+		}
+
+		for (unsigned i = 0; i < sys->wlcInfoVecs.lengthZero.size(); i++) {
+			double len_zero = sys->wlcInfoVecs.lengthZero[i];
+
+			ofs << std::setprecision(30) <<std::fixed<< "length_zero " << len_zero << std::endl;
 		}
 
 		for (unsigned i = 0; i < sys->nodeInfoVecs.isNodeInPltVol.size(); i++) {
@@ -248,7 +255,7 @@ void Storage::save_params(void) {
 		
 		//place nodes
 		
-		//thrust::copy(sys->nodeInfoVecs.nodeLocX.begin(),
+		//thrust::copy(sys->nodeInfoVecs.nodeLocX.begin(),hostEdgeRight
 		//	sys->nodeInfoVecs.nodeLocX.end(), hostLocX.begin());
 		for (unsigned i = 0; i < sys->nodeInfoVecs.nodeLocX.size(); i++) {
 			
