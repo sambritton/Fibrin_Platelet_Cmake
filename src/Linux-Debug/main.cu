@@ -110,7 +110,7 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 			//check corresponding length of edge, if not filled use 0.1
 			double test_length = system->wlcInfoVecs.lengthZero[gnbr_increment];
 			if (test_length == 0.0 ){
-				system->wlcInfoVecs.lengthZero[gnbr_increment] = generalParams.fiberDiameter;
+				system->wlcInfoVecs.lengthZero[gnbr_increment] = system->generalParams.fiberDiameter;
 			}
 		}
 
