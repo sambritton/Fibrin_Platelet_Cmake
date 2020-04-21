@@ -23,33 +23,44 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 	std::string temp;
 	std::string line;
 
+	
 	if(!ifs) {
 		std::cout << filename << " is not available" << std::endl;
 		return;
 	}
 
-	std::stringstream ss;
-
+	unsigned node_increment = 0;
+	unsigned plt_increment = 0;
+	unsigned temp_edge_counter = 0;
+	unsigned len_increment = 0;
+	unsigned gnbr_increment = 0;
+	unsigned is_node_incr = 0;
+	unsigned fil_node_id_incr = 0;
+	unsigned fil_node_type_incr = 0;
+	unsigned filopodia_count_per_plt = 0;
+		
 	while (std::getline(ifs,line)) {
-		ss.str(line);
+		
 
+		std::stringstream ss;
+		std::string temp;
+		
+		ss.str(line);
 		std::getline(ss,temp,' ');
 
-		
 		if (temp == "time") {
 			std::getline(ss,temp,' ');
 			double time = std::atof(temp.c_str());
 			system->generalParams.currentTime = time;
 			std::cout<<"resetting time: " << time << std::endl;
+			std::getline(ss,temp,'\n');
 		}
-
-		unsigned node_increment = 0;
-		if (temp == "node") {
+		else if (temp == "node") {
 			std::getline(ss,temp,' ');
 			double x = std::atof(temp.c_str());
 			std::getline(ss,temp,' ');
 			double y = std::atof(temp.c_str());
-			std::getline(ss,temp,'\n');
+			std::getline(ss,temp,' ');
 			double z = std::atof(temp.c_str());
 
 			system->nodeInfoVecs.nodeLocX[node_increment] = x;
@@ -57,14 +68,12 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 			system->nodeInfoVecs.nodeLocZ[node_increment] = z;
 			node_increment+=1;
 		}
-
-		unsigned plt_increment = 0;
-		if (temp == "plt") {
+		else if (temp == "plt") {
 			std::getline(ss,temp,' ');
 			double x = std::atof(temp.c_str());
 			std::getline(ss,temp,' ');
 			double y = std::atof(temp.c_str());
-			std::getline(ss,temp,'\n');
+			std::getline(ss,temp,' ');
 			double z = std::atof(temp.c_str());
 
 			system->pltInfoVecs.pltLocX[plt_increment] = x;
@@ -72,17 +81,13 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 			system->pltInfoVecs.pltLocZ[plt_increment] = z;
 			plt_increment+=1;
 		}
-
-		if (temp == "edge_count") {
-			
+		else if (temp == "edge_count") {
 			std::getline(ss,temp,' ');
 			unsigned edge_count = std::stoi(temp.c_str());
 			system->generalParams.currentEdgeCount = edge_count;
 			std::cout<<"RESET EDGE COUNT: " << edge_count << std::endl;
 		}
-
-		unsigned temp_edge_counter=0;
-		if (temp == "edge_lr") {			
+		else if (temp == "edge_lr") {			
 			std::getline(ss,temp,' ');
 			unsigned left_edge = std::stoi(temp.c_str());
 			std::getline(ss,temp,' ');
@@ -90,67 +95,56 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 
 			system->nodeInfoVecs.hostEdgeLeft[temp_edge_counter] = left_edge;
 			system->nodeInfoVecs.hostEdgeRight[temp_edge_counter] = right_edge;
-			temp_edge_counter++;
+			temp_edge_counter+=1;
 		}
-
 		//lengths must be overwritten because added edges have lenzero
-		unsigned len_increment = 0;
-		if (temp == "length_zero") {
+		else if (temp == "length_zero") {
 			std::getline(ss,temp,' ');
 			double len_zero = std::atof(temp.c_str());
 			system->wlcInfoVecs.lengthZero[len_increment] = len_zero;
 			len_increment+=1;
 		}
-
-		unsigned gnbr_increment = 0;
-		if (temp == "global_nbr") {
+		else if (temp == "global_nbr") {
 			std::getline(ss,temp,' ');
 			unsigned nbr_index = std::stoi(temp.c_str());
 			system->wlcInfoVecs.globalNeighbors[gnbr_increment] = nbr_index;
-			gnbr_increment+=1;
-
+			
 			//check corresponding length of edge, if not filled use 0.1
 			double test_length = system->wlcInfoVecs.lengthZero[gnbr_increment];
 			if (test_length == 0.0 ){
 				system->wlcInfoVecs.lengthZero[gnbr_increment] = system->generalParams.fiberDiameter;
 			}
+			gnbr_increment+=1;
+
 		}
-
-
-
-		unsigned is_node_incr = 0;
-		if (temp == "is_node_in_plt") {
+		else if (temp == "is_node_in_plt") {
 			std::getline(ss,temp,' ');
 			bool is_in_plt = std::stoi(temp.c_str());
 			system->nodeInfoVecs.isNodeInPltVol[is_node_incr] = is_in_plt;
 			is_node_incr+=1;
 		}
-
-		unsigned fil_node_id_incr = 0;
-		if (temp == "is_node_in_plt") {
+		else if (temp == "is_node_in_plt") {
 			std::getline(ss,temp,' ');
 			unsigned fil_node_id = std::stoi(temp.c_str());
 			system->pltInfoVecs.tndrlNodeId[fil_node_id_incr] = fil_node_id;
 			fil_node_id_incr+=1;
 		}		
-		
-		unsigned fil_node_type_incr = 0;
-		if (temp == "is_node_in_plt") {
+		else if (temp == "is_node_in_plt") {
 			std::getline(ss,temp,' ');
 			unsigned fil_node_type = std::stoi(temp.c_str());
 			system->pltInfoVecs.tndrlNodeType[fil_node_type_incr] = fil_node_type;
 			fil_node_type_incr+=1;
 		}
- 
-		unsigned filopodia_count_per_plt = 0;
-		if (temp == "filopodia_count") {
+		else if (temp == "filopodia_count") {
 			std::getline(ss,temp,' ');
 			unsigned num_filopodia = std::stoi(temp.c_str());
 			system->pltInfoVecs.tndrlNodeType[filopodia_count_per_plt] = num_filopodia;
 			filopodia_count_per_plt+=1;
 		}
+		//else {std::cout<<"INPUT UNKNOWN"<< std::endl;}
 
 	}
+	std::cout<<"finished state copy" << std::endl;
 };
 
 std::shared_ptr<System> createSystem(const char* schemeFile, std::shared_ptr<SystemBuilder> builder)	{
