@@ -74,9 +74,11 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 		}
 
 		if (temp == "edge_count") {
+			
 			std::getline(ss,temp,' ');
 			unsigned edge_count = std::stoi(temp.c_str());
 			system->generalParams.currentEdgeCount = edge_count;
+			std::cout<<"RESET EDGE COUNT: " << edge_count << std::endl;
 		}
 
 		unsigned temp_edge_counter=0;
@@ -138,6 +140,14 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 			unsigned fil_node_type = std::stoi(temp.c_str());
 			system->pltInfoVecs.tndrlNodeType[fil_node_type_incr] = fil_node_type;
 			fil_node_type_incr+=1;
+		}
+ 
+		unsigned filopodia_count_per_plt = 0;
+		if (temp == "filopodia_count") {
+			std::getline(ss,temp,' ');
+			unsigned num_filopodia = std::stoi(temp.c_str());
+			system->pltInfoVecs.tndrlNodeType[filopodia_count_per_plt] = num_filopodia;
+			filopodia_count_per_plt+=1;
 		}
 
 	}

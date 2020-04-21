@@ -127,6 +127,8 @@ void Plt_Arm_Node_Force(
 		unsigned total_num_arms = pltInfoVecs.nodeImagingConnection.size();
 
 		//correspondance kept between nodeUnreducedId and pltImagingConnection
+		//sort by node ids
+		//default value is maxNodeCount so increasing order sort is needed
 		thrust::sort_by_key(pltInfoVecs.nodeUnreducedId.begin(), pltInfoVecs.nodeUnreducedId.end(),
         			thrust::make_zip_iterator(
         				thrust::make_tuple(
@@ -137,7 +139,16 @@ void Plt_Arm_Node_Force(
 
 		//now nodeImagingConnection contains the corresponding nodes to pltImagingConnection
     	thrust::copy(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.begin() + total_num_arms, pltInfoVecs.nodeImagingConnection.begin());
-
+		
+		if (generalParams.iterationCounter=100){
+		for (unsigned i =0; i < pltInfoVecs.nodeUnreducedId.size(); i++){
+				unsigned id_node = pltInfoVecs.nodeUnreducedId[i];
+				unsigned id_plt = pltInfoVecs.nodeImagingConnection[i];
+				if (id < generalParams.maxNodeCount	){
+					std::cout<< "id_node: " << id_node << " id_plt: " << id_plt<< std::endl;
+				}
+			}
+		}	
     	pltInfoVecs.numConnections = thrust::count_if(
     	    pltInfoVecs.nodeImagingConnection.begin(),
     	    pltInfoVecs.nodeImagingConnection.end(), is_less_than(generalParams.maxNodeCount) );

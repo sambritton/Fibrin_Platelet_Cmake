@@ -210,8 +210,12 @@ void Storage::save_current_state(){
 		}
 		for (unsigned i = 0; i < sys->pltInfoVecs.tndrlNodeType.size(); i++) {
 			unsigned fil_node_type = sys->pltInfoVecs.tndrlNodeType[i];
-
 			ofs << std::setprecision(3) <<std::fixed<< "fil_node_type " << fil_node_type << std::endl;
+		}
+
+		for (unsigned i = 0; i < sys->pltInfoVecs.tndrlNodeNum.size(); i++) {
+			unsigned num_filopodia = sys->pltInfoVecs.tndrlNodeNum[i];
+			ofs << std::setprecision(3) <<std::fixed<< "filopodia_count " << num_filopodia << std::endl;
 		}
 		
 	}

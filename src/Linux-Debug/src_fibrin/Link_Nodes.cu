@@ -18,9 +18,6 @@ void Link_Nodes(
 		thrust::fill(nodeInfoVecs.linksThreadMade.begin(),
 			nodeInfoVecs.linksThreadMade.end(), 0);
 		
-	//	thrust::fill(nodeInfoVecs.delinksThreadMade.begin(),
-	//		nodeInfoVecs.delinksThreadMade.end(), 0);
-
 		thrust::fill(nodeInfoVecs.idMadeTempLeft.begin(),
 				nodeInfoVecs.idMadeTempLeft.end(), 0);
 
@@ -28,9 +25,6 @@ void Link_Nodes(
 				nodeInfoVecs.idMadeTempRight.end(), 0);
 
 
-		//unsigned globalcount = thrust::count_if(wlcInfoVecs.globalNeighbors.begin(),wlcInfoVecs.globalNeighbors.end(),is_less_than(generalParams.maxNodeCount));
-		//std::cout<<"currentEdgeCount varpre: "<< generalParams.currentEdgeCount << std::endl;
-		//std::cout<<"currentEdgeCount globalpre: "<< globalcount/2 << std::endl;
 
 		thrust::counting_iterator<unsigned> counter(0);
 		thrust::transform(
@@ -135,37 +129,7 @@ void Link_Nodes(
 
 
 		unsigned count = 0;
-		//std::cout << "nodeInfoVecs.idMadeTempLeft.size(): " << nodeInfoVecs.idMadeTempLeft.size() << std::endl;
-//		for (unsigned i = 1; i < nodeInfoVecs.idMadeTempLeft.size(); i++) {
-//			//add extra edges and preferred lengths. Notice the lower and upper must be added since each imparts force to one single node and
-//			//not the neighboring node to the edge. This is b/c edges are solved per node and not per edge
-//			unsigned idL = nodeInfoVecs.host_id_left[i];
-//			unsigned idR = nodeInfoVecs.host_id_right[i];
-//
-//			if ((idL == idL_init) && (idR == idR_init)){
-//				count +=1;
-//			}
-//			else {
-//				count = 0;
-//			}
-//			//reset initial id's
-//			idL_init = idL;
-//			idR_init = idR;
-//
-//
-//			if ( ((idL != 0) || (idR != 0) ) && (count == 1)) {
-//
-//				//count edges
-//				std::cout<<"placing id: "<< idL<<" " << idR<<std::endl;
-//
-//				
-//				nodeInfoVecs.hostEdgeLeft[generalParams.currentEdgeCount] = (idL);
-//				nodeInfoVecs.hostEdgeRight[generalParams.currentEdgeCount] = (idR);
-//				generalParams.currentEdgeCount += 1;
-//			} 
-//
-//		} 
-		//end old code
+
  
 		idL_init = nodeInfoVecs.host_id_left[0];
 		idR_init = nodeInfoVecs.host_id_right[0];
@@ -188,34 +152,9 @@ void Link_Nodes(
 
 
 			if (((idL != 0) || (idR != 0)) && (count == 1)) {
-
-				//count edges
-				//std::cout << "placing id from tester: " << idL << " " << idR << std::endl;
-
-
 				nodeInfoVecs.hostEdgeLeft[generalParams.currentEdgeCount] = (idL);
 				nodeInfoVecs.hostEdgeRight[generalParams.currentEdgeCount] = (idR);
 				generalParams.currentEdgeCount += 1;
 			}
-
 		}
-
-	/*	unsigned globalcount = thrust::count_if(wlcInfoVecs.globalNeighbors.begin(), wlcInfoVecs.globalNeighbors.end(), is_less_than(generalParams.maxNodeCount));
-
-		unsigned linksmade = *(thrust::max_element(linksThreadMade.begin(), linksThreadMade.end() ));
-		unsigned delinksmade = *(thrust::max_element(delinksThreadMade.begin(), delinksThreadMade.end() ));
-		std::cout<<"max links made this iteration: "<< linksmade << std::endl;
-		std::cout<<"max unlinks made this iteration: "<< delinksmade << std::endl;
-
-		std::cout<<"currentEdgeCount var: "<< generalParams.currentEdgeCount << std::endl;
-		std::cout<<"currentEdgeCount global "<< globalcount/2 << std::endl;
-
-		unsigned temp= thrust::reduce(	wlcInfoVecs.currentNodeEdgeCountVector.begin(),
-			wlcInfoVecs.currentNodeEdgeCountVector.end());
-		std::cout<<"currentEdgeCount dev: "<< temp << std::endl;
-	*/
-
-
-
-
 };
