@@ -150,9 +150,9 @@ struct functor_plt_arm_node : public thrust::unary_function< U3CVec7, CVec3>  {
 
    __device__
  		CVec3 operator()(const U3CVec7 &u3d6) {
-
-	unsigned pltTndrl = thrust::get<0>(u3d6);		
-        unsigned pltId = thrust::get<1>(u3d6);
+		
+		unsigned pltId = thrust::get<0>(u3d6);//platelet id should be the counting iterator
+		unsigned num_plt_filo = thrust::get<1>(u3d6);		
         unsigned bucketId = thrust::get<2>(u3d6);
 
 		double unif_rand = thrust::get<3>(u3d6);//used for generator unif
@@ -189,7 +189,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U3CVec7, CVec3>  {
 
         //Loop through the number of available filopodia
 		unsigned final_interaction_count = 0;
-        for(unsigned interactionCounter = 0; interactionCounter < pltTndrl; interactionCounter++) {
+        for(unsigned interactionCounter = 0; interactionCounter < num_plt_filo; interactionCounter++) {
 
             unsigned pullNode_id = tndrlNodeId[storageLocation + interactionCounter];
             unsigned pullNode_type = tndrlNodeType[storageLocation + interactionCounter];
@@ -233,7 +233,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U3CVec7, CVec3>  {
 
 								unsigned newPullNode_id = glblNghbrsId[ nbr_loc ];
 								//check tentative node is not already connected
-								for (unsigned checkId = 0; checkId < pltTndrl; checkId++) {
+								for (unsigned checkId = 0; checkId < num_plt_filo; checkId++) {
 									if (newPullNode_id != tndrlNodeId[storageLocation + checkId]) {
 
 										bool isNodeInPltVol = false;
@@ -327,7 +327,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U3CVec7, CVec3>  {
 
 					bool node_is_new = true;
 					//check tentative node is not already connected
-				    for (unsigned checkId = 0; checkId < pltTndrl; checkId++){
+				    for (unsigned checkId = 0; checkId < num_plt_filo; checkId++){
         	        	if (newPullNode_id == tndrlNodeId[storageLocation + checkId]){
 							node_is_new = false;
         	        		break;
@@ -375,7 +375,7 @@ struct functor_plt_arm_node : public thrust::unary_function< U3CVec7, CVec3>  {
         	    //then we have a post-search node we can pull.
 				//Add force to it and the current platelet.
 
-				unsigned pullNode_id = tndrlNodeId[storageLocation + interactionCounter];
+				pullNode_id = tndrlNodeId[storageLocation + interactionCounter];
 				double vecN_PX = pltLocX - nodeLocXAddr[pullNode_id];
         	    double vecN_PY = pltLocY - nodeLocYAddr[pullNode_id];
         	    double vecN_PZ = pltLocZ - nodeLocZAddr[pullNode_id];

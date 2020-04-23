@@ -120,6 +120,26 @@ void Plt_Arm_Node_Force(
                 thrust::raw_pointer_cast(pltInfoVecs.pltLocZ.data())) );
 
 
+		/*if (generalParams.iterationCounter==100){
+			for (unsigned i =0; i < pltInfoVecs.nodeUnreducedId.size(); i++){
+					unsigned id_node = pltInfoVecs.nodeUnreducedId[i];
+					unsigned id_plt = pltInfoVecs.pltImagingConnection[i];
+					if (id_node < generalParams.maxNodeCount){
+						std::cout<< "id_node: " << id_node << " id_plt: " << id_plt<< std::endl;
+						double x_node = nodeInfoVecs.nodeLocX[id_node];
+						double y_node = nodeInfoVecs.nodeLocY[id_node];
+						double z_node = nodeInfoVecs.nodeLocZ[id_node];
+						double x_plt = pltInfoVecs.pltLocX[id_plt];
+						double y_plt = pltInfoVecs.pltLocY[id_plt];
+						double z_plt = pltInfoVecs.pltLocZ[id_plt];
+	
+						double dist = std::sqrt((x_node-x_plt)*(x_node-x_plt)
+												+(y_node-y_plt)*(y_node-y_plt)
+												+(z_node-z_plt)*(z_node-z_plt));
+						std::cout<<"distance between plt and node: " << dist << std::endl;
+					}
+				}
+			}	*/
         //now call a sort by key followed by a reduce by key to figure out which nodes are have force applied.
 		//then make a functor that takes the id and force (4 tuple) 
 		//and takes that force and adds it to the id'th entry in nodeInfoVecs.nodeForceX,Y,Z
@@ -140,26 +160,7 @@ void Plt_Arm_Node_Force(
 		//now nodeImagingConnection contains the corresponding nodes to pltImagingConnection
     	thrust::copy(pltInfoVecs.nodeUnreducedId.begin(),pltInfoVecs.nodeUnreducedId.begin() + total_num_arms, pltInfoVecs.nodeImagingConnection.begin());
 		
-		/*if (generalParams.iterationCounter==100){
-		for (unsigned i =0; i < pltInfoVecs.nodeImagingConnection.size(); i++){
-				unsigned id_node = pltInfoVecs.nodeImagingConnection[i];
-				unsigned id_plt = pltInfoVecs.pltImagingConnection[i];
-				if (id_node < generalParams.maxNodeCount	){
-					std::cout<< "id_node: " << id_node << " id_plt: " << id_plt<< std::endl;
-					double x_node = nodeInfoVecs.nodeLocX[id_node];
-					double y_node = nodeInfoVecs.nodeLocY[id_node];
-					double z_node = nodeInfoVecs.nodeLocZ[id_node];
-					double x_plt = pltInfoVecs.pltLocX[id_plt];
-					double y_plt = pltInfoVecs.pltLocY[id_plt];
-					double z_plt = pltInfoVecs.pltLocZ[id_plt];
 
-					double dist = std::sqrt((x_node-x_plt)*(x_node-x_plt)
-											+(y_node-y_plt)*(y_node-y_plt)
-											+(z_node-z_plt)*(z_node-z_plt));
-					std::cout<<"distance between plt and node: " << dist << std::endl;
-				}
-			}
-		}	*/
     	pltInfoVecs.numConnections = thrust::count_if(
     	    pltInfoVecs.nodeImagingConnection.begin(),
     	    pltInfoVecs.nodeImagingConnection.end(), is_less_than(generalParams.maxNodeCount) );
