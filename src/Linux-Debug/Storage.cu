@@ -250,8 +250,9 @@ void Storage::save_params(void) {
 		ofs << std::setprecision(5) <<std::fixed<< "maxY " << sys->domainParams.maxY<<std::endl;
 		ofs << std::setprecision(5) <<std::fixed<< "minZ " << sys->domainParams.minX<<std::endl;
 		ofs << std::setprecision(5) <<std::fixed<< "maxZ " << sys->domainParams.maxX<<std::endl;
-		
-		
+
+		ofs << std::setprecision(5) <<std::fixed<< "total_applied_force " << sys->generalParams.totalAppliedForce<<std::endl;
+
 		ofs << std::setprecision(5) <<std::fixed<< "original_node_count " << originalNodeCount <<std::endl;
 		ofs << std::setprecision(5) <<std::fixed<< "node_count_discretize " << maxNodeCount <<std::endl;
 		ofs << std::setprecision(5) <<std::fixed<< "original_edge_count " << originalEdgeCount <<std::endl;

@@ -138,7 +138,7 @@ void advanceSystem(std::string filename, std::shared_ptr<System> system){
 		else if (temp == "filopodia_count") {
 			std::getline(ss,temp,' ');
 			unsigned num_filopodia = std::stoi(temp.c_str());
-			system->pltInfoVecs.tndrlNodeType[filopodia_count_per_plt] = num_filopodia;
+			system->pltInfoVecs.tndrlNodeNum[filopodia_count_per_plt] = num_filopodia;
 			filopodia_count_per_plt+=1;
 		}
 		//else {std::cout<<"INPUT UNKNOWN"<< std::endl;}

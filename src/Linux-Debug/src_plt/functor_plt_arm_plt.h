@@ -154,9 +154,16 @@ struct functor_plt_arm_plt : public thrust::unary_function<U2CVec6, CVec3>  {
 			if ( ((tndrlNodeId[storageLocation + interactionCounter]) != maxIdCountFlag) && 
 				( (tndrlNodeType[storageLocation + interactionCounter]) == 1) && (dist < 2.0 * pltRForce) && (dist > 2.0 * pltR)){
 				//Determine direction of force based on positions and multiply magnitude force
-				double forceNodeX = (vecN_PX / dist) * (pltForce);
-				double forceNodeY = (vecN_PY / dist) * (pltForce);
-				double forceNodeZ = (vecN_PZ / dist) * (pltForce);
+				
+				// CHANGE BACK LATER
+				double f_0 = 2.233;
+                        
+				//double forceNodeX = (vecN_PX / dist) * (pltForce);
+				//double forceNodeY = (vecN_PY / dist) * (pltForce);
+				//double forceNodeZ = (vecN_PZ / dist) * (pltForce);
+				double forceNodeX = (vecN_PX / dist) * (f_0);
+				double forceNodeY = (vecN_PY / dist) * (f_0);
+				double forceNodeZ = (vecN_PZ / dist) * (f_0);
 
 				//count force for plt.
 				sumPltForceX += (-1.0) * forceNodeX;

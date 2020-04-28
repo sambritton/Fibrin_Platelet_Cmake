@@ -197,6 +197,21 @@ void System::solveSystem() {
 
 		std::cout << "Max Forces: " << max_val_x << " " << max_val_y << " "<< max_val_z<< std::endl;
 		*/
+		
+		generalParams.totalAppliedForce = thrust::transform_reduce(
+			thrust::make_zip_iterator(
+				thrust::make_tuple(
+					nodeInfoVecs.nodeForceX.begin(),
+					nodeInfoVecs.nodeForceY.begin(),
+					nodeInfoVecs.nodeForceZ.begin())),
+			thrust::make_zip_iterator(
+				thrust::make_tuple(
+					nodeInfoVecs.nodeForceX.end(),
+					nodeInfoVecs.nodeForceY.end(),
+					nodeInfoVecs.nodeForceZ.end())),
+				functor_norm(), 0.0, thrust::plus<double>() );
+		//std::cout<<"total applied force: " << generalParams.totalAppliedForce << std::endl;
+		
 		generalParams.currentTime += generalParams.dtTemp;
 
 		Advance_Positions_Fibrin(

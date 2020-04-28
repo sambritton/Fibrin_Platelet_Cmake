@@ -423,9 +423,14 @@ struct functor_plt_arm_node_time : public thrust::unary_function< U3CVec7, CVec3
                         double b = 3.582;
                         double c = 131.8;
                         double d = 1.417;
-                        double f_0 = 2.233;
+                        double f_0 = 2.233;//
                         double fitting_factor = (a * stiffness) / (b * stiffness + c);
                         mag_force = f_0 + (1.0 - d*exp(-(current_time / tau))) * fitting_factor;
+
+                        //at high strain for certain fitting parameters. 
+                        if (mag_force < 0.0){
+                            mag_force=0.0;
+                        }
 					
                         //Determine direction of force based on positions and multiply magnitude force
                         forceNodeX = (vecN_PX / dist) * (mag_force);
