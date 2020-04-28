@@ -415,6 +415,10 @@ std::shared_ptr<System> SystemBuilder::create() {
 
 	host_ptr_devNodeSystem->generalParams.use_nonlinear_dynamic_force = use_nonlinear_dynamic_force;
 
+	host_ptr_devNodeSystem->generalParams.nummonfiberarea = defaultNumMonFiberArea;
+	host_ptr_devNodeSystem->generalParams.wlc_factor = defaultNumMonFiberArea * defaultBoltzmannConstant * 
+														defaultTemperature / defaultPersistanceLength;
+
 
 
 

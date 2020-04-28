@@ -245,7 +245,7 @@ struct GeneralParams{
 	unsigned maxNeighborCount = 100;
 	unsigned maxNodeCount;//after discretize
 	unsigned originNodeCount;//pre discretize
-	unsigned nummonfiberarea = 1100;//number of monomers per fiber crossesction;
+	unsigned nummonfiberarea;//number of monomers per fiber crossesction;
 
 	  //platelets
   	unsigned maxPltCount;//after discretize
@@ -259,6 +259,7 @@ struct GeneralParams{
 	unsigned subNodeCount = 0;//maximal subnode division for longest edge
 
 	double kB, CLM, temperature, torsionStiffness, viscousDamp_Fibrin, viscousDamp_Plt;
+	double wlc_factor;
 	double nodeMass = 1;
 	double persistenceLengthMon;
 

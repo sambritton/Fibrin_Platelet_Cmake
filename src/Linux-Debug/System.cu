@@ -3,7 +3,7 @@
 #include "Link_Nodes.h"
 #include "WLC_Force.h"
 #include "Torsion_Force.h"
-#include "Plt_Arm_Node_Force.h"
+#include "Plt_Arm_Node_Force_Time.h"
 #include "Plt_Arm_Plt_Force.h"
 #include "Plt_Field_Node_Force.h"
 #include "Plt_Field_Plt_Force.h"
@@ -117,8 +117,9 @@ void System::solveForces() {
 	}
 	else if (generalParams.plttndrl == true) { //note for now force-field type has priority over tndrl-type
 
-		// Tndrl-node pulling
-		Plt_Arm_Node_Force(
+		// filopodia-node pulling
+		//using time dependence function
+		Plt_Arm_Node_Force_Time(
 		  nodeInfoVecs,
 		  wlcInfoVecs,
 		  generalParams,
@@ -181,6 +182,21 @@ void System::solveSystem() {
 		};
 		
 		generalParams.iterationCounter++;
+		/*std::cout<<"iter: " << generalParams.iterationCounter << std::endl;
+
+		thrust::device_vector<double>::iterator iter_x =
+  			thrust::max_element(nodeInfoVecs.nodeForceX.begin(), nodeInfoVecs.nodeForceX.end());
+		thrust::device_vector<double>::iterator iter_y =
+  			thrust::max_element(nodeInfoVecs.nodeForceY.begin(), nodeInfoVecs.nodeForceY.end());
+		thrust::device_vector<double>::iterator iter_z =
+  			thrust::max_element(nodeInfoVecs.nodeForceZ.begin(), nodeInfoVecs.nodeForceZ.end());
+
+		double max_val_x = *iter_x;
+		double max_val_y = *iter_y;
+		double max_val_z = *iter_z;
+
+		std::cout << "Max Forces: " << max_val_x << " " << max_val_y << " "<< max_val_z<< std::endl;
+		*/
 		generalParams.currentTime += generalParams.dtTemp;
 
 		Advance_Positions_Fibrin(

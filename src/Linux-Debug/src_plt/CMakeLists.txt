@@ -19,6 +19,9 @@ add_library(pltLib STATIC
 	functor_plt_arm_plt.h
 	Plt_Arm_Node_Force.cu
 	Plt_Arm_Node_Force.h
-	functor_plt_arm_node.h)
+	functor_plt_arm_node.h
+	Plt_Arm_Node_Force_Time.cu
+	Plt_Arm_Node_Force_Time.h
+	functor_plt_arm_node_time.h)
 
 target_compile_features(pltLib PUBLIC cxx_std_11)
