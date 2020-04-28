@@ -198,7 +198,7 @@ void System::solveSystem() {
 		std::cout << "Max Forces: " << max_val_x << " " << max_val_y << " "<< max_val_z<< std::endl;
 		*/
 		
-		generalParams.totalAppliedForce = thrust::transform_reduce(
+		generalParams.totalAppliedForce_Fiber = thrust::transform_reduce(
 			thrust::make_zip_iterator(
 				thrust::make_tuple(
 					nodeInfoVecs.nodeForceX.begin(),
@@ -210,7 +210,20 @@ void System::solveSystem() {
 					nodeInfoVecs.nodeForceY.end(),
 					nodeInfoVecs.nodeForceZ.end())),
 				functor_norm(), 0.0, thrust::plus<double>() );
-		//std::cout<<"total applied force: " << generalParams.totalAppliedForce << std::endl;
+	
+		generalParams.totalAppliedForce_Plt = thrust::transform_reduce(
+			thrust::make_zip_iterator(
+				thrust::make_tuple(
+					pltInfoVecs.pltForceX.begin(),
+					pltInfoVecs.pltForceY.begin(),
+					pltInfoVecs.pltForceZ.begin())),
+			thrust::make_zip_iterator(
+				thrust::make_tuple(
+					pltInfoVecs.pltForceX.end(),
+					pltInfoVecs.pltForceY.end(),
+					pltInfoVecs.pltForceZ.end())),
+				functor_norm(), 0.0, thrust::plus<double>() );
+		//std::cout<<"total applied force: " << generalParams.totalAppliedForce_Plt << std::endl;
 		
 		generalParams.currentTime += generalParams.dtTemp;
 

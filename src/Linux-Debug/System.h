@@ -238,8 +238,8 @@ struct TorsionInfoVecs {
 struct GeneralParams{
 	//general computation
 	bool runSim = true; //default true to begin sim. Sim ends when runSim == false
-	double totalAppliedForce=0.0;
-
+	double totalAppliedForce_Fiber=0.0;
+	double totalAppliedForce_Plt=0.0;
 	double lagTime = 1.0;//set in main.cpp usin
 
 	unsigned maxNeighborCount = 100;
